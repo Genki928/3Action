@@ -3,8 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : CharacterBase
 {
-    Vector2 moveVec;
+    // --- フィールド ---
+    Vector2 _moveVec;
 
+    // --- メソッド ---
     protected override void Start()
     {
         base.Start();
@@ -12,12 +14,12 @@ public class PlayerController : CharacterBase
 
     void FixedUpdate()
     {
-        var vec = isPaused ? 0.0f : 5.0f;
-        rigidbody.linearVelocity = moveVec * vec;
+        var vec = _isPaused ? 0.0f : 5.0f;
+        GetComponent<Rigidbody>().linearVelocity = _moveVec * vec;
     }
 
     public void Move(InputAction.CallbackContext ctx)
     {
-        moveVec = ctx.ReadValue<Vector2>();
+        _moveVec = ctx.ReadValue<Vector2>();
     }
 }

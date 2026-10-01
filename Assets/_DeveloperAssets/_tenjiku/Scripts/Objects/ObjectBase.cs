@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class ObjectBase : MonoBehaviour
 {
-    protected bool isPaused = false;
+    // --- フィールド ---
+    protected bool _isPaused = false;
 
+    // --- メソッド ---
     void OnEnable()
     {
         GameState.OnPaused += ChangedGameState;
@@ -17,18 +19,24 @@ public class ObjectBase : MonoBehaviour
 
     protected void ChangedGameState()
     {
-        isPaused = GameState.IsPaused;
+        _isPaused = GameState.IsPaused;
     }
 }
-
 public static class GameState
 {
-    public static bool IsPaused => isPaused;
-    static bool isPaused = false;
+    // --- プロパティ ---
+    public static bool IsPaused => _isPaused;
+
+    // --- フィールド ---
+    static bool _isPaused = false;
+
+    // --- イベント ---
     public static event Action OnPaused;
+
+    // --- メソッド ---
     public static void ToggleState()
     {
-        isPaused = !isPaused;
+        _isPaused = !_isPaused;
         OnPaused?.Invoke();
     }
 }

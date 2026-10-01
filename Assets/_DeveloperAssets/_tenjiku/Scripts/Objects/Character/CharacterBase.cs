@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class CharacterBase : ObjectBase
 {
-    protected Rigidbody2D rigidbody;
+    // --- フィールド ---
+    protected Rigidbody2D _rigidbody;
 
+    // --- メソッド ---
     protected virtual void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 }
