@@ -11,7 +11,7 @@ public class PlayerController : CharacterBase
 
     [Header("▼ Phisics")]
     [SerializeField] float MOVE_SPEED = 5.0f;
-    [SerializeField] int START_HEALTH = 3;
+    [SerializeField] int START_HEALTH = 4;
 
     // --- メソッド ---
     protected override void Start()
@@ -28,9 +28,12 @@ public class PlayerController : CharacterBase
 
     void FixedUpdate()
     {
-        // ベクトルの補正
+        if (_isKnockBack)
+            return;
+
+        //ベクトルの補正
         var vec = _isPaused ? 0.0f : _moveSpeed.Value;
-        GetComponent<Rigidbody>().linearVelocity = _moveVec * vec;
+        _rigidbody.linearVelocity = _moveVec * vec;
     }
 
     public void Move(InputAction.CallbackContext ctx)

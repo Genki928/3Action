@@ -55,7 +55,7 @@ MonoBehaviour:
   DISTANCE_Y: 10
   DISTANCE_Z: -10
   MOVE_SPEED: 5
-  START_HEALTH: 3
+  START_HEALTH: 4
 --- !u!114 &1086725698482233261
 MonoBehaviour:
   m_ObjectHideFlags: 0
