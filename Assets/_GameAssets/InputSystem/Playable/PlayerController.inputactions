@@ -157,8 +157,30 @@
                 },
                 {
                     "name": "",
+                    "id": "df5f24b9-d59d-4e12-b4a3-d3250cd03323",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b14afb27-f4d6-46fd-94d7-343f7a38d7ef",
                     "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Craft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26874d3b-87b5-452d-bc2d-8c5375e5b2c2",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
