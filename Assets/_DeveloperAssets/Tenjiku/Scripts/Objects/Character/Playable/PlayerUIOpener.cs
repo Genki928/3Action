@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
-public class PlayerCrafting : ObjectBase
+public class PlayerUIOpener : ObjectBase
 {
-    [SerializeField] GameObject _craftUI;
+    [SerializeField] GameObject _inventoryUI;
     bool _toggle = false;
 
     public void ToggleCraftUI(InputAction.CallbackContext ctx)
@@ -12,6 +11,6 @@ public class PlayerCrafting : ObjectBase
         if (!ctx.performed) return;
 
         _toggle = !_toggle;
-        _craftUI.SetActive(_toggle);
+        _inventoryUI.SetActive(_toggle);
     }
 }

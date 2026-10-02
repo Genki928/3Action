@@ -12,7 +12,6 @@ public class PlayerController : CharacterBase
     [Header("Å• Phisics")]
     [SerializeField] float MOVE_SPEED = 5.0f;
     [SerializeField] int START_HEALTH = 3;
-    Health _health;
 
     // --- ÉÅÉ\ÉbÉh ---
     protected override void Start()
