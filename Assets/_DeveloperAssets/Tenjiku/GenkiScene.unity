@@ -857,6 +857,54 @@ PrefabInstance:
       propertyPath: DISTANCE_Z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: 926fe2fc-f066-4713-8135-0bd0577fc423
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: 'Player/Debug[/Keyboard/backspace]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 491425083}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DebugChangeState
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LegStateManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3294685512229677114, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -864,8 +912,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 577082154002609530, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 491425083}
   m_SourcePrefab: {fileID: 100100000, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+--- !u!1 &491425082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 577082154002609530, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+  m_PrefabInstance: {fileID: 491425081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &491425083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491425082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017f0fcc6670d56449b83a763bc6e0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &496805630
 GameObject:
   m_ObjectHideFlags: 0
