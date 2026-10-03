@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class RaidState : IExploringState
 {
-    public void  Enter()
+    public void  Enter(LegStateManager stateManager)
     {
         Debug.Log("Enter RaidgState");
     }
 
-    public void Execute()
+    public void Execute(LegStateManager stateManager)
     {
         ;
     }
 
-    public void Exit()
+    public void Exit(LegStateManager stateManager)
     {
-        Debug.Log("Exit RaidgState");
+        Debug.Log("Exit RaidState");
     }
 }

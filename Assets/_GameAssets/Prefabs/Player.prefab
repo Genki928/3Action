@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3294685512229677114}
   - component: {fileID: 2013016181762547083}
   - component: {fileID: 5964901957071087259}
+  - component: {fileID: 3722227684455802036}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -142,6 +143,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b7fc155b-0c60-4a08-98c4-e3d3b0b7c59e
     m_ActionName: 'Player/Craft[/XInputControllerWindows/buttonNorth]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3722227684455802036}
+        m_TargetAssemblyTypeName: LegStateManager, Assembly-CSharp
+        m_MethodName: DebugChangeState
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 926fe2fc-f066-4713-8135-0bd0577fc423
+    m_ActionName: 'Player/Debug[/Keyboard/backspace]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -261,3 +278,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3722227684455802036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577082154002609530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017f0fcc6670d56449b83a763bc6e0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

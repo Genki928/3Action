@@ -2,27 +2,41 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateManagerBase<T> : MonoBehaviour where T : IGameStateBase
+public abstract class StateManagerBase : MonoBehaviour { }
+
+public class StateManagerBase<TManager, TState> : StateManagerBase
+    where TManager : StateManagerBase
+    where TState : IGameStateBase<TManager>
 {
-    protected List<Func<T>> _states = new();
-    protected T _currentState;
+    // --- プロパティ ---
+    public int Phase => _phase;
+
+    // --- フィールド ---
+    // ステートの切り替え
+    protected List<Func<TState>> _states = new();
+    protected TState _currentState;
     protected int _currentStateIndex = 0;
+
+    // フェーズ
+    protected int _phase = 0;
 
     void Start()
     {
         ;
     }
 
-    protected void NextState()
+    protected void NextState(TManager stateManager)
     {
-        _currentState?.Exit();
+        _currentState?.Exit(stateManager);
         _currentState = _states[(++_currentStateIndex) % _states.Count]();
-        _currentState.Enter();
+        _currentState.Enter(stateManager);
     }
 
-    protected void StartState()
+    protected void StartState(TManager stateManager)
     {
         _currentState = _states[0]();
-        _currentState.Enter();
+        _currentState.Enter(stateManager);
     }
+
+    public void pNextPhase() => ++_phase;
 }

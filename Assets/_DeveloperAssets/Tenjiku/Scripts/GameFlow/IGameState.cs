@@ -1,8 +1,9 @@
-public interface IGameStateBase
+
+public interface IGameStateBase<T> where T : StateManagerBase
 {
-    void Enter();
-    void Execute();
-    void Exit();
+    void Enter(T stateManager);
+    void Execute(T stateManager);
+    void Exit(T stateManager);
 }
 
-public interface IExploringState : IGameStateBase { }
+public interface IExploringState : IGameStateBase<LegStateManager> { }
