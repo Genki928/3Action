@@ -1,5 +1,5 @@
 {
-    "name": "PlayerController",
+    "name": "IA_PlayerController",
     "maps": [
         {
             "name": "Player",

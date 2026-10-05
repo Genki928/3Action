@@ -4,11 +4,12 @@ public class RaidState : ExploringStateBase
 {
     public override void Enter(LegStateManager stateManager)
     {
-        Debug.Log("Enter RaidgState");
+        stateManager.NotifyRaidStarted();
     }
 
     public override void Execute(LegStateManager stateManager)
     {
+        // 時間を進めきったらフェーズを切り替える
         _dayCycleTimer += Time.deltaTime;
         if (_dayCycleTimer > stateManager._raidTimerLimit)
         {

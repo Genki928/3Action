@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 850747091121558446}
   - component: {fileID: 1846991077691305263}
   - component: {fileID: 1086725698482233261}
-  - component: {fileID: 3722227684455802036}
   - component: {fileID: 1976567967024273714}
   - component: {fileID: 6218798209421050515}
   - component: {fileID: 2520130756348348480}
@@ -71,20 +70,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventoryUI: {fileID: 0}
---- !u!114 &3722227684455802036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577082154002609530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017f0fcc6670d56449b83a763bc6e0a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _raidTimerLimit: 5
-  _exploringTimerLimit: 5
 --- !u!114 &1976567967024273714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +145,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Craft[/XInputControllerWindows/buttonNorth]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3722227684455802036}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LegStateManager, Assembly-CSharp
         m_MethodName: DebugChangeState
         m_Mode: 0

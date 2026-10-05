@@ -4,11 +4,12 @@ public class ExploringState : ExploringStateBase
 {
     public override void Enter(LegStateManager stateManager)
     {
-        Debug.Log("Enter ExploringState");
+        stateManager.NotifyExploreStarted();
     }
 
     public override void Execute(LegStateManager stateManager)
     {
+        // 時間を進めきったらフェーズを切り替える
         _dayCycleTimer += Time.deltaTime;
         if (_dayCycleTimer > stateManager._exploringTimerLimit)
         {
@@ -18,6 +19,6 @@ public class ExploringState : ExploringStateBase
 
     public override void Exit(LegStateManager stateManager)
     {
-        Debug.Log("Exit RaidgState");
+        ;
     }
 }

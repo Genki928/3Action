@@ -4,11 +4,6 @@ using UnityEngine.InputSystem;
 
 public class LegStateManager : StateManagerBase<LegStateManager, IExploringState>
 {
-    // --- イベント ---
-    public event Action OnExploreFinished;
-    public event Action OnRaidFinished;
-    public event Action OnResultFinished;
-
     // --- プロパティ ---
     public int Phase => _phase;
 
@@ -16,11 +11,22 @@ public class LegStateManager : StateManagerBase<LegStateManager, IExploringState
     // フェーズ
     [SerializeField] public float _raidTimerLimit = 0.0f;
     [SerializeField] public float _exploringTimerLimit = 0.0f;
-    protected int _phase = 0;
+    int _phase = 0;
+
+    // --- イベント ---
+    public event Action OnExploreStarted;
+    public event Action OnExploreFinished;
+    public event Action OnRaidStarted;
+    public event Action OnRaidFinished;
+    public event Action OnResultStarted;
+    public event Action OnResultFinished;
 
     // --- メソッド ---
+    public void NotifyExploreStarted() => OnExploreStarted?.Invoke();
     public void NotifyExploreFinished() => OnExploreFinished?.Invoke();
+    public void NotifyRaidStarted() => OnRaidStarted?.Invoke();
     public void NotifyRaidFinished() => OnRaidFinished?.Invoke();
+    public void NotifyResultStarted() => OnResultStarted?.Invoke();
     public void NotifyResultFinished() => OnResultFinished?.Invoke();
 
     void Start()
@@ -42,17 +48,15 @@ public class LegStateManager : StateManagerBase<LegStateManager, IExploringState
         _currentState.Execute(this);
     }
 
-    public void DebugChangeState(InputAction.CallbackContext ctx)
+    public void FinishedMessage()
+    {
+        Debug.Log($"( Phase.{++_phase} Finished )");
+    }
+
+    public void Interact(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
 
-        NextState(this);
+        _currentState.Interact(this);
     }
-
-    public void FinishedMessage()
-    {
-        Debug.Log($"( Phase.{_phase} Finished )");
-    }
-
-    public void pNextPhase() => ++_phase;
 }
