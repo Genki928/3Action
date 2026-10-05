@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 1976567967024273714}
   - component: {fileID: 6218798209421050515}
   - component: {fileID: 2520130756348348480}
-  - component: {fileID: 3294685512229677114}
   - component: {fileID: 2013016181762547083}
   - component: {fileID: 5964901957071087259}
   - component: {fileID: 3722227684455802036}
+  - component: {fileID: 5736530488469551183}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 577082154002609530}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5925953, y: 1.9376944, z: -0.9942304}
+  m_LocalPosition: {x: 1.64, y: 1.9376944, z: -0.9942304}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57,6 +57,7 @@ MonoBehaviour:
   DISTANCE_Z: -10
   MOVE_SPEED: 5
   START_HEALTH: 4
+  INTERACT_RANGE: 2
 --- !u!114 &1086725698482233261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +160,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 926fe2fc-f066-4713-8135-0bd0577fc423
     m_ActionName: 'Player/Debug[/Keyboard/backspace]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1846991077691305263}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 73f6b77a-7a38-46a7-b2aa-e0d008141d4a
+    m_ActionName: 'Player/Interact[/XInputControllerWindows/leftTrigger]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -217,28 +234,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3294685512229677114
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577082154002609530}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &2013016181762547083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +271,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &3722227684455802036
 MonoBehaviour:
@@ -290,3 +285,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017f0fcc6670d56449b83a763bc6e0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &5736530488469551183
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577082154002609530}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 0.5
+  m_Direction: 1
+  m_Center: {x: 0.05, y: 0.2, z: 0}

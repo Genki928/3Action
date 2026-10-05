@@ -13,6 +13,8 @@ public class PlayerController : CharacterBase
     [SerializeField] float MOVE_SPEED = 5.0f;
     [SerializeField] int START_HEALTH = 4;
 
+    [Header("▼ Interact")]
+    [SerializeField] float INTERACT_RANGE = 2.0f; // 木を壊せる距離
     // --- メソッド ---
     protected override void Start()
     {
@@ -50,5 +52,24 @@ public class PlayerController : CharacterBase
         var rend = GetComponent<Renderer>();
         rend.material.mainTextureScale = new Vector2(-dir, 1);
         rend.material.mainTextureOffset = new Vector2(-dir < 0 ? 1 : 0, 0);
+    }
+
+    public void Interact(InputAction.CallbackContext ctx)
+    {
+        // ボタンを押した瞬間の1回だけ処理する
+        if (!ctx.performed) return;
+        if (_isPaused) return;
+
+        // 自分の周り(INTERACT_RANGE の球)にあるものを調べる
+        var hits = Physics.OverlapSphere(transform.position, INTERACT_RANGE);
+        foreach (var hit in hits)
+        {
+            // 木(QuadShatter が付いたオブジェクト)なら壊す
+            var tree = hit.GetComponentInParent<QuadShatter>();
+            if (tree != null)
+            {
+                tree.Shatter(transform.position); // プレイヤーから離れる向きに飛び散る
+            }
+        }
     }
 }
