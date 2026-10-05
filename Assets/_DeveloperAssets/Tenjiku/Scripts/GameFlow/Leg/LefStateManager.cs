@@ -2,12 +2,33 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public class  ExploringStateBase : IExploringState
+{
+    //
+    protected float _dayCycleTimerLimit = 0.0f;
+    protected float _dayCycleTimer = 0.0f;
+
+    //
+    public virtual void Enter(LegStateManager stateManager) { }
+    public virtual void Execute(LegStateManager stateManager) { }
+    public virtual void Exit(LegStateManager stateManager) { }
+}
+
 public class LegStateManager : StateManagerBase<LegStateManager, IExploringState>
 {
     // --- イベント ---
     public event Action OnExploreFinished;
     public event Action OnRaidFinished;
     public event Action OnResultFinished;
+
+    // --- プロパティ ---
+    public int Phase => _phase;
+
+    // --- フィールド ---
+    // フェーズ
+    [SerializeField] public float _raidTimerLimit = 0.0f;
+    [SerializeField] public float _exploringTimerLimit = 0.0f;
+    protected int _phase = 0;
 
     // --- メソッド ---
     public void NotifyExploreFinished() => OnExploreFinished?.Invoke();
@@ -28,6 +49,11 @@ public class LegStateManager : StateManagerBase<LegStateManager, IExploringState
 
     }
 
+    void Update()
+    {
+        ;
+    }
+
     public void DebugChangeState(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
@@ -39,4 +65,6 @@ public class LegStateManager : StateManagerBase<LegStateManager, IExploringState
     {
         Debug.Log($"( Phase.{_phase} Finished )");
     }
+
+    public void pNextPhase() => ++_phase;
 }

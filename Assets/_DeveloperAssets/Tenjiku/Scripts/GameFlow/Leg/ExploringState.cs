@@ -1,18 +1,22 @@
 using UnityEngine;
 
-public class ExploringState : IExploringState
+public class ExploringState : ExploringStateBase
 {
-    public void  Enter(LegStateManager stateManager)
+    public override void Enter(LegStateManager stateManager)
     {
         Debug.Log("Enter ExploringState");
     }
 
-    public void Execute(LegStateManager stateManager)
+    public override void Execute(LegStateManager stateManager)
     {
-        ;
+        _dayCycleTimer += Time.deltaTime;
+        if (_dayCycleTimer > stateManager._exploringTimerLimit)
+        {
+            stateManager.NextState(stateManager);
+        }
     }
 
-    public void Exit(LegStateManager stateManager)
+    public override void Exit(LegStateManager stateManager)
     {
         Debug.Log("Exit RaidgState");
     }

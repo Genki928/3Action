@@ -8,24 +8,18 @@ public class StateManagerBase<TManager, TState> : StateManagerBase
     where TManager : StateManagerBase
     where TState : IGameStateBase<TManager>
 {
-    // --- プロパティ ---
-    public int Phase => _phase;
-
     // --- フィールド ---
     // ステートの切り替え
     protected List<Func<TState>> _states = new();
     protected TState _currentState;
     protected int _currentStateIndex = 0;
 
-    // フェーズ
-    protected int _phase = 0;
-
     void Start()
     {
         ;
     }
 
-    protected void NextState(TManager stateManager)
+    public void NextState(TManager stateManager)
     {
         _currentState?.Exit(stateManager);
         _currentState = _states[(++_currentStateIndex) % _states.Count]();
@@ -37,6 +31,4 @@ public class StateManagerBase<TManager, TState> : StateManagerBase
         _currentState = _states[0]();
         _currentState.Enter(stateManager);
     }
-
-    public void pNextPhase() => ++_phase;
 }
