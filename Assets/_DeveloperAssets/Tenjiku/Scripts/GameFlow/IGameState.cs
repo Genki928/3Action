@@ -6,4 +6,4 @@ public interface IGameStateBase<T> where T : StateManagerBase
     void Exit(T stateManager);
 }
 
-public interface IExploringState : IGameStateBase<LegStateManager> { }
+public interface IExploringState : IGameStateBase<LegStateManager> {}

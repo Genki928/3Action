@@ -2,7 +2,8 @@
 
 /// <summary>
 /// Quad を格子状のかけらに分割して、Rigidbody で吹き飛ばすスクリプト。
-/// Quad にアタッチするだけで動く。かけらは Start で自動生成される。
+/// Quad(木など)にアタッチするだけで動く。かけらは Start で自動生成される。
+/// 壊すタイミングは外(プレイヤーなど)から Shatter() を呼んで決める。
 /// </summary>
 [RequireComponent(typeof(MeshRenderer))]
 public class QuadShatter : MonoBehaviour
@@ -12,14 +13,14 @@ public class QuadShatter : MonoBehaviour
     [SerializeField] int rows = 5;      // 縦の分割数
 
     [Header("吹き飛び方")]
-    [SerializeField] float explosionForce = 6f;   // 吹き飛ばす強さ
-    [SerializeField] float torqueForce = 4f;      // 回転の強さ
+    [SerializeField] float explosionForce = 6f;    // 吹き飛ばす強さ
+    [SerializeField] float torqueForce = 4f;       // 回転の強さ
     [SerializeField] float pieceThickness = 0.05f; // かけらの厚み(当たり判定用)
+    [SerializeField] float destroyAfter = 3f;      // 壊れてから消えるまでの秒数
 
-    [Header("タイミング")]
-    [SerializeField] bool autoShatter = true;     // true: 再生後に自動で壊れる
-    [SerializeField] float shatterDelay = 2f;     // 自動で壊れるまでの秒数
-    [SerializeField] float destroyAfter = 3f;     // 壊れてから消えるまでの秒数
+    [Header("テスト用")]
+    [SerializeField] bool autoShatter = false;     // true: 再生後に自動で壊れる
+    [SerializeField] float autoShatterDelay = 2f;
 
     Material material;
     Rigidbody[] pieces;
@@ -32,7 +33,7 @@ public class QuadShatter : MonoBehaviour
 
         if (autoShatter)
         {
-            Invoke(nameof(Shatter), shatterDelay);
+            Invoke(nameof(Shatter), autoShatterDelay);
         }
     }
 
@@ -40,9 +41,6 @@ public class QuadShatter : MonoBehaviour
     void CreatePieces()
     {
         GetComponent<MeshRenderer>().enabled = false;
-
-        var col = GetComponent<Collider>();
-        if (col != null) col.enabled = false;
 
         pieces = new Rigidbody[columns * rows];
         int index = 0;
@@ -63,11 +61,8 @@ public class QuadShatter : MonoBehaviour
                 piece.AddComponent<MeshFilter>().sharedMesh = CreatePieceMesh(x, y);
                 piece.AddComponent<MeshRenderer>().sharedMaterial = material;
 
-                // 当たり判定(Quad は厚みがないので薄い Box を使う)
-                var box = piece.AddComponent<BoxCollider>();
-                box.size = new Vector3(1f, 1f, pieceThickness / piece.transform.lossyScale.z);
-
                 // 壊れるまでは動かないように Kinematic にしておく
+                // (当たり判定は付けない。壊れる前は木の元の当たり判定がそのまま使われる)
                 var rb = piece.AddComponent<Rigidbody>();
                 rb.isKinematic = true;
                 pieces[index++] = rb;
@@ -106,15 +101,24 @@ public class QuadShatter : MonoBehaviour
         return mesh;
     }
 
-    // 壊す。autoShatter を使わない場合は、他のスクリプトからこれを呼ぶ
+    // 壊す(Quad の少し手前側から飛び散る)
     [ContextMenu("Shatter")]
     public void Shatter()
+    {
+        Shatter(transform.position - transform.forward * 0.3f);
+    }
+
+    // 壊す(fromPosition から外向きに飛び散る。プレイヤーの位置を渡すと、プレイヤーから離れる向きに飛ぶ)
+    public void Shatter(Vector3 fromPosition)
     {
         if (shattered || pieces == null) return;
         shattered = true;
 
-        // 爆発の中心は Quad の少し手前側(-Z 側)にして、手前に飛び散るようにする
-        Vector3 center = transform.position - transform.forward * 0.3f;
+        // 木の元の当たり判定は、壊れた時点で無効にする
+        foreach (var c in GetComponents<Collider>())
+        {
+            c.enabled = false;
+        }
 
         foreach (var rb in pieces)
         {
@@ -122,7 +126,12 @@ public class QuadShatter : MonoBehaviour
             rb.transform.SetParent(null, true);
             rb.isKinematic = false;
 
-            rb.AddExplosionForce(explosionForce, center, 10f, 0f, ForceMode.Impulse);
+            // 壊れた後のかけらにだけ当たり判定を付ける(地面などに当たるように)
+            var box = rb.gameObject.AddComponent<BoxCollider>();
+            box.size = new Vector3(1f, 1f, pieceThickness / rb.transform.lossyScale.z);
+
+            rb.AddExplosionForce(explosionForce, fromPosition, 10f, 0f, ForceMode.Impulse);
+
             // Z軸の回転はさせない(回転の力はX軸とY軸だけにする)
             rb.constraints = RigidbodyConstraints.FreezeRotationZ;
             Vector3 torque = Random.insideUnitSphere * torqueForce;

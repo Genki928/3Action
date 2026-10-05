@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class PhaseResultState : IExploringState
+public class PhaseResultState : ExploringStateBase
 {
-    public void Enter(LegStateManager stateManager)
+    public override void Enter(LegStateManager stateManager)
     {
         Debug.Log("Enter ResultState");
     }
 
-    public void Execute(LegStateManager stateManager)
+    public override void Execute(LegStateManager stateManager)
     {
         ;
     }
 
-    public void Exit(LegStateManager stateManager)
+    public override void Exit(LegStateManager stateManager)
     {
         stateManager.NotifyRaidFinished();
         stateManager.pNextPhase();
