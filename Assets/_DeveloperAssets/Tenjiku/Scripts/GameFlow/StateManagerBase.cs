@@ -19,6 +19,7 @@ public class StateManagerBase<TManager, TState> : StateManagerBase
         ;
     }
 
+    /// <summary> ステートを次に切り替える </summary>
     public void NextState(TManager stateManager)
     {
         _currentState?.Exit(stateManager);

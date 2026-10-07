@@ -19,6 +19,8 @@ public class PlayerController : CharacterBase
     protected override void Start()
     {
         base.Start();
+
+        // ステータス設定
         _moveSpeed = new(MOVE_SPEED);
         _health = new(START_HEALTH);
     }
