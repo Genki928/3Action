@@ -12,9 +12,11 @@ public class PlayerController : CharacterBase
     [Header("▼ Phisics")]
     [SerializeField] float MOVE_SPEED = 5.0f;
     [SerializeField] int START_HEALTH = 4;
+    Vector3 _direction;
 
     [Header("▼ Interact")]
     [SerializeField] float INTERACT_RANGE = 2.0f; // 木を壊せる距離
+    [SerializeField] PlayerAttacker _attacker;
     // --- メソッド ---
     protected override void Start()
     {
@@ -45,6 +47,7 @@ public class PlayerController : CharacterBase
         // 移動ベクトルの保存
         var vec = ctx.ReadValue<Vector2>();
         _moveVec = new(vec.x, 0.0f, vec.y);
+        if (!(vec.x == 0.0f && vec.y == 0.0f)) _direction = _moveVec;
 
         // 横入力がないときは、直前の向きを保つ
         if (vec.x == 0.0f) return;
@@ -62,6 +65,8 @@ public class PlayerController : CharacterBase
         if (!ctx.performed) return;
         if (_isPaused) return;
 
+        _attacker.Attack(_direction);
+        return;
         // 自分の周り(INTERACT_RANGE の球)にあるものを調べる
         var hits = Physics.OverlapSphere(transform.position, INTERACT_RANGE);
         foreach (var hit in hits)
