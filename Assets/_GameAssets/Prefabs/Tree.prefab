@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 9036627822493051640}
   - component: {fileID: 3989862176534319497}
   - component: {fileID: 2206985676637170433}
-  - component: {fileID: 7025144067588608752}
   - component: {fileID: 2051896879184060602}
+  - component: {fileID: 8046290773054199917}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -112,26 +112,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7025144067588608752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 335178322606994971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa51c1341972c204f8b2ebd323397a0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columns: 10
-  rows: 10
-  explosionForce: 1
-  torqueForce: 4
-  pieceThickness: 0.05
-  destroyAfter: 3
-  autoShatter: 0
-  autoShatterDelay: 2
 --- !u!54 &2051896879184060602
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -159,3 +139,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &8046290773054199917
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335178322606994971}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7, y: 0.81, z: 1}
+  m_Center: {x: 0, y: 0.11, z: 0}
