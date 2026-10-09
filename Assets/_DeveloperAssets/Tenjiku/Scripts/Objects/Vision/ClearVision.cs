@@ -13,4 +13,11 @@ public class ClearVision : MonoBehaviour
             mr.material.color = new(1.0f, 1.0f, 1.0f, 0.5f);
         }
     }
+    void OnTriggerExit(Collider col)
+    {
+        if (col.TryGetComponent<MeshRenderer>(out var mr))
+        {
+            mr.material.color = new(1.0f, 1.0f, 1.0f, 1.0f);
+        }
+    }
 }

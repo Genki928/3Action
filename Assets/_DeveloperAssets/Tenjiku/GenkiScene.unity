@@ -815,7 +815,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
@@ -1234,7 +1234,7 @@ GameObject:
   - component: {fileID: 581490192}
   - component: {fileID: 581490191}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _raidTimerLimit: 5
-  _exploringTimerLimit: 5
+  _exploringTimerLimit: 30
 --- !u!4 &581490193
 Transform:
   m_ObjectHideFlags: 0

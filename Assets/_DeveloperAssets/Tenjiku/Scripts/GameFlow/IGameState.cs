@@ -15,4 +15,7 @@ public interface IGameStateBase<T> where T : StateManagerBase
     public void Interact(T stateManagerx);
 }
 
-public interface IExploringState : IGameStateBase<LegStateManager> { }
+public interface IExploringState : IGameStateBase<LegStateManager>
+{
+    public float Ratio { get; }
+}

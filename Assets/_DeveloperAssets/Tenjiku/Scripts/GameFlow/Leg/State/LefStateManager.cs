@@ -6,11 +6,14 @@ public class LegStateManager : StateManagerBase<LegStateManager, IExploringState
 {
     // --- プロパティ ---
     public int Phase => _phase;
+    public float Ratio => _currentState.Ratio;
+    public float ExploringTimerLimit => _exploringTimerLimit;
+    public float RaidTimerLimit => _raidTimerLimit;
 
     // --- フィールド ---
     // フェーズ
-    [SerializeField] public float _raidTimerLimit = 0.0f;
-    [SerializeField] public float _exploringTimerLimit = 0.0f;
+    [SerializeField] float _raidTimerLimit = 0.0f;
+    [SerializeField] float _exploringTimerLimit = 0.0f;
     int _phase = 0;
 
     // --- イベント ---

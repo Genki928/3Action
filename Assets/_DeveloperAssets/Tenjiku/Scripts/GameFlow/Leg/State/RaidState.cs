@@ -11,7 +11,7 @@ public class RaidState : ExploringStateBase
     {
         // 時間を進めきったらフェーズを切り替える
         _dayCycleTimer += Time.deltaTime;
-        if (_dayCycleTimer > stateManager._raidTimerLimit)
+        if (_dayCycleTimer > stateManager.RaidTimerLimit)
         {
             stateManager.NextState(stateManager);
         }
