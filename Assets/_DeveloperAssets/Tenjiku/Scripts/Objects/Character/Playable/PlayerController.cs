@@ -65,8 +65,8 @@ public class PlayerController : CharacterBase
         if (!ctx.performed) return;
         if (_isPaused) return;
 
-        _attacker.Attack(_direction);
-        return;
+        //_attacker.Attack(_direction);
+        //return;
         // ©•ª‚Ìü‚è(INTERACT_RANGE ‚Ì‹…)‚É‚ ‚é‚à‚Ì‚ğ’²‚×‚é
         var hits = Physics.OverlapSphere(transform.position, INTERACT_RANGE);
         foreach (var hit in hits)
@@ -76,6 +76,11 @@ public class PlayerController : CharacterBase
             if (tree != null)
             {
                 tree.Shatter(transform.position); // ƒvƒŒƒCƒ„[‚©‚ç—£‚ê‚éŒü‚«‚É”ò‚ÑU‚é
+            }
+            var bush = hit.GetComponentInParent<Bush>();
+            if(bush != null)
+            {
+                bush.Interact();
             }
         }
     }

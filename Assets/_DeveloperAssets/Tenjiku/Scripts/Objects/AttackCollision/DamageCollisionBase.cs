@@ -4,6 +4,7 @@ public class DamageCollisionBase : ObjectBase
 {
     [SerializeField] protected int _damage;
     [SerializeField] protected float _duration;
+    [SerializeField] protected float _speed;
     protected Rigidbody _rigidbody;
     protected GameObject _owner;
     protected Vector3 _vector;
@@ -17,7 +18,7 @@ public class DamageCollisionBase : ObjectBase
     {
         if (_isPaused) return;
 
-        _rigidbody.linearVelocity = _vector;
+        _rigidbody.linearVelocity = _vector * _speed;
 
         _duration -= Time.deltaTime;
         if (_duration < 0.0f)

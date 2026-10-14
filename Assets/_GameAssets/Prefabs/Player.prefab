@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 850747091121558446}
   - component: {fileID: 1846991077691305263}
   - component: {fileID: 1086725698482233261}
+  - component: {fileID: 2406590263736688779}
   - component: {fileID: 1976567967024273714}
   - component: {fileID: 6218798209421050515}
   - component: {fileID: 2520130756348348480}
@@ -57,6 +58,7 @@ MonoBehaviour:
   MOVE_SPEED: 5
   START_HEALTH: 4
   INTERACT_RANGE: 2
+  _attacker: {fileID: 2406590263736688779}
 --- !u!114 &1086725698482233261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +72,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventoryUI: {fileID: 0}
+--- !u!114 &2406590263736688779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577082154002609530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ead486941a66b84a8cd0ed98848cf35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultAttackCollision: {fileID: 1956611048831083307, guid: 3c60084071891834c9e10db3c19234ab, type: 3}
 --- !u!114 &1976567967024273714
 MonoBehaviour:
   m_ObjectHideFlags: 0
