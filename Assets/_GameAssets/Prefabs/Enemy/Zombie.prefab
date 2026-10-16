@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3718453409128610455}
   - component: {fileID: 7448080902379127866}
   - component: {fileID: 7106941306643697295}
-  - component: {fileID: -5987750598890381989}
+  - component: {fileID: -6126500151611262125}
   m_Layer: 0
-  m_Name: TestEnemy
+  m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,10 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ad46c1f60a3e348864ce71585ffe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MOVE_SPEED: 1
+  MOVE_SPEED: 2
   DAMAGE: 1
   KNOCKBACK_POWER: 5
   KNOCKBACK_DURATION: 0.2
+  MAX_HP: 3
+  OBSTACLE_TAG: object
+  AVOID_DISTANCE: 3
+  AVOID_RADIUS: 0.4
+  TURN_SPEED: 25
 --- !u!33 &3718453409128610455
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -130,10 +135,10 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &-5987750598890381989
-BoxCollider:
+--- !u!136 &-6126500151611262125
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -150,6 +155,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 2}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
