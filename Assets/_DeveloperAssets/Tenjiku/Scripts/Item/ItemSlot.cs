@@ -1,11 +1,18 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSlot : MonoBehaviour
 {
-    [SerializeField] ItemSlot TopSlot;
-    [SerializeField] ItemSlot BottomSlot;
-    [SerializeField] ItemSlot RightSlot;
-    [SerializeField] ItemSlot LeftSlot;
+    public SlotToggleUI[] Slots => slots;
+    [SerializeField] SlotToggleUI[] slots = new SlotToggleUI[4];
+
+    [Serializable]
+    public class SlotToggleUI
+    {
+        public ItemSlot normal;
+        public ItemSlot opened;
+    }
 }
 
 public enum Direct

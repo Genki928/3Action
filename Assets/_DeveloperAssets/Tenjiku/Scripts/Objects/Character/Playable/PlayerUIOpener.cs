@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerUIOpener : ObjectBase
 {
+    public bool IsOpenUI => _toggle;
     [SerializeField] List<GameObject> _inventoryUI;
     [SerializeField] List<GameObject> _toggleInventoryUI;
     bool _toggle = false;

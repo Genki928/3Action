@@ -17,6 +17,8 @@ public class PlayerController : CharacterBase
     [Header("▼ Interact")]
     [SerializeField] float INTERACT_RANGE = 2.0f; // 木を壊せる距離
     [SerializeField] PlayerAttacker _attacker;
+    [SerializeField] PlayerUIOpener _playerUIOpener;
+
     // --- メソッド ---
     protected override void Start()
     {
@@ -44,6 +46,11 @@ public class PlayerController : CharacterBase
 
     public void Move(InputAction.CallbackContext ctx)
     {
+        //if (_playerUIOpener.IsOpenUI)
+        //{
+        //    _playerUIOpener
+        //}
+
         // 移動ベクトルの保存
         var vec = ctx.ReadValue<Vector2>();
         _moveVec = new(vec.x, 0.0f, vec.y);
