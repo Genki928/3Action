@@ -7,7 +7,7 @@ public class SimpleDamageCollision : DamageCollisionBase
         var obj = col.gameObject;
         if (obj.CompareTag("Player")) return;
 
-        if (obj.TryGetComponent<TestEnemy>(out var cb))
+        if (obj.TryGetComponent<EnemyBase>(out var cb))
         {
             //cb.Health.Damage(_damage);
             Destroy(cb.gameObject);
