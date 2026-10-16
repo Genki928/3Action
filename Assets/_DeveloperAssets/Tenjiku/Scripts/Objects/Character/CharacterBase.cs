@@ -9,6 +9,7 @@ public class CharacterBase : ObjectBase
     protected Rigidbody _rigidbody;
     protected MoveSpeed _moveSpeed;
     protected Health _health;
+    protected Power power;
 
     protected Renderer _renderer;
 
