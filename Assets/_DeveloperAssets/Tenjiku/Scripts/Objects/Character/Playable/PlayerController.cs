@@ -46,10 +46,6 @@ public class PlayerController : CharacterBase
 
     public void Move(InputAction.CallbackContext ctx)
     {
-        //if (_playerUIOpener.IsOpenUI)
-        //{
-        //    _playerUIOpener
-        //}
 
         // 移動ベクトルの保存
         var vec = ctx.ReadValue<Vector2>();
@@ -58,6 +54,7 @@ public class PlayerController : CharacterBase
 
         // 横入力がないときは、直前の向きを保つ
         if (vec.x == 0.0f) return;
+        if (_playerUIOpener.IsOpenUI) return;
 
         // スティックの 0.5 などの中間値でも、±1 に固定する
         float dir = Mathf.Sign(vec.x);

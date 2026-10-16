@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class ItemSlot : MonoBehaviour
 {
-    public SlotToggleUI[] Slots => slots;
-    [SerializeField] SlotToggleUI[] slots = new SlotToggleUI[4];
-
-    [Serializable]
-    public class SlotToggleUI
-    {
-        public ItemSlot normal;
-        public ItemSlot opened;
-    }
+    public ItemSlot[] Slots => slots;
+    [SerializeField] ItemSlot[] slots = new ItemSlot[4];
 }
 
 public enum Direct

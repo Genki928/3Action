@@ -11,13 +11,13 @@ public class ExploringState : ExploringStateBase
     public override void Enter(LegStateManager stateManager)
     {
         _stateManager = stateManager;
-        Debug.Log(Ratio);
+        //Debug.Log(Ratio);
         stateManager.NotifyExploreStarted();
     }
 
     public override void Execute(LegStateManager stateManager)
     {
-        Debug.Log(Ratio);
+        //Debug.Log(Ratio);
         // 時間を進めきったらフェーズを切り替える
         _dayCycleTimer += Time.deltaTime;
         if (_dayCycleTimer > stateManager.ExploringTimerLimit)

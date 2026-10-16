@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 public class PlayerUIOpener : ObjectBase
 {
     public bool IsOpenUI => _toggle;
+    public Cursor Cursor => _cursor;
     [SerializeField] List<GameObject> _inventoryUI;
     [SerializeField] List<GameObject> _toggleInventoryUI;
+    [SerializeField] Cursor _cursor;
     bool _toggle = false;
 
     public void ToggleCraftUI(InputAction.CallbackContext ctx)
