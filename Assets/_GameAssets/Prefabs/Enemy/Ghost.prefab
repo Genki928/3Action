@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768644663118044171}
-  - component: {fileID: -4937664714572069648}
+  - component: {fileID: -7039115573812973978}
   - component: {fileID: 3718453409128610455}
   - component: {fileID: 7448080902379127866}
   - component: {fileID: 7106941306643697295}
   - component: {fileID: -6126500151611262125}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,13 +30,13 @@ Transform:
   m_GameObject: {fileID: 1652064762787304387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 3, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4937664714572069648
+--- !u!114 &-7039115573812973978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,18 +45,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1652064762787304387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ad46c1f60a3e348864ce71585ffe09, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d14148e24ec7a247a2702830a6fb7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MOVE_SPEED: 2
-  DAMAGE: 1
+  MOVE_SPEED: 1
   KNOCKBACK_POWER: 5
   KNOCKBACK_DURATION: 0.2
   MAX_HP: 3
+  POWER: 1
   OBSTACLE_TAG: object
   AVOID_DISTANCE: 3
   AVOID_RADIUS: 0.4
-  TURN_SPEED: 25
+  TURN_SPEED: 10
+  HOVER_HEIGHT: 4
+  FLOAT_AMPLITUDE: 0.6
+  FLOAT_SPEED: 2
+  SWAY_AMOUNT: 0.3
+  HEIGHT_FOLLOW: 5
 --- !u!33 &3718453409128610455
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -135,7 +140,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &-6126500151611262125
 CapsuleCollider:
@@ -157,6 +162,6 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 0.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.25, z: 0}

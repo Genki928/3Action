@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7448080902379127866}
   - component: {fileID: 7106941306643697295}
   - component: {fileID: -6126500151611262125}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,10 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MOVE_SPEED: 2
-  DAMAGE: 1
   KNOCKBACK_POWER: 5
   KNOCKBACK_DURATION: 0.2
   MAX_HP: 3
+  POWER: 1
   OBSTACLE_TAG: object
   AVOID_DISTANCE: 3
   AVOID_RADIUS: 0.4

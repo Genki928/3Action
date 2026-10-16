@@ -23,7 +23,7 @@ public class Ghost : CharacterBase
     Vector3 _currentDir;
 
     [Header("▼ HuyoHuyo")]
-    [SerializeField] float HOVER_HEIGHT = 1.5f;   // 浮く高さの中心
+    [SerializeField] float HOVER_HEIGHT = 10.0f;   // 浮く高さの中心
     [SerializeField] float FLOAT_AMPLITUDE = 0.3f; // 上下の揺れ幅
     [SerializeField] float FLOAT_SPEED = 2.0f;     // 揺れる速さ
     [SerializeField] float SWAY_AMOUNT = 0.3f;     // 横の揺らぎの強さ
