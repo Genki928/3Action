@@ -16,4 +16,11 @@ MonoBehaviour:
   _lore: 
   _maxCount: 0
   _value: 0
-  _effect: []
+  _effect:
+  - _effectType: 0
+    _time: 0
+    _value: 0
+  - _effectType: 0
+    _time: 0
+    _value: 0
+  _interactAsset: {fileID: 0}
