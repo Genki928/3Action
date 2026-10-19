@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a8c5155f1b434d928ec5c95a6d6bb, type: 3}
   m_Name: Berry
   m_EditorClassIdentifier: 
-  _name: 
+  _sprite: {fileID: 5793586284758688501, guid: 3ee8637a5aecb9544ae1ed968c947640, type: 3}
+  _name: "\u30D9\u30EA\u30FC\u3001\u30A2\u30EA"
   _lore: 
   _maxCount: 0
   _value: 0

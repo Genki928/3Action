@@ -5,7 +5,7 @@ public class Cursor : MonoBehaviour
 {
     [SerializeField] ItemSlot _baseSlot;
     ItemSlot _currentSlot;
-    [SerializeField] PlayerUIOpener _ui;
+    [SerializeField] PlayerInventory _ui;
 
     bool IsMoveCursor(InputAction.CallbackContext ctx) => !_ui.IsOpenUI || !ctx.performed;
 

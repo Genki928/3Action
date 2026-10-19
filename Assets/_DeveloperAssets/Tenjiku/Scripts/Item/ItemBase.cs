@@ -30,15 +30,16 @@ public abstract class InteractAsset : ScriptableObject
     public abstract void Interact();
 }
 
-public class Items
+[Serializable]
+public class ItemStack
 {
     // --- プロパティ ---
     public Item Item => _item;
     public int Count => _count;
 
     // --- メンバ変数 ---
-    Item _item;
-    int _count;
+    [SerializeField] Item _item;
+    [SerializeField] int _count;
 
     // --- メソッド ---
     /// <summary> アイテムの個数減少 </summary>

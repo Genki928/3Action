@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
@@ -9,6 +8,12 @@ public class ItemSlot : MonoBehaviour
     public ItemSlot[] Slots => slots;
     [SerializeField] ItemSlot _hotbar;  // インベントリを閉じた時、カーソルにホットバーを戻す
     [SerializeField] ItemSlot[] slots = new ItemSlot[4];    // 移動先のインベントリ
+
+    public void ChangeSprite(Sprite changeImg = null)
+    {
+        var image = GetComponent<Image>();
+        image.sprite = changeImg;
+    }
 }
 
 public enum Direct
