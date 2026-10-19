@@ -8,7 +8,7 @@ public class SpriteClip
     public float fps = 8f;
 }
 
-public class PlayerAnimControl : MonoBehaviour
+public class AnimControl : MonoBehaviour
 {
     public SpriteClip[] clips;
     public string startClip = "Idle";
