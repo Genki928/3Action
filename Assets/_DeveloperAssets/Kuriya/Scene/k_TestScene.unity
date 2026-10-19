@@ -1019,16 +1019,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - name: Idle
-    texture: {fileID: -8328923581568760697, guid: 9d794cfdc749d63459d099666e4a03f1, type: 3}
-    columns: 1
-    rows: 1
-    frameCount: 1
+    frames:
+    - {fileID: 2800000, guid: 022e2e3323c63be4b8c1105727ac57d9, type: 3}
     fps: 1
   - name: Walk
-    texture: {fileID: -8328923581568760697, guid: 8dad95e4a33fa754d9ed53efecf7aae3, type: 3}
-    columns: 3
-    rows: 1
-    frameCount: 3
+    frames:
+    - {fileID: 2800000, guid: 7004e3e1ba8137042af2e4ac3bffe04c, type: 3}
+    - {fileID: 2800000, guid: 661a431ea0b37dc40b8814f47b73a7dc, type: 3}
+    - {fileID: 2800000, guid: 629b565e5f87157499fd2162c81f6e51, type: 3}
     fps: 12
   startClip: Idle
   flipX: 0
