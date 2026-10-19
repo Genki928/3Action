@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 850747091121558446}
   - component: {fileID: 1846991077691305263}
+  - component: {fileID: 7554095805665473261}
   - component: {fileID: 1086725698482233261}
   - component: {fileID: 2406590263736688779}
   - component: {fileID: 1976567967024273714}
@@ -59,6 +60,33 @@ MonoBehaviour:
   START_HEALTH: 4
   INTERACT_RANGE: 2
   _attacker: {fileID: 2406590263736688779}
+  _playerUIOpener: {fileID: 1086725698482233261}
+  _anim: {fileID: 7554095805665473261}
+--- !u!114 &7554095805665473261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577082154002609530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f79b394505f874c92614020ba65614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - name: Idle
+    frames:
+    - {fileID: 2800000, guid: 022e2e3323c63be4b8c1105727ac57d9, type: 3}
+    fps: 1
+  - name: Walk
+    frames:
+    - {fileID: 2800000, guid: 7004e3e1ba8137042af2e4ac3bffe04c, type: 3}
+    - {fileID: 2800000, guid: 661a431ea0b37dc40b8814f47b73a7dc, type: 3}
+    - {fileID: 2800000, guid: 629b565e5f87157499fd2162c81f6e51, type: 3}
+    fps: 12
+  startClip: Idle
+  flipX: 0
 --- !u!114 &1086725698482233261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de717c3b249950d4e8a774b777a05720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryUI: {fileID: 0}
+  _inventoryUI:
+  - {fileID: 0}
+  _toggleInventoryUI: []
+  _cursor: {fileID: 0}
 --- !u!114 &2406590263736688779
 MonoBehaviour:
   m_ObjectHideFlags: 0

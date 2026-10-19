@@ -51,4 +51,20 @@ public class Cursor : MonoBehaviour
     {
         transform.position = _currentSlot.transform.position;
     }
+
+    void CursorCorrection()
+    {
+        _currentSlot = _currentSlot.Hotbar;
+        Draw();
+    }
+
+    void OnEnable()
+    {
+        _ui.OnCloseCraftUI += CursorCorrection;
+    }
+
+    void OnDisable()
+    {
+        _ui.OnCloseCraftUI -= CursorCorrection;
+    }
 }
