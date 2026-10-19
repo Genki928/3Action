@@ -54,6 +54,7 @@ public class PlayerInventory : ObjectBase
             if (_inventory.Stack[i] != null)
             {
                 _itemSlot[i].ChangeSprite(_inventory.Stack[i].Item.Sprite);
+                _inventory.
             }
             else
             {

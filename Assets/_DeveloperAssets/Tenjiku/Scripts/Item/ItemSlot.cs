@@ -13,6 +13,8 @@ public class ItemSlot : MonoBehaviour
     {
         var image = GetComponent<Image>();
         image.sprite = changeImg;
+        if (image.sprite != null) image.color = new(1.0f, 1.0f, 1.0f, 1.0f);
+        else image.color = new(1.0f, 1.0f, 1.0f, 0.0f);
     }
 }
 
