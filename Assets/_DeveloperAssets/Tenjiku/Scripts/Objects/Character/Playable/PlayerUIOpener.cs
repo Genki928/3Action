@@ -1,26 +1,35 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerUIOpener : ObjectBase
 {
-    public bool IsOpenUI => _toggle;
+    // --- プロパティ --- //
+    public bool IsOpenUI => _isOpen;
     public Cursor Cursor => _cursor;
-    [SerializeField] List<GameObject> _inventoryUI;
-    [SerializeField] List<GameObject> _toggleInventoryUI;
-    [SerializeField] Cursor _cursor;
-    bool _toggle = false;
 
+    // --- フィールド --- //
+    [SerializeField] InventoryUI[] _inventory = new InventoryUI[2];
+    [SerializeField] Cursor _cursor;
+    bool _isOpen = false;
+
+    // --- イベント --- //
+    public event Action OnCloseCraftUI;
+
+    // --- メソッド --- //
     public void ToggleCraftUI(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
 
         // 画面を切り替える
-        _toggle = !_toggle;
-        
-        foreach (var ui in _inventoryUI)
-            ui.SetActive(_toggle);
-        foreach (var ui in _toggleInventoryUI)
-            ui.SetActive(!_toggle);
+        _isOpen = !_isOpen;
+        foreach (var toggle in _inventory)
+            foreach (var ui in toggle.inventory)
+                ui.SetActive(!ui.activeSelf);
+
+        // カーソルの位置が外れてたら修正
+        if (!_isOpen) OnCloseCraftUI?.Invoke();
     }
+    [Serializable] class InventoryUI { public List<GameObject> inventory; }
 }

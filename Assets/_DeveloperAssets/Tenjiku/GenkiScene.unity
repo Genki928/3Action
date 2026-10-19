@@ -172,6 +172,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1086725698482233261, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: _cursor
+      value: 
+      objectReference: {fileID: 484489004}
+    - target: {fileID: 1086725698482233261, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: _inventoryUI
       value: 
       objectReference: {fileID: 790014860}
@@ -219,10 +223,29 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 330585546}
+    - target: {fileID: 1846991077691305263, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: _playerUIOpener
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 964220353}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleCraftUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerUIOpener, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 577082154002609530, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 964220353}
   m_SourcePrefab: {fileID: 100100000, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
 --- !u!1 &50566790
 GameObject:
@@ -255,6 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 50566791}
   slots:
   - {fileID: 2015565471}
   - {fileID: 2015565471}
@@ -789,6 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 621295009}
   slots:
   - {fileID: 621295009}
   - {fileID: 621295009}
@@ -1457,7 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baseSlot: {fileID: 50566791}
-  _ui: {fileID: 964220344}
+  _ui: {fileID: 964220353}
 --- !u!1 &496805630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 1011410858}
   slots:
   - {fileID: 1011410858}
   - {fileID: 1011410858}
@@ -1718,6 +1744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 856421111}
   slots:
   - {fileID: 856421111}
   - {fileID: 856421111}
@@ -1780,6 +1807,11 @@ RectTransform:
   m_AnchoredPosition: {x: -204, y: -0}
   m_SizeDelta: {x: 84.8756, y: 92.0397}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &566086345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 577082154002609530, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+  m_PrefabInstance: {fileID: 37041791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &568263735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2018,6 +2050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 621295009}
   slots:
   - {fileID: 284093870}
   - {fileID: 284093870}
@@ -2395,7 +2428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 790014861}
   m_Layer: 5
-  m_Name: CraftUI
+  m_Name: Craft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2507,6 +2540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 856421111}
   slots:
   - {fileID: 557547235}
   - {fileID: 557547235}
@@ -2653,17 +2687,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958418411}
   m_CullTransparentMesh: 1
---- !u!114 &964220344 stripped
+--- !u!114 &964220353
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1086725698482233261, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
-  m_PrefabInstance: {fileID: 37041791}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 566086345}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de717c3b249950d4e8a774b777a05720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inventory:
+  - inventory:
+    - {fileID: 1136689633}
+    - {fileID: 116514330}
+    - {fileID: 2101645481}
+  - inventory:
+    - {fileID: 1230157465}
+  _cursor: {fileID: 484489004}
 --- !u!1001 &981982811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2752,6 +2795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 1011410858}
   slots:
   - {fileID: 511099712}
   - {fileID: 511099712}
@@ -3465,6 +3509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 1799134731}
   slots:
   - {fileID: 1799134731}
   - {fileID: 1799134731}
@@ -3563,6 +3608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 1799134731}
   slots:
   - {fileID: 1744291537}
   - {fileID: 1744291537}
@@ -3749,6 +3795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277895c5aeeeb84dbfb835a599d74df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hotbar: {fileID: 50566791}
   slots:
   - {fileID: 50566791}
   - {fileID: 50566791}

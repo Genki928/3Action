@@ -17,7 +17,6 @@ public class PlayerController : CharacterBase
     [Header("▼ Interact")]
     [SerializeField] float INTERACT_RANGE = 2.0f; // 木を壊せる距離
     [SerializeField] PlayerAttacker _attacker;
-    [SerializeField] PlayerUIOpener _playerUIOpener;
 
     [Header("▼ Animation")]
     [SerializeField] PlayerAnimControl _anim;
@@ -59,7 +58,6 @@ public class PlayerController : CharacterBase
 
         // 横入力がないときは、直前の向きを保つ
         if (vec.x == 0.0f) return;
-        if (_playerUIOpener.IsOpenUI) return;
 
         // 右入力のとき反転(元のコードと同じ向き)
         _anim.SetFlip(vec.x > 0.0f);
