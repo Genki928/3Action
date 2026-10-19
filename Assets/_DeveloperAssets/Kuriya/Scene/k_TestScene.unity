@@ -969,6 +969,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 790014860}
     - target: {fileID: 1846991077691305263, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: _anim
+      value: 
+      objectReference: {fileID: 491425083}
+    - target: {fileID: 1846991077691305263, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 330585546}
@@ -980,6 +984,10 @@ PrefabInstance:
       propertyPath: DISTANCE_Z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 1846991077691305263, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: _playerUIOpener
+      value: 
+      objectReference: {fileID: 491425091}
     - target: {fileID: 3294685512229677114, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -987,8 +995,54 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 577082154002609530, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 491425083}
   m_SourcePrefab: {fileID: 100100000, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+--- !u!1 &491425082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 577082154002609530, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+  m_PrefabInstance: {fileID: 491425081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &491425083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491425082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f79b394505f874c92614020ba65614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - name: Idle
+    texture: {fileID: -8328923581568760697, guid: 9d794cfdc749d63459d099666e4a03f1, type: 3}
+    columns: 1
+    rows: 1
+    frameCount: 1
+    fps: 1
+  - name: Walk
+    texture: {fileID: -8328923581568760697, guid: 8dad95e4a33fa754d9ed53efecf7aae3, type: 3}
+    columns: 3
+    rows: 1
+    frameCount: 3
+    fps: 12
+  startClip: Idle
+  flipX: 0
+--- !u!114 &491425091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1086725698482233261, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+  m_PrefabInstance: {fileID: 491425081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491425082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de717c3b249950d4e8a774b777a05720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &496805630
 GameObject:
   m_ObjectHideFlags: 0
