@@ -19,7 +19,7 @@ public class PlayerController : CharacterBase
     [SerializeField] PlayerAttacker _attacker;
 
     [Header("¥ Animation")]
-    [SerializeField] PlayerAnimControl _anim;
+    [SerializeField] AnimControl _anim;
 
     // --- ƒƒ\ƒbƒh ---
     protected override void Start()
