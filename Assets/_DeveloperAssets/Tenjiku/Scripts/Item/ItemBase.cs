@@ -6,6 +6,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     // --- プロパティ ---
+    public Sprite Sprite => _sprite;
     public string Name => _name;
     public string Lore => _lore;
     public int MaxCount => _maxCount;
@@ -14,10 +15,11 @@ public class Item : ScriptableObject
     public InteractAsset InteractAsset => _interactAsset;
 
     // --- メンバ変数 ---
-    [SerializeField] string _name;   //名前
-    [SerializeField] string _lore;   //説明
-    [SerializeField] int _maxCount;  //最大数
-    [SerializeField] int _value;     //売値
+    [SerializeField] Sprite _sprite; //画像
+    [SerializeField] string _name;  //名前
+    [SerializeField] string _lore;  //説明
+    [SerializeField] int _maxCount; //最大数
+    [SerializeField] int _value;    //売値
     [SerializeField] List<Effect> _effect; //エフェクト
     [SerializeField] InteractAsset _interactAsset;  //インタラクト
 }
