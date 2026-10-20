@@ -41,6 +41,13 @@ public class ItemStack
     [SerializeField] Item _item;
     [SerializeField] int _count;
 
+    // --- コンストラクタ ---
+    public ItemStack(Item item, int count = 1)
+    {
+        _item = item;
+        _count = count;
+    }
+
     // --- メソッド ---
     /// <summary> アイテムの個数減少 </summary>
     /// <param name="remove"> 減らす数 </param>

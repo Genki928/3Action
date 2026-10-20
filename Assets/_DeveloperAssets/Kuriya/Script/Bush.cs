@@ -7,13 +7,14 @@ public class Bush : MonoBehaviour
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private Material normalMaterial;
     [SerializeField] private Material collectedMaterial;
+    [SerializeField] Item _itemData;
 
     private bool _isCollected = false;
 
     /// <summary>
     /// 茂みからアイテムを取得する
     /// </summary>
-    public void Interact()
+    public void Interact(PlayerInventory inventory)
     {
         // すでに取得していたらreturnで返す
         if (_isCollected)
@@ -26,7 +27,7 @@ public class Bush : MonoBehaviour
         // マテリアルを変更
         meshRenderer.sharedMaterial = collectedMaterial;
 
-        Debug.Log("item get");
+        inventory.Items.AddItem(new(_itemData));
     }
 
     /// <summary>

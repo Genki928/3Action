@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class Inventory
@@ -5,7 +6,9 @@ public class Inventory
     public List<ItemStack> Stack => _items;
     List<ItemStack> _items = new();
 
-    public void AddItem(ItemStack item)
+    public event Action OnGetItem;
+
+    public void AddItem(ItemStack item, int count = 1)
     {
         // ŒÂ”‚ð‘«‚·
         var findItemIndex = _items.FindIndex(x => x.Item.Name == item.Item.Name);
@@ -17,6 +20,7 @@ public class Inventory
         {
             _items.Add(item);
         }
+        OnGetItem?.Invoke();
     }
 
     public void RemoveItem(ItemStack item)
@@ -27,5 +31,6 @@ public class Inventory
         {
             _items[findItemIndex].RemoveItem(item.Count);
         }
+        OnGetItem?.Invoke();
     }
 }

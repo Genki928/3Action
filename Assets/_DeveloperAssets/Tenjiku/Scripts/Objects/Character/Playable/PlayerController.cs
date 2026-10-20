@@ -21,6 +21,9 @@ public class PlayerController : CharacterBase
     [Header("▼ Animation")]
     [SerializeField] AnimControl _anim;
 
+    [Header("▼ Inventory")]
+    PlayerInventory _inventory;
+
     // --- メソッド ---
     protected override void Start()
     {
@@ -29,6 +32,9 @@ public class PlayerController : CharacterBase
         // ステータス設定
         _moveSpeed = new(MOVE_SPEED);
         _health = new(START_HEALTH);
+
+        // 初期設定
+        _inventory = GetComponent<PlayerInventory>();
     }
 
     void LateUpdate()
@@ -68,8 +74,6 @@ public class PlayerController : CharacterBase
         if (!ctx.performed) return;
         if (_isPaused) return;
 
-        //_attacker.Attack(_direction);
-        //return;
         // 自分の周り(INTERACT_RANGE の球)にあるものを調べる
         var hits = Physics.OverlapSphere(transform.position, INTERACT_RANGE);
         foreach (var hit in hits)
@@ -83,7 +87,7 @@ public class PlayerController : CharacterBase
             var bush = hit.GetComponentInParent<Bush>();
             if(bush != null)
             {
-                bush.Interact();
+                bush.Interact(_inventory);
             }
         }
     }

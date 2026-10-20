@@ -8,6 +8,7 @@ public class PlayerInventory : ObjectBase
     // --- プロパティ --- //
     public bool IsOpenUI => _isOpen;
     public Cursor Cursor => _cursor;
+    public Inventory Items => _inventory;
 
     // --- フィールド --- //
     [Header("▼ Inventory")]
@@ -28,7 +29,6 @@ public class PlayerInventory : ObjectBase
         foreach (var item in _startItem)
             _inventory.AddItem(item);
 
-        Debug.Log(_inventory.Stack[0].Item.Name);
         Draw();
     }
 
@@ -48,13 +48,12 @@ public class PlayerInventory : ObjectBase
 
     void Draw()
     {
-        var min = Math.Min(_itemSlot.Count, _inventory.Stack.Count);
-        for (int i = 0; i < min; i++)
+        int hasItemCount = _inventory.Stack.Count, j = 0;
+        for (int i = 0; i < _itemSlot.Count; i++)
         {
-            if (_inventory.Stack[i] != null)
+            if (j++ < hasItemCount)
             {
                 _itemSlot[i].ChangeSprite(_inventory.Stack[i].Item.Sprite);
-                ;
             }
             else
             {
@@ -62,6 +61,11 @@ public class PlayerInventory : ObjectBase
             }
 
         }
+    }
+
+    void OnEnable()
+    {
+        _inventory.OnGetItem += Draw;
     }
 
     /// <summary> List(List(T))ができないから作ったクラス "</summary>
