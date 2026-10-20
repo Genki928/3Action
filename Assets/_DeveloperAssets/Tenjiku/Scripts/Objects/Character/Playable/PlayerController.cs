@@ -3,6 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : CharacterBase
 {
+    // --- プロパティ ---
+    public Inventory Inventory => _inventory;
+
     // --- フィールド ---
     [Header("▼ Camera")]
     [SerializeField] Transform _camera;
@@ -22,7 +25,7 @@ public class PlayerController : CharacterBase
     [SerializeField] AnimControl _anim;
 
     [Header("▼ Inventory")]
-    PlayerInventory _inventory;
+    Inventory _inventory = new();
 
     // --- メソッド ---
     protected override void Start()
@@ -32,9 +35,6 @@ public class PlayerController : CharacterBase
         // ステータス設定
         _moveSpeed = new(MOVE_SPEED);
         _health = new(START_HEALTH);
-
-        // 初期設定
-        _inventory = GetComponent<PlayerInventory>();
     }
 
     void LateUpdate()

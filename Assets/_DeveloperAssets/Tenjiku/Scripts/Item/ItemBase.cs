@@ -9,7 +9,7 @@ public class Item : ScriptableObject
     public Sprite Sprite => _sprite;
     public string Name => _name;
     public string Lore => _lore;
-    public int MaxCount => _maxCount;
+    //public int MaxCount => _maxCount;
     public int Value => _value;
     public List<Effect> Effect => _effect;
     public InteractAsset InteractAsset => _interactAsset;
@@ -18,7 +18,7 @@ public class Item : ScriptableObject
     [SerializeField] Sprite _sprite; //画像
     [SerializeField] string _name;  //名前
     [SerializeField] string _lore;  //説明
-    [SerializeField] int _maxCount; //最大数
+    //[SerializeField] int _maxCount = int.MaxValue; //最大数
     [SerializeField] int _value;    //売値
     [SerializeField] List<Effect> _effect; //エフェクト
     [SerializeField] InteractAsset _interactAsset;  //インタラクト
@@ -61,10 +61,11 @@ public class ItemStack
     /// <summary> アイテムの個数増加 </summary>
     /// <param name="remove"> 増やす数 </param>
     /// <returns> 最大か否か </returns>
-    public bool AddItem(int add)
+    public void AddItem(int add)
     {
-        _count = Math.Min(_count - add, _item.MaxCount);
-        return _count == _item.MaxCount;
+        //_count = Math.Min(_count + add, _item.MaxCount);
+        //return _count == _item.MaxCount;
+        _count = _count + add;
     }
 }
 

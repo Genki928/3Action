@@ -3,18 +3,37 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
-    [Header("▼ アイテムスロット")]
+    // --- プロパティ ---
     public ItemSlot Hotbar => _hotbar;
     public ItemSlot[] Slots => slots;
+
+    // --- フィールド ---
+    [Header("▼ アイテムスロット")]
+    [SerializeField] Text _count;
     [SerializeField] ItemSlot _hotbar;  // インベントリを閉じた時、カーソルにホットバーを戻す
     [SerializeField] ItemSlot[] slots = new ItemSlot[4];    // 移動先のインベントリ
+    Color CLEAR = new(1.0f, 1.0f, 1.0f, 0.0f);
 
-    public void ChangeSprite(Sprite changeImg = null)
+    // --- メソッド ---
+    public void GetItem(ItemStack stack = null)
     {
         var image = GetComponent<Image>();
-        image.sprite = changeImg;
-        if (image.sprite != null) image.color = new(1.0f, 1.0f, 1.0f, 1.0f);
-        else image.color = new(1.0f, 1.0f, 1.0f, 0.0f);
+        if (stack != null)
+        {
+            image.sprite = stack.Item.Sprite;
+            image.color = Color.white;
+
+            // 個数のテキストを変更
+            _count.text = stack.Count.ToString();
+        }
+        else
+        {
+            image.sprite = null;
+            image.color = CLEAR;
+
+            // 個数のテキストを変更
+            _count.text = "";
+        }
     }
 }
 

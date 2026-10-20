@@ -12,10 +12,12 @@ public class PlayerInventory : ObjectBase
 
     // --- フィールド --- //
     [Header("▼ Inventory")]
-    [SerializeField] List<ItemSlot> _itemSlot = new();
     [SerializeField] List<ItemStack> _startItem = new();
     Inventory _inventory = new();
+
+    [Header("▼ UI")]
     [SerializeField] Cursor _cursor;
+    [SerializeField] List<ItemSlot> _itemSlot = new();
     [SerializeField] InventoryUI[] _inventoryUI = new InventoryUI[2];
     bool _isOpen = false;
 
@@ -53,11 +55,11 @@ public class PlayerInventory : ObjectBase
         {
             if (j++ < hasItemCount)
             {
-                _itemSlot[i].ChangeSprite(_inventory.Stack[i].Item.Sprite);
+                _itemSlot[i].GetItem(_inventory.Stack[i]);
             }
             else
             {
-                _itemSlot[i].ChangeSprite();
+                _itemSlot[i].GetItem();
             }
 
         }
@@ -67,7 +69,7 @@ public class PlayerInventory : ObjectBase
     {
         _inventory.OnGetItem += Draw;
     }
-
-    /// <summary> List(List(T))ができないから作ったクラス "</summary>
-    [Serializable] class InventoryUI { public List<GameObject> inventory; }
 }
+
+/// <summary> List(List(T))ができないから作ったクラス "</summary>
+[Serializable] public class InventoryUI { public List<GameObject> inventory; }

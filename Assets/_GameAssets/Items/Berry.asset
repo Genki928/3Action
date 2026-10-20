@@ -15,7 +15,6 @@ MonoBehaviour:
   _sprite: {fileID: 3688632228890968987, guid: c80a3d0d94153fd46a40009201b69c4d, type: 3}
   _name: "\u30D9\u30EA\u30FC\u3001\u30A2\u30EA"
   _lore: 
-  _maxCount: 0
   _value: 0
   _effect:
   - _effectType: 0

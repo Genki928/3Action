@@ -14,7 +14,7 @@ public class Bush : MonoBehaviour
     /// <summary>
     /// 茂みからアイテムを取得する
     /// </summary>
-    public void Interact(PlayerInventory inventory)
+    public void Interact(Inventory inventory)
     {
         // すでに取得していたらreturnで返す
         if (_isCollected)
@@ -26,8 +26,7 @@ public class Bush : MonoBehaviour
 
         // マテリアルを変更
         meshRenderer.sharedMaterial = collectedMaterial;
-
-        inventory.Items.AddItem(new(_itemData));
+        inventory.AddItem(new(_itemData));
     }
 
     /// <summary>

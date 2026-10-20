@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 850747091121558446}
   - component: {fileID: 1846991077691305263}
-  - component: {fileID: 7545572304780475918}
   - component: {fileID: 7554095805665473261}
   - component: {fileID: 2406590263736688779}
   - component: {fileID: 1976567967024273714}
@@ -61,35 +60,6 @@ MonoBehaviour:
   INTERACT_RANGE: 2
   _attacker: {fileID: 2406590263736688779}
   _anim: {fileID: 7554095805665473261}
---- !u!114 &7545572304780475918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577082154002609530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de717c3b249950d4e8a774b777a05720, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemSlot:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _startItem:
-  - _item: {fileID: 11400000, guid: ff7c5437d894fa643a48f49be17c6dad, type: 2}
-    _count: 10
-  _cursor: {fileID: 0}
-  _inventoryUI:
-  - inventory:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - inventory:
-    - {fileID: 0}
 --- !u!114 &7554095805665473261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +157,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7545572304780475918}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUIOpener, Assembly-CSharp
         m_MethodName: ToggleCraftUI
         m_Mode: 0

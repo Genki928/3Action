@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Craft",
-                    "type": "Button",
-                    "id": "b7fc155b-0c60-4a08-98c4-e3d3b0b7c59e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Debug",
                     "type": "Button",
                     "id": "926fe2fc-f066-4713-8135-0bd0577fc423",
@@ -181,28 +172,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b14afb27-f4d6-46fd-94d7-343f7a38d7ef",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Craft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "26874d3b-87b5-452d-bc2d-8c5375e5b2c2",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Craft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

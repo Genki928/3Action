@@ -1,0 +1,34 @@
+{
+    "name": "IA_InventoryToggle",
+    "maps": [
+        {
+            "name": "Cursor",
+            "id": "9988db11-e43e-43e5-bfef-22cb64668e63",
+            "actions": [
+                {
+                    "name": "ToggleUI",
+                    "type": "Button",
+                    "id": "def1eae6-efb1-4d63-bc4f-88cdb8c4cbeb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "72b4a556-b8a0-4de8-b980-ad473b63ed61",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
