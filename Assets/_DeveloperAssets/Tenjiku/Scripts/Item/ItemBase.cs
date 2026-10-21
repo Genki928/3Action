@@ -39,7 +39,7 @@ public class ItemStack
 
     // --- メンバ変数 ---
     [SerializeField] Item _item;
-    [SerializeField] int _count;
+    [SerializeField] int _count = 1;
 
     // --- コンストラクタ ---
     public ItemStack(Item item, int count = 1)

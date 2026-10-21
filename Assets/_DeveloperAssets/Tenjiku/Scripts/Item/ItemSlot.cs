@@ -20,6 +20,7 @@ public class ItemSlot : MonoBehaviour
         var image = GetComponent<Image>();
         if (stack != null)
         {
+            // アイテムを描画
             image.sprite = stack.Item.Sprite;
             image.color = Color.white;
 
@@ -28,10 +29,11 @@ public class ItemSlot : MonoBehaviour
         }
         else
         {
+            // 透明になる
             image.sprite = null;
             image.color = CLEAR;
 
-            // 個数のテキストを変更
+            // テキストをリセット
             _count.text = "";
         }
     }

@@ -8,12 +8,10 @@ public class InventoryManager : MonoBehaviour
     // --- プロパティ --- //
     public bool IsOpenUI => _isOpen;
 
-
     // --- フィールド --- //
     [Header("▼ Inventory")]
-    [SerializeField] PlayerController _playerInventory;
+    [SerializeField] PlayerController _player;
     [SerializeField] List<ItemStack> _startItem = new();
-    Inventory _inventory = new();
 
     [Header("▼ UI")]
     [SerializeField] Cursor _cursor;
@@ -23,16 +21,17 @@ public class InventoryManager : MonoBehaviour
 
     // --- イベント --- //
     public event Action OnCloseCraftUI;
+
+    // --- メソッド --- //
     void Start()
     {
         // 開始時のアイテムを付与
-        _inventory = _playerInventory.Inventory;
         foreach (var item in _startItem)
-            _inventory.AddItem(item);
-
-        Draw();
+            _player.Inventory.AddItem(item);
     }
 
+    /// <summary> インベントリのUIを開閉する </summary>
+    /// <param name="ctx"></param>
     public void ToggleCraftUI(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
@@ -47,18 +46,27 @@ public class InventoryManager : MonoBehaviour
         if (!_isOpen) OnCloseCraftUI?.Invoke();
     }
 
+    void GetItemText()
+    {
+        ;
+    }
+
+    /// <summary> インベントリの描画 </summary>
     void Draw()
     {
-        Debug.Log("tes");
-        int hasItemCount = _inventory.Stack.Count, j = 0;
+        // インベントリのスロットの数を取得
+        int hasItemCount = _player.Inventory.Stack.Count;
         for (int i = 0; i < _itemSlot.Count; i++)
         {
-            if (j++ < hasItemCount)
+            // そのスロットがアイテムを持つなら、
+            if (i < hasItemCount)
             {
-                _itemSlot[i].GetItem(_inventory.Stack[i]);
+                // アイテムを描画
+                _itemSlot[i].GetItem(_player.Inventory.Stack[i]);
             }
             else
             {
+                // 描画をリセット
                 _itemSlot[i].GetItem();
             }
         }
@@ -66,11 +74,11 @@ public class InventoryManager : MonoBehaviour
 
     void OnEnable()
     {
-        _inventory.OnGetItem += Draw;
+        _player.Inventory.OnGetItem += Draw;
     }
 
     void OnDisable()
     {
-        _inventory.OnGetItem -= Draw;
+        _player.Inventory.OnGetItem -= Draw;
     }
 }
