@@ -968,6 +968,10 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 330585546}
+    - target: {fileID: 7554095805665473261, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: clips.Array.data[0].fps
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
