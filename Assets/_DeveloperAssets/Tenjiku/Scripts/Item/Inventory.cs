@@ -7,7 +7,7 @@ public class Inventory
     public List<ItemStack> Stack => _items;
     List<ItemStack> _items = new();
 
-    public event Action OnGetItem;
+    public event Action<Inventory> OnGetItem;
 
     public void AddItem(ItemStack item, int count = 1)
     {
@@ -23,7 +23,7 @@ public class Inventory
             // 新しいスロットにアイテムを追加
             _items.Add(item);
         }
-        OnGetItem?.Invoke();
+        OnGetItem?.Invoke(this);
     }
 
     public void RemoveItem(ItemStack item)
@@ -35,6 +35,6 @@ public class Inventory
         {
             _items[findItemIndex].RemoveItem(item.Count);
         }
-        OnGetItem?.Invoke();
+        OnGetItem?.Invoke(this);
     }
 }

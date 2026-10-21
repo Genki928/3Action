@@ -31,7 +31,7 @@ public class PlayerInventory : ObjectBase
         foreach (var item in _startItem)
             _inventory.AddItem(item);
 
-        Draw();
+        Draw(_inventory);
     }
 
     public void ToggleCraftUI(InputAction.CallbackContext ctx)
@@ -48,7 +48,7 @@ public class PlayerInventory : ObjectBase
         if (!_isOpen) OnCloseCraftUI?.Invoke();
     }
 
-    void Draw()
+    void Draw(Inventory inventory)
     {
         int hasItemCount = _inventory.Stack.Count, j = 0;
         for (int i = 0; i < _itemSlot.Count; i++)

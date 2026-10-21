@@ -52,7 +52,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary> インベントリの描画 </summary>
-    void Draw()
+    void Draw(Inventory inventory)
     {
         // インベントリのスロットの数を取得
         int hasItemCount = _player.Inventory.Stack.Count;
