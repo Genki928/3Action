@@ -8,6 +8,7 @@ public class Bush : MonoBehaviour
     [SerializeField] private Material normalMaterial;
     [SerializeField] private Material collectedMaterial;
     [SerializeField] Item _itemData;
+    [SerializeField] GameObject _itemPrefab;
 
     private bool _isCollected = false;
 
@@ -26,7 +27,10 @@ public class Bush : MonoBehaviour
 
         // マテリアルを変更
         meshRenderer.sharedMaterial = collectedMaterial;
-        inventory.AddItem(new(_itemData));
+
+        // ドロップ
+        //inventory.AddItem(new(_itemData));
+        Instantiate(_itemPrefab, new(transform.position.x, transform.position.y, transform.position.z - 0.5f), Quaternion.identity);
     }
 
     /// <summary>

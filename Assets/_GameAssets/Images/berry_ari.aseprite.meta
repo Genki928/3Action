@@ -125,7 +125,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: berry_ari
     originalName: 
-    pivot: {x: 0.50877196, y: -0.02631579}
+    pivot: {x: 0.4770878, y: 0.49647266}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 

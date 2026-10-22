@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 850747091121558446, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.16
+      value: 1.326
       objectReference: {fileID: 0}
     - target: {fileID: 850747091121558446, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -226,6 +226,22 @@ PrefabInstance:
     - target: {fileID: 1976567967024273714, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736530488469551183, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_Center.x
+      value: -0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736530488469551183, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_Center.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736530488469551183, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964901957071087259, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7545572304780475918, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: _cursor
@@ -614,9 +630,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 78105322490900921, guid: f4bac4e7f67695a4c9b6cde48b81e2a3, type: 3}
+      propertyPath: m_Radius
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 78105322490900921, guid: f4bac4e7f67695a4c9b6cde48b81e2a3, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1225285391117410935, guid: f4bac4e7f67695a4c9b6cde48b81e2a3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1225285391117410935, guid: f4bac4e7f67695a4c9b6cde48b81e2a3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1225285391117410935, guid: f4bac4e7f67695a4c9b6cde48b81e2a3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.46
       objectReference: {fileID: 0}
     - target: {fileID: 1225285391117410935, guid: f4bac4e7f67695a4c9b6cde48b81e2a3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -658,6 +690,10 @@ PrefabInstance:
       propertyPath: _itemData
       value: 
       objectReference: {fileID: 11400000, guid: ff7c5437d894fa643a48f49be17c6dad, type: 2}
+    - target: {fileID: 3134635189429695758, guid: f4bac4e7f67695a4c9b6cde48b81e2a3, type: 3}
+      propertyPath: _itemPrefab
+      value: 
+      objectReference: {fileID: 346724492923111411, guid: 757c5963efc169b45be6a99294c1c02b, type: 3}
     - target: {fileID: 8235069080648983525, guid: f4bac4e7f67695a4c9b6cde48b81e2a3, type: 3}
       propertyPath: m_Name
       value: Bush
@@ -1748,7 +1784,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &717378696

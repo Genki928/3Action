@@ -7,6 +7,7 @@ public class Item : ScriptableObject
 {
     // --- プロパティ ---
     public Sprite Sprite => _sprite;
+    public Material Material => _material;
     public string Name => _name;
     public string Lore => _lore;
     //public int MaxCount => _maxCount;
@@ -16,6 +17,7 @@ public class Item : ScriptableObject
 
     // --- メンバ変数 ---
     [SerializeField] Sprite _sprite; //画像
+    [SerializeField] Material _material; //画像
     [SerializeField] string _name;  //名前
     [SerializeField] string _lore;  //説明
     //[SerializeField] int _maxCount = int.MaxValue; //最大数

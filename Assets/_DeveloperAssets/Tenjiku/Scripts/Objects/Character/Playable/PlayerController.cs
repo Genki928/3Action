@@ -92,4 +92,13 @@ public class PlayerController : CharacterBase
             }
         }
     }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.TryGetComponent<ItemObj>(out var item))
+        {
+            Inventory.AddItem(item.Stack);
+            Destroy(item.gameObject);
+        }
+    }
 }

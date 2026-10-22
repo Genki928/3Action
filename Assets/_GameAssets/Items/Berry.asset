@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Berry
   m_EditorClassIdentifier: 
   _sprite: {fileID: 3688632228890968987, guid: c80a3d0d94153fd46a40009201b69c4d, type: 3}
+  _material: {fileID: 2100000, guid: 9386a154f33c89f43a6c3a1b0bdb5f73, type: 2}
   _name: "\u30D9\u30EA\u30FC\u3001\u30A2\u30EA"
   _lore: 
   _value: 0
