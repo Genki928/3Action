@@ -88,7 +88,6 @@ public class PlayerController : CharacterBase
             if(bush != null)
             {
                 bush.Interact(_inventory);
-                Debug.Log(_inventory.Stack[0].Item.Name);
             }
         }
     }

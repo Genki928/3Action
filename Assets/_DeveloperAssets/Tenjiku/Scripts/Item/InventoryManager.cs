@@ -16,7 +16,8 @@ public class InventoryManager : MonoBehaviour
     [Header("▼ UI")]
     [SerializeField] Cursor _cursor;
     [SerializeField] List<ItemSlot> _itemSlot = new();
-    [SerializeField] InventoryUI[] _inventoryUI = new InventoryUI[2];
+    [SerializeField] List<GameObject> _hotbarUI = new();
+    [SerializeField] List<GameObject> _inventoryUI = new();
     bool _isOpen = false;
 
     // --- イベント --- //
@@ -38,9 +39,10 @@ public class InventoryManager : MonoBehaviour
 
         // 画面を切り替える
         _isOpen = !_isOpen;
-        foreach (var toggle in _inventoryUI)
-            foreach (var ui in toggle.inventory)
-                ui.SetActive(!ui.activeSelf);
+        foreach (var hotbar in _hotbarUI)
+            hotbar.SetActive(_isOpen);
+        foreach (var inventory in _inventoryUI)
+            inventory.SetActive(!_isOpen);
 
         // カーソルの位置が外れてたら修正
         if (!_isOpen) OnCloseCraftUI?.Invoke();

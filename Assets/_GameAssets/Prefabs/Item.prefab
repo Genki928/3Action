@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a749c89b8ec70d542a874c1bd73bca76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amplitude: 0.5
+  speed: 2
   _item:
     _item: {fileID: 11400000, guid: ff7c5437d894fa643a48f49be17c6dad, type: 2}
     _count: 1
@@ -154,7 +156,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.05, y: 0.08, z: 0}
 --- !u!65 &890537121529353381
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -172,7 +174,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.05, y: 0.01, z: 0.1}
-  m_Center: {x: 0, y: -0.5, z: 0}
+  m_Center: {x: 0, y: -0.38, z: 0}
