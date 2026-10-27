@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class HealthManager : MonoBehaviour
             {
                 healthobj[i].SetActive(false);
             }
+        }
+        if (_player.Health.Value <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
