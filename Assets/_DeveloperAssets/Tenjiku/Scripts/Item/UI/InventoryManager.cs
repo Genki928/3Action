@@ -19,10 +19,11 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] List<GameObject> _hotbarUI = new();
     [SerializeField] List<GameObject> _inventoryUI = new();
     bool _isOpen = false;
+    bool _isInventory = true;
 
     // --- イベント --- //
     public event Action OnCloseCraftUI;
-    public event Action<InventoryCategory> OnChangedCategory;
+    public event Action<bool> OnToggleCategory;
 
     // --- メソッド --- //
     void Start()
@@ -47,13 +48,16 @@ public class InventoryManager : MonoBehaviour
 
         // カーソルの位置が外れてたら修正
         if (!_isOpen) OnCloseCraftUI?.Invoke();
+        if (!_isInventory) _isInventory = true;
     }
 
-    public void CategoryChangeLeft(InputAction.CallbackContext ctx)
+    public void CategoryChange(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
+        if (!_isOpen) return;
 
-        ;
+        _isInventory = !_isInventory;
+        OnToggleCategory?.Invoke(_isInventory);
     }
 
     /// <summary> インベントリの描画 </summary>

@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5958da08e0e8522438398bfbd037bf92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _count: {fileID: 0}
+  _count: {fileID: 5635008425212893484}
   _hotbar: {fileID: 0}
   slots:
   - {fileID: 0}

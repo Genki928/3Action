@@ -1,18 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour
 {
     [SerializeField] ItemSlot _baseSlot;
     ItemSlot _currentSlot;
     [SerializeField] InventoryManager _ui;
-    //[SerializeField] float scaleSizeMax = 1.1f;
-    //[SerializeField] float scaleSizeMin = 0.9f;
-    //[SerializeField] float scalingSize = 0.5f;
-    bool scale = true;
+    bool _active = true;
 
-    bool IsMoveCursor(InputAction.CallbackContext ctx) => !_ui.IsOpenUI || !ctx.performed;
+    bool IsMoveCursor(InputAction.CallbackContext ctx) => _active && ctx.performed;
 
     void Start()
     {
@@ -22,7 +19,8 @@ public class Cursor : MonoBehaviour
 
     public void CursorUp(InputAction.CallbackContext ctx)
     {
-        if (IsMoveCursor(ctx)) return;
+        if (!IsMoveCursor(ctx)) return;
+        if (!_ui.IsOpenUI) return;
 
         _currentSlot = _currentSlot.Slots[(int)Direct.Top];
         Draw();
@@ -30,7 +28,8 @@ public class Cursor : MonoBehaviour
 
     public void CursorDown(InputAction.CallbackContext ctx)
     {
-        if (IsMoveCursor(ctx)) return;
+        if (!IsMoveCursor(ctx)) return;
+        if (!_ui.IsOpenUI) return;
 
         _currentSlot = _currentSlot.Slots[(int)Direct.Bottom];
         Draw();
@@ -38,7 +37,7 @@ public class Cursor : MonoBehaviour
 
     public void CursorRight(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed) return;
+        if (!IsMoveCursor(ctx)) return;
 
         _currentSlot = _currentSlot.Slots[(int)Direct.Right];
         Draw();
@@ -46,18 +45,17 @@ public class Cursor : MonoBehaviour
 
     public void CursorLeft(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed) return;
+        if (!IsMoveCursor(ctx)) return;
 
         _currentSlot = _currentSlot.Slots[(int)Direct.Left];
         Draw();
     }
 
-    public void CategoryChange(InventoryCategory category)
+    public void ChangeDrawing(bool active)
     {
-        if (category == InventoryCategory.Craft)
-        {
-            _baseSlot = _currentSlot;
-        }
+        _active = active;
+        if (TryGetComponent<Image>(out var img))
+            img.enabled = _active;
     }
 
     void Draw()
@@ -74,12 +72,12 @@ public class Cursor : MonoBehaviour
     void OnEnable()
     {
         _ui.OnCloseCraftUI += CursorCorrection;
-        _ui.OnChangedCategory += CategoryChange;
+        _ui.OnToggleCategory += ChangeDrawing;
     }
 
     void OnDisable()
     {
         _ui.OnCloseCraftUI -= CursorCorrection;
-        _ui.OnChangedCategory -= CategoryChange;
+        _ui.OnToggleCategory -= ChangeDrawing;
     }
 }
