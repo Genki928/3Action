@@ -1,11 +1,41 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class Cursor : MonoBehaviour
 {
     [SerializeField] ItemSlot _baseSlot;
     ItemSlot _currentSlot;
     [SerializeField] InventoryManager _ui;
+    [SerializeField] float scaleSizeMax = 1.1f;
+    [SerializeField] float scaleSizeMin = 0.9f;
+    [SerializeField] float scalingSize = 0.5f;
+    bool scale = true;
+
+    void Update()
+    {
+
+        if (scale)
+        {
+            // サイズ変更
+            transform.localScale *= scalingSize;
+            transform.localScale = new(transform.localScale.x, transform.localScale.y, 1.0f);
+
+            // 一定以上のサイズなら反転
+            if (transform.localScale.magnitude > scaleSizeMax)
+                scale = false;
+        }
+        else
+        {
+            // サイズ変更
+            transform.localScale /= scalingSize;
+            transform.localScale = new(transform.localScale.x, transform.localScale.y, 1.0f);
+
+            // 一定以下のサイズなら反転
+            if (transform.localScale.magnitude < scaleSizeMin)
+                scale = true;
+        }
+    }
 
     bool IsMoveCursor(InputAction.CallbackContext ctx) => !_ui.IsOpenUI || !ctx.performed;
 

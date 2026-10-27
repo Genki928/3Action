@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class LegStateManager : StateManagerBase<LegStateManager, IExploringState>
 {
     // --- プロパティ ---
+    public IExploringState State => _currentState;
     public int Phase => _phase;
     public float Ratio => _currentState.Ratio;
     public float ExploringTimerLimit => _exploringTimerLimit;
