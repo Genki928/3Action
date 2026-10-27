@@ -22,6 +22,7 @@ public class InventoryManager : MonoBehaviour
 
     // --- イベント --- //
     public event Action OnCloseCraftUI;
+    public event Action<InventoryCategory> OnChangedCategory;
 
     // --- メソッド --- //
     void Start()
@@ -48,8 +49,10 @@ public class InventoryManager : MonoBehaviour
         if (!_isOpen) OnCloseCraftUI?.Invoke();
     }
 
-    void GetItemText()
+    public void CategoryChangeLeft(InputAction.CallbackContext ctx)
     {
+        if (!ctx.performed) return;
+
         ;
     }
 
@@ -83,4 +86,10 @@ public class InventoryManager : MonoBehaviour
     {
         _player.Inventory.OnGetItem -= Draw;
     }
+}
+
+public enum InventoryCategory
+{
+    Inventory,
+    Craft,
 }

@@ -1,7 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour
+public interface IItemSlot
+{
+    // --- プロパティ ---
+    public ItemSlot Hotbar {  get; }
+    public ItemSlot[] Slots { get; }
+}
+
+public class ItemSlot : MonoBehaviour, IItemSlot
 {
     // --- プロパティ ---
     public ItemSlot Hotbar => _hotbar;

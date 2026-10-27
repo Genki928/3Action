@@ -12,31 +12,6 @@ public class Cursor : MonoBehaviour
     //[SerializeField] float scalingSize = 0.5f;
     bool scale = true;
 
-    void Update()
-    {
-
-        //if (scale)
-        //{
-        //    // サイズ変更
-        //    transform.localScale *= scalingSize;
-        //    transform.localScale = new(transform.localScale.x, transform.localScale.y, 1.0f);
-
-        //    // 一定以上のサイズなら反転
-        //    if (transform.localScale.magnitude > scaleSizeMax)
-        //        scale = false;
-        //}
-        //else
-        //{
-        //    // サイズ変更
-        //    transform.localScale /= scalingSize;
-        //    transform.localScale = new(transform.localScale.x, transform.localScale.y, 1.0f);
-
-        //    // 一定以下のサイズなら反転
-        //    if (transform.localScale.magnitude < scaleSizeMin)
-        //        scale = true;
-        //}
-    }
-
     bool IsMoveCursor(InputAction.CallbackContext ctx) => !_ui.IsOpenUI || !ctx.performed;
 
     void Start()
@@ -77,6 +52,14 @@ public class Cursor : MonoBehaviour
         Draw();
     }
 
+    public void CategoryChange(InventoryCategory category)
+    {
+        if (category == InventoryCategory.Craft)
+        {
+            _baseSlot = _currentSlot;
+        }
+    }
+
     void Draw()
     {
         transform.position = _currentSlot.transform.position;
@@ -91,10 +74,12 @@ public class Cursor : MonoBehaviour
     void OnEnable()
     {
         _ui.OnCloseCraftUI += CursorCorrection;
+        _ui.OnChangedCategory += CategoryChange;
     }
 
     void OnDisable()
     {
         _ui.OnCloseCraftUI -= CursorCorrection;
+        _ui.OnChangedCategory -= CategoryChange;
     }
 }
