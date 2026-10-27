@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
 
     readonly List<GameObject> _alive = new();
     float _timer;
+    [SerializeField] LegStateManager state;
 
     void Awake()
     {
@@ -27,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        if (state.State is not RaidState) return;
         _timer += Time.deltaTime;
         if (_timer < _interval) return;
         _timer = 0f;

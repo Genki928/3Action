@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7554095805665473261}
   - component: {fileID: 2406590263736688779}
   - component: {fileID: 1976567967024273714}
+  - component: {fileID: 3728966994288515733}
   - component: {fileID: 6218798209421050515}
   - component: {fileID: 2520130756348348480}
   - component: {fileID: 2013016181762547083}
@@ -158,22 +159,6 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUIOpener, Assembly-CSharp
-        m_MethodName: ToggleCraftUI
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: b7fc155b-0c60-4a08-98c4-e3d3b0b7c59e
-    m_ActionName: 'Player/Craft[/XInputControllerWindows/buttonNorth]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LegStateManager, Assembly-CSharp
         m_MethodName: DebugChangeState
         m_Mode: 0
@@ -208,6 +193,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3728966994288515733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577082154002609530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53dd5b01d39c80f48841b5dc559c1701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &6218798209421050515
 MeshFilter:
   m_ObjectHideFlags: 0
