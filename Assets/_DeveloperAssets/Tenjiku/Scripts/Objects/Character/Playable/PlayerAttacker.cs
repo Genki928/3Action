@@ -3,14 +3,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttacker : MonoBehaviour
 {
+
+
     [SerializeField] GameObject _defaultAttackCollision;
 
-    public void OnAttack(InputAction.CallbackContext contxt)
+    public void Attack(InputAction.CallbackContext contxt)
     {
-        if (contxt.started)
-        {
-            Debug.Log("Attack!");
-        }
+        Debug.Log("Attack!");
+
     }
     public void Attack(Vector3 vec)
     {
@@ -19,6 +19,9 @@ public class PlayerAttacker : MonoBehaviour
     }
     private void Update()
     {
-        
+        if(Input.GetKey(KeyCode.Space))
+        {
+            //Debug.Log("çUåÇ");
+        }
     }
 }
