@@ -968,6 +968,7 @@ GameObject:
   - component: {fileID: 410087041}
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
+  - component: {fileID: 410087043}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1078,6 +1079,19 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!114 &410087043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410087039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717e9afec01430e499f2960117e22d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _legStateManager: {fileID: 935993317}
 --- !u!1001 &459719399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1263,26 +1277,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1086725698482233261, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
-      propertyPath: _craftUI
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1846991077691305263, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1385079605}
-    - target: {fileID: 1846991077691305263, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
-      propertyPath: DISTANCE_Y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1846991077691305263, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
-      propertyPath: DISTANCE_Z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294685512229677114, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1403,7 +1401,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 20, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2671,7 +2669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125e881fb48276749a18f3842cf84b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _player: {fileID: 935993318}
   _searchIndex: 10
 --- !u!4 &1385079605
 Transform:
@@ -2727,6 +2725,7 @@ MonoBehaviour:
   _minRadius: 15
   _maxRadius: 20
   _viewMargin: 0.1
+  state: {fileID: 0}
 --- !u!4 &1579453136
 Transform:
   m_ObjectHideFlags: 0
