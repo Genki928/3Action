@@ -13,6 +13,7 @@ public class ExploringState : ExploringStateBase
         _stateManager = stateManager;
         //Debug.Log(Ratio);
         stateManager.NotifyExploreStarted();
+        Debug.Log("uoooooooooooooooooooooooooooooooooooooooooo");
     }
 
     public override void Execute(LegStateManager stateManager)

@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 80220705}
   - component: {fileID: 80220704}
   m_Layer: 5
-  m_Name: km
+  m_Name: time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 660, y: 372.5}
+  m_AnchoredPosition: {x: 553, y: 410}
   m_SizeDelta: {x: 667.4507, y: 255.9688}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &80220704
@@ -183,13 +183,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 64
-    m_Alignment: 0
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F9D\u983C\u7D42\u4E86\u65E5\u307E\u3067\uFF1AX\u65E5"
+  m_Text: -----------------------------
 --- !u!222 &80220705
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1974,6 +1974,7 @@ GameObject:
   - component: {fileID: 935993317}
   - component: {fileID: 935993316}
   - component: {fileID: 935993319}
+  - component: {fileID: 935993320}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2039,8 +2040,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017f0fcc6670d56449b83a763bc6e0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _raidTimerLimit: 5
-  _exploringTimerLimit: 30
+  _raidTimerLimit: 30
+  _exploringTimerLimit: 5
 --- !u!4 &935993318
 Transform:
   m_ObjectHideFlags: 0
@@ -2073,6 +2074,20 @@ MonoBehaviour:
   - {fileID: 1944792491}
   - {fileID: 1630197174}
   - {fileID: 1282818702}
+--- !u!114 &935993320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935993315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ed859f63c9c0647a1ffa19ccb7208e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txt: {fileID: 80220702}
+  state: {fileID: 935993317}
 --- !u!1001 &1170769917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2722,10 +2737,10 @@ MonoBehaviour:
   _camera: {fileID: 1385079603}
   _interval: 3
   _maxEnemies: 10
-  _minRadius: 15
+  _minRadius: 10
   _maxRadius: 20
   _viewMargin: 0.1
-  state: {fileID: 0}
+  state: {fileID: 935993317}
 --- !u!4 &1579453136
 Transform:
   m_ObjectHideFlags: 0

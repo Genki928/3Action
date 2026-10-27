@@ -5,6 +5,7 @@ public class RaidState : ExploringStateBase
     public override void Enter(LegStateManager stateManager)
     {
         stateManager.NotifyRaidStarted();
+        Debug.Log("uoooooooooooooooooooooooooooooooooooooooooo");
     }
 
     public override void Execute(LegStateManager stateManager)
