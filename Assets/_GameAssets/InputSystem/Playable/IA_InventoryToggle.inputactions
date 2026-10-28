@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CategoryLeft",
+                    "name": "CategoryChange",
                     "type": "Button",
                     "id": "37f828fd-801d-463f-b3e3-8037f1b74899",
                     "expectedControlType": "",
@@ -54,7 +54,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CategoryLeft",
+                    "action": "CategoryChange",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
