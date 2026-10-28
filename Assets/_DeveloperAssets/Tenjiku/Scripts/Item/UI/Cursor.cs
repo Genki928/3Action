@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour
 {
+    public ItemSlot SelectingItem => _currentSlot;
     [SerializeField] ItemSlot _baseSlot;
     ItemSlot _currentSlot;
     [SerializeField] InventoryManager _ui;
