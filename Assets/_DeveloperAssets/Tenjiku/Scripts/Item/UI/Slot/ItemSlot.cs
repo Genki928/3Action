@@ -13,6 +13,7 @@ public class ItemSlot : MonoBehaviour, IItemSlot
     // --- プロパティ ---
     public ItemSlot Hotbar => _hotbar;
     public ItemSlot[] Slots => slots;
+    public ItemStack Stack => _itemStack;
 
     // --- フィールド ---
     [Header("▼ アイテムスロット")]

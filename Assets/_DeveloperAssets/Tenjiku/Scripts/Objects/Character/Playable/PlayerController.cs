@@ -26,7 +26,7 @@ public class PlayerController : CharacterBase
 
     [Header("▼ Inventory")]
     Inventory _inventory = new();
-
+    [SerializeField]InventoryManager inventory;
     // --- メソッド ---
     protected override void Start()
     {
@@ -74,6 +74,12 @@ public class PlayerController : CharacterBase
         if (!ctx.performed) return;
         if (_isPaused) return;
 
+        //持っているアイテムが武器なら
+        if (inventory.Cursor.SelectingItem.Stack.Item.Name=="ベリー、アリ")
+        {
+            Attack();
+        }
+
         // 自分の周り(INTERACT_RANGE の球)にあるものを調べる
         var hits = Physics.OverlapSphere(transform.position, INTERACT_RANGE);
         foreach (var hit in hits)
@@ -89,7 +95,13 @@ public class PlayerController : CharacterBase
             {
                 bush.Interact(_inventory);
             }
+            
         }
+    }
+
+    void Attack()
+    {
+        Debug.Log("攻撃");
     }
 
     void OnTriggerEnter(Collider col)
