@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     // --- プロパティ --- //
     public bool IsOpenUI => _isOpen;
+    public Cursor Cursor => _cursor;
 
     // --- フィールド --- //
     [Header("▼ Inventory")]
