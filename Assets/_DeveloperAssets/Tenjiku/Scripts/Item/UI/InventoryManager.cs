@@ -25,7 +25,8 @@ public class InventoryManager : MonoBehaviour
     bool _isInventory = true;
 
     // --- イベント --- //
-    public event Action OnCloseCraftUI;
+    public event Action OnOpenUI;
+    public event Action OnCloseUI;
     public event Action<bool> OnToggleCategory;
 
     // --- メソッド --- //
@@ -50,7 +51,9 @@ public class InventoryManager : MonoBehaviour
             inventory.SetActive(!_isOpen);
 
         // カーソルの位置が外れてたら修正
-        if (!_isOpen) OnCloseCraftUI?.Invoke();
+        if (!_isOpen) OnCloseUI?.Invoke();
+        else OnOpenUI?.Invoke();
+
         if (!_isInventory) _isInventory = true;
     }
 

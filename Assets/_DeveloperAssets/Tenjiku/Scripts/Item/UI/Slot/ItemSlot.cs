@@ -18,8 +18,28 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] Text _count;
     Color CLEAR = new(1.0f, 1.0f, 1.0f, 0.0f);
     ItemStack _itemStack;
+    float _timer = 0.0f;
+    Vector3 _startPosition;
+    bool _selecting = false;
+
+    // --- コンスト ---
+    const float SPEED = 5.0f;
+    const float HEIGHT = 3.0f;
 
     // --- メソッド ---
+    void Start()
+    {
+        _startPosition = transform.position;
+    }
+
+    void Update()
+    {
+        if (!_selecting) return;
+        _timer += Time.deltaTime * SPEED;
+        float sinValue = Mathf.Sin(_timer);
+        transform.position = _startPosition + new Vector3(0, sinValue * HEIGHT, 0);
+    }
+
     public void GetItem(ItemStack stack = null)
     {
         _itemStack = stack;
@@ -42,6 +62,18 @@ public class ItemSlot : MonoBehaviour
             // テキストをリセット
             _count.text = "";
         }
+    }
+
+    public void SlotSelect()
+    {
+        _selecting = true;
+    }
+
+    public void SlotDeselect()
+    {
+        _selecting = false;
+        transform.position = _startPosition;
+        _timer = 0.0f;
     }
 }
 
