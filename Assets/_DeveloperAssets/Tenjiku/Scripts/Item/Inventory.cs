@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Inventory
@@ -32,17 +33,14 @@ public class Inventory
         OnGetItem?.Invoke(this);
     }
 
-    //public void RemoveItem(ItemStack item)
-    //{
-    //    // ŒÂ”‚ğˆø‚­
-    //    Debug.Log("got");
-    //    var findItemIndex = _items.FindIndex(x => x.Item.Name == item.Item.Name);
-    //    if (findItemIndex != -1)
-    //    {
-    //        _items[findItemIndex].RemoveItem(item.Count);
-    //    }
-    //    OnGetItem?.Invoke(this);
-    //}
+    public void RemoveItem(int itemIndex, int count)
+    {
+        // ŒÂ”‚ğˆø‚­
+        _items[itemIndex].RemoveItem((_items[itemIndex].Count - count) < 0 ? _items[itemIndex].Count : count);
+        if (_items[itemIndex].Count == 0) _items[itemIndex] = new(null, 0);
+        OnGetItem?.Invoke(this);
+    }
+
     public void Swap(int a, int b)
     {
         if (a == b) return;

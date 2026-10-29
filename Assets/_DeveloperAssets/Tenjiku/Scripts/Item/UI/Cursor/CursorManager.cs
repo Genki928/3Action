@@ -1,144 +1,120 @@
-//using System;
-//using UnityEngine;
-//using UnityEngine.InputSystem;
-//using UnityEngine.UI;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-//public class CursorManager : MonoBehaviour
-//{
-//    // --- プロパティ ---
-//    ItemSlot[] SlotList => _ui.ItemSlot;
+public interface ICursor
+{
+    public void CursorUp(InputAction.CallbackContext ctx);
+    public void CursorDown(InputAction.CallbackContext ctx);
+    public void CursorRight(InputAction.CallbackContext ctx);
+    public void CursorLeft(InputAction.CallbackContext ctx);
+}
 
-//    // --- フィールド ---
-//    [SerializeField] InventoryManager _ui;
-//    [SerializeField] InventoryCursor _invCursor;
-//    bool _active = true;
+public class CursorManager : MonoBehaviour
+{
+    // --- プロパティ ---
+    ItemSlot[] SlotList => _ui.ItemSlot;
 
-//    // --- メソッド ---
+    // --- フィールド ---
+    [SerializeField] InventoryManager _ui;
+    [SerializeField] InventoryCursor _invCursor;
+    [SerializeField] CraftCursor _craCursor;
+    bool _isInventory = true;
 
-//    void Start()
-//    {
-//        // 描画
-//        Draw();
-//    }
+    // --- メソッド ---
+    void Start()
+    {
+        // 描画
+        Draw();
+    }
 
-//    public void CursorUp(InputAction.CallbackContext ctx)
-//    {
-//        if (!_ui.IsOpenUI) return;
+    public void CursorUp(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        if (!_ui.IsOpenUI) return;
 
-//        // 位置の計算
-//        _currentSlotIndex = (_currentSlotIndex - 5 + 15) % 15;
-//        _currentSlot = SlotList[_currentSlotIndex];
+        if (_ui.IsInventory) _invCursor.CursorUp();
+        // 描画
+        Draw();
+    }
 
-//        // 描画
-//        Draw();
-//    }
+    public void CursorDown(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        if (!_ui.IsOpenUI) return;
 
-//    public void CursorDown(InputAction.CallbackContext ctx)
-//    {
-//        if (!IsMoveCursor(ctx)) return;
-//        if (!_ui.IsOpenUI) return;
+        if (_ui.IsInventory) _invCursor.CursorDown();
 
-//        // 位置の計算
-//        _currentSlotIndex = (_currentSlotIndex + 5) % 15;
-//        _currentSlot = SlotList[_currentSlotIndex];
+        // 描画
+        Draw();
+    }
 
-//        // 描画
-//        Draw();
-//    }
+    public void CursorRight(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
 
-//    public void CursorRight(InputAction.CallbackContext ctx)
-//    {
-//        if (!IsMoveCursor(ctx)) return;
+        if (_ui.IsInventory) _invCursor.CursorRight();
 
-//        // 位置の計算
-//        _currentSlotIndex = (_currentSlotIndex / 5 * 5) + (_currentSlotIndex + 1) % 5;
-//        _currentSlot = SlotList[_currentSlotIndex];
-//        if (!_ui.IsOpenUI) _mainhand = _currentSlot;
+        // 描画
+        Draw();
+    }
 
-//        // 描画
-//        Draw();
-//    }
+    public void CursorLeft(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
 
-//    public void CursorLeft(InputAction.CallbackContext ctx)
-//    {
-//        if (!IsMoveCursor(ctx)) return;
+        if (_ui.IsInventory) _invCursor.CursorLeft();
 
-//        // 位置の計算
-//        _currentSlotIndex = (_currentSlotIndex / 5 * 5) + (--_currentSlotIndex + 5) % 5;
-//        _currentSlot = SlotList[_currentSlotIndex];
-//        if (!_ui.IsOpenUI) _mainhand = _currentSlot;
+        // 描画
+        Draw();
+    }
 
-//        // 描画
-//        Draw();
-//    }
+    void Draw()
+    {
+    }
 
-//    public void ChangeDrawing(bool active)
-//    {
-//        _active = active;
-//        if (TryGetComponent<Image>(out var img))
-//            img.enabled = _active;
-//    }
+    public void Interact(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        if (!_ui.IsOpenUI) return;
 
-//    void Draw()
-//    {
-//        transform.position = _currentSlot.transform.position;
-//        //Debug.Log(Mainhand.Stack.Item.Name);
-//    }
+        Debug.Log(_ui.IsInventory);
+        if (_ui.IsInventory) _invCursor.Interact();
+        else
+        {
+            Debug.Log("testestestsetstestest");
+            _ui.Inventory.AddItem(_ui.Cauldron.Craft());
+        }
+    }
 
-//    public void Interact(InputAction.CallbackContext ctx)
-//    {
-//        if (!ctx.performed) return;
-//        if (!_ui.IsOpenUI) return;
+    public void Throw(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        if (!_ui.IsOpenUI) return;
 
-//        if (_selectSlot == null)
-//        {
-//            _selectSlot = _currentSlot;
-//            _selectSlot.SlotSelect();
-//        }
-//        else
-//        {
-//            // スロットの番号を調べて、データ側で入れ替える
-//            int from = Array.IndexOf(_ui.ItemSlot, _currentSlot);
-//            int to = Array.IndexOf(_ui.ItemSlot, _selectSlot);
-//            if (from != -1 && to != -1)
-//                _ui.Inventory.Swap(from, to);
-//            _selectSlot.SlotDeselect();
-//            _selectSlot = null;
-//        }
-//    }
+        if (_ui.IsInventory) _invCursor.Throw();
+    }
 
-//    void UIOpend()
-//    {
-//        _mainhand = _currentSlot;
-//    }
+    void UIOpend()
+    {
+        ;
+    }
 
-//    void UIClosed()
-//    {
-//        // 位置の計算
-//        _currentSlotIndex %= 5;
-//        _currentSlot = SlotList[_currentSlotIndex];
-//        if (_selectSlot != null)
-//        {
-//            _selectSlot.SlotDeselect();
-//            _selectSlot = null;
-//        }
-//        _mainhand = _currentSlot;
+    void UIClosed()
+    {
+        // 描画
+        Draw();
+    }
 
-//        // 描画
-//        Draw();
-//    }
+    void OnEnable()
+    {
+        _ui.OnOpenUI += UIOpend;
+        _ui.OnCloseUI += UIClosed;
+    }
 
-//    void OnEnable()
-//    {
-//        _ui.OnOpenUI += UIOpend;
-//        _ui.OnCloseUI += UIClosed;
-//        _ui.OnToggleCategory += ChangeDrawing;
-//    }
-
-//    void OnDisable()
-//    {
-//        _ui.OnOpenUI -= UIOpend;
-//        _ui.OnCloseUI -= UIClosed;
-//        _ui.OnToggleCategory -= ChangeDrawing;
-//    }
-//}
+    void OnDisable()
+    {
+        _ui.OnOpenUI -= UIOpend;
+        _ui.OnCloseUI -= UIClosed;
+    }
+}

@@ -31,11 +31,8 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void CursorUp(InputAction.CallbackContext ctx)
+    public void CursorUp()
     {
-        if (!IsMoveCursor(ctx)) return;
-        if (!_ui.IsOpenUI) return;
-
         // ˆÊ’u‚ÌŒvŽZ
         _currentSlotIndex = (_currentSlotIndex - 5 + 15) % 15;
         _currentSlot = SlotList[_currentSlotIndex];
@@ -44,11 +41,8 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void CursorDown(InputAction.CallbackContext ctx)
+    public void CursorDown()
     {
-        if (!IsMoveCursor(ctx)) return;
-        if (!_ui.IsOpenUI) return;
-
         // ˆÊ’u‚ÌŒvŽZ
         _currentSlotIndex = (_currentSlotIndex + 5) % 15;
         _currentSlot = SlotList[_currentSlotIndex];
@@ -57,10 +51,8 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void CursorRight(InputAction.CallbackContext ctx)
+    public void CursorRight()
     {
-        if (!IsMoveCursor(ctx)) return;
-
         // ˆÊ’u‚ÌŒvŽZ
         _currentSlotIndex = (_currentSlotIndex / 5 * 5) + (_currentSlotIndex + 1) % 5;
         _currentSlot = SlotList[_currentSlotIndex];
@@ -70,10 +62,8 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void CursorLeft(InputAction.CallbackContext ctx)
+    public void CursorLeft()
     {
-        if (!IsMoveCursor(ctx)) return;
-
         // ˆÊ’u‚ÌŒvŽZ
         _currentSlotIndex = (_currentSlotIndex / 5 * 5) + (--_currentSlotIndex + 5) % 5;
         _currentSlot = SlotList[_currentSlotIndex];
@@ -93,14 +83,11 @@ public class InventoryCursor : MonoBehaviour
     void Draw()
     {
         transform.position = _currentSlot.transform.position;
-        //Debug.Log(Mainhand.Stack.Item.Name);
+        Debug.Log(_ui.Cursor.Mainhand.Stack.Item.Name);
     }
 
-    public void Interact(InputAction.CallbackContext ctx)
+    public void Interact()
     {
-        if (!ctx.performed) return;
-        if (!_ui.IsOpenUI) return;
-
         if (_selectSlot == null)
         {
             _selectSlot = _currentSlot;
@@ -116,6 +103,13 @@ public class InventoryCursor : MonoBehaviour
             _selectSlot.SlotDeselect();
             _selectSlot = null;
         }
+    }
+
+    public void Throw()
+    {
+        _ui.Cauldron.ReceiveItem(_currentSlot.Stack.Item);
+        _ui.Inventory.RemoveItem(_currentSlotIndex, 1);
+        _ui.Draw(_ui.Inventory);
     }
 
     void UIOpend()

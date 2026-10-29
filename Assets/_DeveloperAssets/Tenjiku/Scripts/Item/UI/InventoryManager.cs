@@ -10,11 +10,14 @@ public class InventoryManager : MonoBehaviour
     public ItemSlot[] ItemSlot => _itemSlot;
     public Inventory Inventory => _player.Inventory;
     public InventoryCursor Cursor => _cursor;
+    public Cauldron Cauldron => _cauldron;
+    public bool IsInventory => _isInventory;
 
     // --- フィールド --- //
     [Header("▼ Inventory")]
     [SerializeField] PlayerController _player;
     [SerializeField] List<ItemStack> _startItem = new();
+    [SerializeField] Cauldron _cauldron;
 
     [Header("▼ UI")]
     [SerializeField] InventoryCursor _cursor;
@@ -34,7 +37,7 @@ public class InventoryManager : MonoBehaviour
     {
         // 開始時のアイテムを付与
         foreach (var item in _startItem)
-            _player.Inventory.AddItem(item);
+            _player.Inventory.AddItem(new(item.Item, item.Count));
     }
 
     /// <summary> インベントリのUIを開閉する </summary>
@@ -67,7 +70,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary> インベントリの描画 </summary>
-    void Draw(Inventory inventory)
+    public void Draw(Inventory inventory)
     {
         // インベントリのスロットの数を取得
         int hasItemCount = _player.Inventory.Stack.Length;
