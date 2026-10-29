@@ -12,7 +12,7 @@ public class PlayerController : CharacterBase
     [SerializeField] float DISTANCE_Y, DISTANCE_Z;
     Vector3 _moveVec;
 
-    [Header("▼ Phisics")]
+    [Header("▼ Physics")]
     [SerializeField] float MOVE_SPEED = 5.0f;
     [SerializeField] int START_HEALTH = 4;
     Vector3 _direction;
@@ -26,12 +26,12 @@ public class PlayerController : CharacterBase
 
     [Header("▼ Inventory")]
     Inventory _inventory = new();
-    [SerializeField]InventoryManager inventory;
+    [SerializeField] InventoryManager inventory;
 
     [Header("▼ Attack")]
     [SerializeField] int _attackPower = 1;
 
- 
+
     // --- メソッド ---
     protected override void Start()
     {
@@ -39,7 +39,7 @@ public class PlayerController : CharacterBase
 
         // ステータス設定
         _moveSpeed = new(MOVE_SPEED);
-        _health = new(START_HEALTH);
+        _health = new(START_HEALTH, 4);
     }
 
     void LateUpdate()
@@ -76,13 +76,11 @@ public class PlayerController : CharacterBase
     public void Interact(InputAction.CallbackContext ctx)
     {
         // ボタンを押した瞬間の1回だけ処理する
-        if (!ctx.performed) return;
-        if (_isPaused) return;
-        Debug.Log(inventory.Cursor.Mainhand.Stack.Item.Name);
+        if (!ctx.performed || inventory.IsOpenUI || _isPaused) return;
+
         //持っているアイテムが武器なら
-        if (inventory.Cursor.Mainhand.Stack.Item.Name =="剣")
+        if (inventory.MainhandItem.Item.Type.Contains(ItemType.Tool))
         {
-            Debug.Log("veeeeeeeeeeri");
             Attack();
         }
 
@@ -97,12 +95,39 @@ public class PlayerController : CharacterBase
                 tree.Shatter(transform.position); // プレイヤーから離れる向きに飛び散る
             }
             var bush = hit.GetComponentInParent<Bush>();
-            if(bush != null)
+            if (bush != null)
             {
                 bush.Interact(_inventory);
             }
-            
+
         }
+
+        bool check = false;
+        var item = inventory.MainhandItem.Item;
+        //for (int i = 0; i < item.Effect.Count; i++)
+        //{
+        //    if (item.Effect[i].Type is EffectType.MoveSpeed)
+        //    {
+        //        _moveSpeed.
+        //    }
+        //}
+
+        // メインハンドに持つアイテムが持つ、実行時におこる処理を実行
+        InteractContext ictx = new(this);
+        for (int i = 0; i < item.InteractAsset.Count; i++)
+        {
+            // インパクトアセットを持つなら、関数を実行
+            if (item.InteractAsset[i] is InteractAssetImpact impact)
+            {
+                impact.Interact(ictx);
+                check = true;
+            }
+        }
+
+        // 使い切りなら減少
+        if (check && item.Once)
+            _inventory.RemoveItem(inventory.MainhandIndexOfSlot, 1);
+
     }
 
     void Attack()

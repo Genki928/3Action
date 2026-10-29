@@ -12,24 +12,42 @@ public class Item : ScriptableObject
     public string Lore => _lore;
     //public int MaxCount => _maxCount;
     public int Value => _value;
+    public List<ItemType> Type => _type;
+    public bool Once => _once;
+    public int Impact => _impact;
     public List<Effect> Effect => _effect;
-    public InteractAsset InteractAsset => _interactAsset;
+    public List<InteractAsset> InteractAsset => _interactAsset;
 
     // --- メンバ変数 ---
+    [Header("▼ 概要")]
     [SerializeField] Sprite _sprite; //画像
     [SerializeField] Material _material; //画像
     [SerializeField] string _name;  //名前
     [SerializeField] string _lore;  //説明
     //[SerializeField] int _maxCount = int.MaxValue; //最大数
     [SerializeField] int _value;    //売値
+    [SerializeField] List<ItemType> _type;
+
+    [Header("▼ 効能")]
+    [SerializeField] bool _once = false;
+    [SerializeField] int _impact; //エフェクト
     [SerializeField] List<Effect> _effect; //エフェクト
-    [SerializeField] InteractAsset _interactAsset;  //インタラクト
+    [SerializeField] List<InteractAsset> _interactAsset;  //インタラクト
 }
 
-[CreateAssetMenu(menuName = "Item/InteractAsset")]
 public abstract class InteractAsset : ScriptableObject
 {
-    public abstract void Interact();
+    public abstract void Interact(InteractContext ctx);
+}
+
+public class InteractContext
+{
+    public PlayerController player;
+
+    public InteractContext(PlayerController player)
+    {
+        this.player = player;
+    }
 }
 
 [Serializable]
@@ -74,6 +92,7 @@ public class ItemStack
 [Serializable]
 public class Effect
 {
+    public EffectType Type => _effectType;
     [SerializeField] EffectType _effectType;
     [SerializeField] float _time;
     [SerializeField] float _value;
@@ -83,4 +102,10 @@ public enum EffectType
 {
     MoveSpeed,
     Power,
+}
+
+public enum ItemType
+{
+    Tool,
+    Potion
 }

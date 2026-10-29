@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,9 +10,11 @@ public class InventoryManager : MonoBehaviour
     public bool IsOpenUI => _isOpen;
     public ItemSlot[] ItemSlot => _itemSlot;
     public Inventory Inventory => _player.Inventory;
-    public InventoryCursor Cursor => _cursor;
+    public InventoryCursor Cursor => _cursor.InventoryCursor;
     public Cauldron Cauldron => _cauldron;
     public bool IsInventory => _isInventory;
+    public int MainhandIndexOfSlot => Array.FindIndex(_itemSlot, x => x == _cursor.InventoryCursor.Mainhand);
+    public ItemStack MainhandItem => _cursor.InventoryCursor.Mainhand.Stack;
 
     // --- フィールド --- //
     [Header("▼ Inventory")]
@@ -20,7 +23,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] Cauldron _cauldron;
 
     [Header("▼ UI")]
-    [SerializeField] InventoryCursor _cursor;
+    [SerializeField] CursorManager _cursor;
     [SerializeField] ItemSlot[] _itemSlot = new ItemSlot[15];
     [SerializeField] List<GameObject> _hotbarUI = new();
     [SerializeField] List<GameObject> _inventoryUI = new();
@@ -88,6 +91,22 @@ public class InventoryManager : MonoBehaviour
                 _itemSlot[i].GetItem();
             }
         }
+    }
+
+    public void Interact(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        if (!IsOpenUI) return;
+
+        _cursor.Interact();
+    }
+
+    public void SubInteract(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        if (!IsOpenUI) return;
+
+        _cursor.SubInteract();
     }
 
     void OnEnable()

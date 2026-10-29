@@ -17,5 +17,7 @@ MonoBehaviour:
   _name: "\u5263"
   _lore: 
   _value: 0
+  _type: 00000000
+  _impact: 0
   _effect: []
   _interactAsset: {fileID: 0}

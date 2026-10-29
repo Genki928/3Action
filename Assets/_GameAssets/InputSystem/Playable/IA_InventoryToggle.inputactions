@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "throw",
+                    "name": "SubInteract",
                     "type": "Button",
                     "id": "644c181f-1bbc-4ac9-81b4-62d8c28c8cc2",
                     "expectedControlType": "",
@@ -105,7 +105,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "throw",
+                    "action": "SubInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

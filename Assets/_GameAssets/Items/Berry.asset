@@ -17,8 +17,11 @@ MonoBehaviour:
   _name: "\u30D9\u30EA\u30FC\u3001\u30A2\u30EA"
   _lore: 
   _value: 0
+  _type: 
+  _impact: 0
   _effect:
   - _effectType: 0
     _time: 0
     _value: 0
-  _interactAsset: {fileID: 0}
+  _interactAsset:
+  - {fileID: 11400000, guid: 38ec1366c940a9f44acbedae046705c7, type: 2}

@@ -13,13 +13,12 @@ public interface ICursor
 public class CursorManager : MonoBehaviour
 {
     // --- プロパティ ---
-    ItemSlot[] SlotList => _ui.ItemSlot;
+    public InventoryCursor InventoryCursor => _invCursor;
 
     // --- フィールド ---
     [SerializeField] InventoryManager _ui;
     [SerializeField] InventoryCursor _invCursor;
     [SerializeField] CraftCursor _craCursor;
-    bool _isInventory = true;
 
     // --- メソッド ---
     void Start()
@@ -73,26 +72,22 @@ public class CursorManager : MonoBehaviour
     {
     }
 
-    public void Interact(InputAction.CallbackContext ctx)
+    public void Interact()
     {
-        if (!ctx.performed) return;
-        if (!_ui.IsOpenUI) return;
-
-        Debug.Log(_ui.IsInventory);
         if (_ui.IsInventory) _invCursor.Interact();
         else
         {
-            Debug.Log("testestestsetstestest");
+            if (_ui.Cauldron.IsLack) return;
             _ui.Inventory.AddItem(_ui.Cauldron.Craft());
         }
     }
 
-    public void Throw(InputAction.CallbackContext ctx)
+    public void SubInteract()
     {
-        if (!ctx.performed) return;
-        if (!_ui.IsOpenUI) return;
-
-        if (_ui.IsInventory) _invCursor.Throw();
+        if (_ui.IsInventory)
+        {
+            _invCursor.Throw();
+        }
     }
 
     void UIOpend()

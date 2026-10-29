@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: po
   m_EditorClassIdentifier: 
   _sprite: {fileID: 1754165075074275722, guid: a9b1275860132014cac429a369aec4a5, type: 3}
+  _material: {fileID: 0}
   _name: p
   _lore: 
   _value: 0
+  _type: 00000000
+  _impact: 0
   _effect:
   - _effectType: 0
     _time: 0

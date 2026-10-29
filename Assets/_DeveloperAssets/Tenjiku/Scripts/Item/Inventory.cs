@@ -17,6 +17,8 @@ public class Inventory
 
     public void AddItem(ItemStack stack)
     {
+        if (stack.Count == 0) return;
+
         // 個数を足す
         var findItemIndex = Array.FindIndex(_items, x => x.Item != null && x.Item.Name == stack.Item.Name);
         if (findItemIndex != -1)
@@ -28,7 +30,7 @@ public class Inventory
         {
             // 新しいスロットにアイテムを追加
             var emptySlot = Array.FindIndex(_items, x => x.Item == null);
-            _items[emptySlot] = new(stack.Item);
+            _items[emptySlot] = stack;
         }
         OnGetItem?.Invoke(this);
     }

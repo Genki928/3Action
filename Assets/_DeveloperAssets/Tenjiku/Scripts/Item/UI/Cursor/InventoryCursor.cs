@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -78,12 +79,17 @@ public class InventoryCursor : MonoBehaviour
         _active = active;
         if (TryGetComponent<Image>(out var img))
             img.enabled = _active;
+
+        if (_selectSlot != null)
+        {
+            _selectSlot.SlotDeselect();
+            _selectSlot = null;
+        }
     }
 
     void Draw()
     {
         transform.position = _currentSlot.transform.position;
-        Debug.Log(_ui.Cursor.Mainhand.Stack.Item.Name);
     }
 
     public void Interact()
@@ -107,6 +113,11 @@ public class InventoryCursor : MonoBehaviour
 
     public void Throw()
     {
+        if (_currentSlot.Stack.Item == null) return;
+        if (_ui.Cauldron.IsMax) return;
+        ItemType[] types = { ItemType.Tool, ItemType.Potion };
+        if (types.Any(x => _currentSlot.Stack.Item.Type.Contains(x))) return;
+
         _ui.Cauldron.ReceiveItem(_currentSlot.Stack.Item);
         _ui.Inventory.RemoveItem(_currentSlotIndex, 1);
         _ui.Draw(_ui.Inventory);
