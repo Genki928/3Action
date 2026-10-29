@@ -25,6 +25,7 @@ public class InventoryCursor : MonoBehaviour
     {
         // ˆÊ’u‚ÌŒvŽZ
         _currentSlot = _baseSlot;
+        _mainhand = _currentSlot;
 
         // •`‰æ
         Draw();
