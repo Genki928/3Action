@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Zombie : CharacterBase
+public class Zombie : EnemyBase
 {
     // --- フィールド ---
     CharacterBase _target;

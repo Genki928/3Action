@@ -5,7 +5,7 @@ public class PlayerController : CharacterBase
 {
     // --- プロパティ ---
     public Inventory Inventory => _inventory;
-
+    public int AttackPower => _attackPower;
     // --- フィールド ---
     [Header("▼ Camera")]
     [SerializeField] Transform _camera;
@@ -27,6 +27,11 @@ public class PlayerController : CharacterBase
     [Header("▼ Inventory")]
     Inventory _inventory = new();
     [SerializeField]InventoryManager inventory;
+
+    [Header("▼ Attack")]
+    [SerializeField] int _attackPower = 1;
+
+ 
     // --- メソッド ---
     protected override void Start()
     {
@@ -73,12 +78,13 @@ public class PlayerController : CharacterBase
         // ボタンを押した瞬間の1回だけ処理する
         if (!ctx.performed) return;
         if (_isPaused) return;
-
+        Debug.Log(inventory.Cursor.Mainhand.Stack.Item.Name);
         //持っているアイテムが武器なら
-        //if (inventory.Cursor.SelectingSlot.Stack.Item.Name=="ベリー、アリ")
-        //{
-        //    Attack();
-        //}
+        if (inventory.Cursor.Mainhand.Stack.Item.Name =="ベリー、アリ")
+        {
+            Debug.Log("veeeeeeeeeeri");
+            Attack();
+        }
 
         // 自分の周り(INTERACT_RANGE の球)にあるものを調べる
         var hits = Physics.OverlapSphere(transform.position, INTERACT_RANGE);
@@ -101,7 +107,9 @@ public class PlayerController : CharacterBase
 
     void Attack()
     {
-        Debug.Log("攻撃");
+        // 攻撃処理をPlayerAttackerに任せる
+        Debug.Log("Ataaaaaaaaaaaaaaaack");
+        _attacker.Attack(_direction);
     }
 
     void OnTriggerEnter(Collider col)

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Ghost : CharacterBase
+public class Ghost : EnemyBase
 {
     // --- フィールド ---
     CharacterBase _target;
