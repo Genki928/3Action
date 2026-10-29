@@ -6,11 +6,17 @@ public class PlayerAttacker : MonoBehaviour
 
     [SerializeField] float _attackDistance = 1.0f;
 
+    // Œ»İoŒ»‚µ‚Ä‚¢‚éŒ•
+    GameObject _currentSword;
+
     public void Attack(Vector3 vec)
     {
+        // Œ•‚ª‚Ü‚¾‘¶İ‚µ‚Ä‚¢‚é‚È‚çUŒ‚‚µ‚È‚¢
+        if (_currentSword != null) return;
+
         if (vec == Vector3.zero) return;
 
-        GameObject sword = Instantiate(
+        _currentSword = Instantiate(
             _defaultAttackCollision,
             transform.position,
             Quaternion.identity
@@ -18,6 +24,6 @@ public class PlayerAttacker : MonoBehaviour
 
         PlayerController player = GetComponent<PlayerController>();
 
-        sword.GetComponent<Sword>().Init(player, vec);
+        _currentSword.GetComponent<Sword>().Init(player, vec);
     }
 }

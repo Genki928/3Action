@@ -1500,6 +1500,18 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 491425082}
+    - target: {fileID: 3172801086791773176, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
+      propertyPath: _startItem.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3172801086791773176, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
+      propertyPath: _startItem.Array.data[2]._item
+      value: 
+      objectReference: {fileID: 11400000, guid: ef17f227e6cbfca449a5d3d4286cd9fe, type: 2}
+    - target: {fileID: 3172801086791773176, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
+      propertyPath: _startItem.Array.data[2]._count
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6090340904869874786, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: m_Name
       value: Inventory 1

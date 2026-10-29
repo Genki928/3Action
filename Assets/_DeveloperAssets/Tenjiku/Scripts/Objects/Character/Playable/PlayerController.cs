@@ -80,7 +80,7 @@ public class PlayerController : CharacterBase
         if (_isPaused) return;
         Debug.Log(inventory.Cursor.Mainhand.Stack.Item.Name);
         //持っているアイテムが武器なら
-        if (inventory.Cursor.Mainhand.Stack.Item.Name =="ベリー、アリ")
+        if (inventory.Cursor.Mainhand.Stack.Item.Name =="剣")
         {
             Debug.Log("veeeeeeeeeeri");
             Attack();
