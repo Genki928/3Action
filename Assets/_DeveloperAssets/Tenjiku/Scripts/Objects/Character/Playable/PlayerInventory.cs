@@ -50,10 +50,9 @@ public class PlayerInventory : ObjectBase
 
     void Draw(Inventory inventory)
     {
-        int hasItemCount = _inventory.Stack.Count, j = 0;
         for (int i = 0; i < _itemSlot.Count; i++)
         {
-            if (j++ < hasItemCount)
+            if (i < _inventory.Stack.Length)
             {
                 _itemSlot[i].GetItem(_inventory.Stack[i]);
             }

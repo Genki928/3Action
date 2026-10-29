@@ -7,6 +7,8 @@ public class InventoryManager : MonoBehaviour
 {
     // --- プロパティ --- //
     public bool IsOpenUI => _isOpen;
+    public ItemSlot[] ItemSlot => _itemSlot;
+    public Inventory Inventory => _player.Inventory;
     public Cursor Cursor => _cursor;
 
     // --- フィールド --- //
@@ -16,7 +18,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("▼ UI")]
     [SerializeField] Cursor _cursor;
-    [SerializeField] List<ItemSlot> _itemSlot = new();
+    [SerializeField] ItemSlot[] _itemSlot = new ItemSlot[15];
     [SerializeField] List<GameObject> _hotbarUI = new();
     [SerializeField] List<GameObject> _inventoryUI = new();
     bool _isOpen = false;
@@ -65,8 +67,8 @@ public class InventoryManager : MonoBehaviour
     void Draw(Inventory inventory)
     {
         // インベントリのスロットの数を取得
-        int hasItemCount = _player.Inventory.Stack.Count;
-        for (int i = 0; i < _itemSlot.Count; i++)
+        int hasItemCount = _player.Inventory.Stack.Length;
+        for (int i = 0; i < _itemSlot.Length; i++)
         {
             // そのスロットがアイテムを持つなら、
             if (i < hasItemCount)

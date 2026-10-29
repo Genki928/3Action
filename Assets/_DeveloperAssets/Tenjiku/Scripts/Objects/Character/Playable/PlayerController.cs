@@ -75,10 +75,10 @@ public class PlayerController : CharacterBase
         if (_isPaused) return;
 
         //持っているアイテムが武器なら
-        if (inventory.Cursor.SelectingItem.Stack.Item.Name=="ベリー、アリ")
-        {
-            Attack();
-        }
+        //if (inventory.Cursor.SelectingSlot.Stack.Item.Name=="ベリー、アリ")
+        //{
+        //    Attack();
+        //}
 
         // 自分の周り(INTERACT_RANGE の球)にあるものを調べる
         var hits = Physics.OverlapSphere(transform.position, INTERACT_RANGE);
