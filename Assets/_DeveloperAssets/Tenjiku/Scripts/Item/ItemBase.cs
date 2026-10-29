@@ -14,7 +14,6 @@ public class Item : ScriptableObject
     public int Value => _value;
     public List<ItemType> Type => _type;
     public bool Once => _once;
-    public int Impact => _impact;
     public List<Effect> Effect => _effect;
     public List<InteractAsset> InteractAsset => _interactAsset;
 
@@ -30,7 +29,6 @@ public class Item : ScriptableObject
 
     [Header("▼ 効能")]
     [SerializeField] bool _once = false;
-    [SerializeField] int _impact; //エフェクト
     [SerializeField] List<Effect> _effect; //エフェクト
     [SerializeField] List<InteractAsset> _interactAsset;  //インタラクト
 }
