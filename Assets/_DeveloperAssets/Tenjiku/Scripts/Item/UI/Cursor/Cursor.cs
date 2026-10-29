@@ -18,6 +18,7 @@ public class InventoryCursor : MonoBehaviour
     bool _active = true;
     int _currentSlotIndex = 0;
 
+    // --- ƒƒ\ƒbƒh ---
     bool IsMoveCursor(InputAction.CallbackContext ctx) => _active && ctx.performed;
 
     void Start()
