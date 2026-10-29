@@ -10,7 +10,7 @@ public class Item : ScriptableObject
     public Material Material => _material;
     public string Name => _name;
     public string Lore => _lore;
-    //public int MaxCount => _maxCount;
+    public int MaxCount => _maxCount;
     public int Value => _value;
     public List<ItemType> Type => _type;
     public bool Once => _once;
@@ -23,7 +23,7 @@ public class Item : ScriptableObject
     [SerializeField] Material _material; //‰æ‘œ
     [SerializeField] string _name;  //–¼‘O
     [SerializeField] string _lore;  //à–¾
-    //[SerializeField] int _maxCount = int.MaxValue; //Å‘å”
+    [SerializeField] int _maxCount = int.MaxValue; //Å‘å”
     [SerializeField] int _value;    //”„’l
     [SerializeField] List<ItemType> _type;
 
