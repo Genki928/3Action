@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
     public bool IsOpenUI => _isOpen;
     public ItemSlot[] ItemSlot => _itemSlot;
     public Inventory Inventory => _player.Inventory;
-    public Cursor Cursor => _cursor;
+    public InventoryCursor Cursor => _cursor;
 
     // --- フィールド --- //
     [Header("▼ Inventory")]
@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] List<ItemStack> _startItem = new();
 
     [Header("▼ UI")]
-    [SerializeField] Cursor _cursor;
+    [SerializeField] InventoryCursor _cursor;
     [SerializeField] ItemSlot[] _itemSlot = new ItemSlot[15];
     [SerializeField] List<GameObject> _hotbarUI = new();
     [SerializeField] List<GameObject> _inventoryUI = new();

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Cursor : MonoBehaviour
+public class InventoryCursor : MonoBehaviour
 {
     // --- プロパティ ---
     public ItemSlot Mainhand => _mainhand;
