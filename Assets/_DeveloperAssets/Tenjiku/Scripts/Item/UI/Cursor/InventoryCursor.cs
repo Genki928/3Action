@@ -19,8 +19,6 @@ public class InventoryCursor : MonoBehaviour
     bool _active = true;
     int _currentSlotIndex = 0;
 
-    // --- メソッド ---
-    bool IsMoveCursor(InputAction.CallbackContext ctx) => _active && ctx.performed;
 
     void Start()
     {
@@ -74,12 +72,14 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void ChangeDrawing(bool active)
+    public void CategoryChange(bool active)
     {
+        // 表示を無効化
         _active = active;
         if (TryGetComponent<Image>(out var img))
             img.enabled = _active;
 
+        // 選択中のスロットがあるなら、選択解除
         if (_selectSlot != null)
         {
             _selectSlot.SlotDeselect();
@@ -94,11 +94,14 @@ public class InventoryCursor : MonoBehaviour
 
     public void Interact()
     {
+        // 選択中のスロットがなければ、選択
         if (_selectSlot == null)
         {
             _selectSlot = _currentSlot;
             _selectSlot.SlotSelect();
         }
+
+        // 選択中のスロットがあれば、位置を入れ替える
         else
         {
             // スロットの番号を調べて、データ側で入れ替える
@@ -106,6 +109,8 @@ public class InventoryCursor : MonoBehaviour
             int to = Array.IndexOf(_ui.ItemSlot, _selectSlot);
             if (from != -1 && to != -1)
                 _ui.Inventory.Swap(from, to);
+
+            // 選択を解除
             _selectSlot.SlotDeselect();
             _selectSlot = null;
         }
@@ -113,13 +118,17 @@ public class InventoryCursor : MonoBehaviour
 
     public void Throw()
     {
-        if (_currentSlot.Stack.Item == null) return;
-        if (_ui.Cauldron.IsMax) return;
+        if (_currentSlot.Stack.Item == null || _ui.Cauldron.IsMax) return;
+
+        // 窯に入れられないアイテムなら中断
         ItemType[] types = { ItemType.Tool, ItemType.Potion };
         if (types.Any(x => _currentSlot.Stack.Item.Type.Contains(x))) return;
 
+        // アイテムを投入->持ち物から削除
         _ui.Cauldron.ReceiveItem(_currentSlot.Stack.Item);
         _ui.Inventory.RemoveItem(_currentSlotIndex, 1);
+
+        // 描画
         _ui.Draw(_ui.Inventory);
     }
 
@@ -133,12 +142,14 @@ public class InventoryCursor : MonoBehaviour
         // 位置の計算
         _currentSlotIndex %= 5;
         _currentSlot = SlotList[_currentSlotIndex];
+        _mainhand = _currentSlot;
+
+        // 選択中のスロットがあるなら、選択解除
         if (_selectSlot != null)
         {
             _selectSlot.SlotDeselect();
             _selectSlot = null;
         }
-        _mainhand = _currentSlot;
 
         // 描画
         Draw();
@@ -148,13 +159,13 @@ public class InventoryCursor : MonoBehaviour
     {
         _ui.OnOpenUI += UIOpend;
         _ui.OnCloseUI += UIClosed;
-        _ui.OnToggleCategory += ChangeDrawing;
+        _ui.OnToggleCategory += CategoryChange;
     }
 
     void OnDisable()
     {
         _ui.OnOpenUI -= UIOpend;
         _ui.OnCloseUI -= UIClosed;
-        _ui.OnToggleCategory -= ChangeDrawing;
+        _ui.OnToggleCategory -= CategoryChange;
     }
 }

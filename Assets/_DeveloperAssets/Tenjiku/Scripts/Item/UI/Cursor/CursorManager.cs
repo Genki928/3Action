@@ -1,14 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-
-public interface ICursor
-{
-    public void CursorUp(InputAction.CallbackContext ctx);
-    public void CursorDown(InputAction.CallbackContext ctx);
-    public void CursorRight(InputAction.CallbackContext ctx);
-    public void CursorLeft(InputAction.CallbackContext ctx);
-}
 
 public class CursorManager : MonoBehaviour
 {

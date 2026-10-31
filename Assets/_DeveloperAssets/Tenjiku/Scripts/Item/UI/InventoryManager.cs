@@ -44,7 +44,6 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary> インベントリのUIを開閉する </summary>
-    /// <param name="ctx"></param>
     public void ToggleCraftUI(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
@@ -65,8 +64,7 @@ public class InventoryManager : MonoBehaviour
 
     public void CategoryChange(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed) return;
-        if (!_isOpen) return;
+        if (!ctx.performed || !_isOpen) return;
 
         _isInventory = !_isInventory;
         OnToggleCategory?.Invoke(_isInventory);
@@ -95,16 +93,14 @@ public class InventoryManager : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed) return;
-        if (!IsOpenUI) return;
+        if (!ctx.performed || !IsOpenUI) return;
 
         _cursor.Interact();
     }
 
     public void SubInteract(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed) return;
-        if (!IsOpenUI) return;
+        if (!ctx.performed || !IsOpenUI) return;
 
         _cursor.SubInteract();
     }
