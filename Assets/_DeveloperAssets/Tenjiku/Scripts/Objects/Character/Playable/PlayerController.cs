@@ -25,8 +25,9 @@ public class PlayerController : CharacterBase
     [SerializeField] AnimControl _anim;
 
     [Header("▼ Inventory")]
-    Inventory _inventory = new();
     [SerializeField] InventoryManager inventory;
+    [SerializeField] ItemObj _itemPrefab;
+    Inventory _inventory = new();
 
     [Header("▼ Attack")]
     [SerializeField] int _attackPower = 1;
@@ -104,13 +105,6 @@ public class PlayerController : CharacterBase
 
         bool check = false;
         var item = inventory.MainhandItem.Item;
-        //for (int i = 0; i < item.Effect.Count; i++)
-        //{
-        //    if (item.Effect[i].Type is EffectType.MoveSpeed)
-        //    {
-        //        _moveSpeed.
-        //    }
-        //}
 
         // メインハンドに持つアイテムが持つ、実行時におこる処理を実行
         InteractContext ictx = new(this);
@@ -127,7 +121,6 @@ public class PlayerController : CharacterBase
         // 使い切りなら減少
         if (check && item.Once)
             _inventory.RemoveItem(inventory.MainhandIndexOfSlot, 1);
-
     }
 
     void Attack()
@@ -137,12 +130,28 @@ public class PlayerController : CharacterBase
         _attacker.Attack(_direction);
     }
 
-    void OnTriggerEnter(Collider col)
+    void OverTheItem(ItemStack stack)
     {
-        if (col.TryGetComponent<ItemObj>(out var item))
+        var obj = Instantiate(_itemPrefab, new(transform.position.x, transform.position.y + 3.0f, transform.position.z + 1.0f), Quaternion.identity);
+        obj.Init(stack);
+    }
+
+    void OnTriggerStay(Collider col)
+    {
+        if (col.TryGetComponent<ItemObj>(out var item) && item.PickupCooltime == 0.0f)
         {
             Inventory.AddItem(item.Stack);
             Destroy(item.gameObject);
         }
+    }
+
+    void OnEnable()
+    {
+        _inventory.OnOverItem += OverTheItem;
+    }
+
+    void OnDisable()
+    {
+        _inventory.OnOverItem -= OverTheItem;
     }
 }

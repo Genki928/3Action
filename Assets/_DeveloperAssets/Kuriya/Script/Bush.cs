@@ -7,7 +7,7 @@ public class Bush : MonoBehaviour
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private Material normalMaterial;
     [SerializeField] private Material collectedMaterial;
-    [SerializeField] Item _itemData;
+    [SerializeField] ItemStack _itemData;
     [SerializeField] GameObject _itemPrefab;
 
     private bool _isCollected = false;
@@ -30,7 +30,8 @@ public class Bush : MonoBehaviour
 
         // ÉhÉçÉbÉv
         //inventory.AddItem(new(_itemData));
-        Instantiate(_itemPrefab, new(transform.position.x, transform.position.y, transform.position.z - 0.5f), Quaternion.identity);
+        var obj = Instantiate(_itemPrefab.gameObject, new(transform.position.x, transform.position.y, transform.position.z - 0.5f), Quaternion.identity);
+        obj.GetComponent<ItemObj>().Init(_itemData, 0.0f);
     }
 
     /// <summary>

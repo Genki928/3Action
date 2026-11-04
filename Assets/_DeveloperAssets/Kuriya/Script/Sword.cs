@@ -34,7 +34,6 @@ public class Sword : DamageCollisionBase
         base.Start();
 
         _damage = _playerController.AttackPower;
-        Debug.Log(_damage);
     }
 
     void Update()

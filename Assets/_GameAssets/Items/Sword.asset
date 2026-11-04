@@ -16,10 +16,10 @@ MonoBehaviour:
   _material: {fileID: 0}
   _name: "\u5263"
   _lore: 
-  _maxCount: 2147483647
+  _maxCount: 1
   _value: 0
   _type: 00000000
   _once: 0
   _effect: []
   _interactAsset:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 38ec1366c940a9f44acbedae046705c7, type: 2}
