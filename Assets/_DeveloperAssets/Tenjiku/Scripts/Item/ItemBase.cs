@@ -82,21 +82,6 @@ public class ItemStack
     }
 }
 
-[Serializable]
-public class Effect
-{
-    public EffectType Type => _effectType;
-    [SerializeField] EffectType _effectType;
-    [SerializeField] float _time;
-    [SerializeField] float _value;
-}
-
-public enum EffectType
-{
-    MoveSpeed,
-    Power,
-}
-
 public enum ItemType
 {
     Tool,
