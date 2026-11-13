@@ -599,13 +599,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717378694}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &717378699
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1285,8 +1285,8 @@ MonoBehaviour:
   _player: {fileID: 850747091121558446, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
   _camera: {fileID: 1385079603}
   state: {fileID: 935993317}
-  _interval: 3
-  _maxEnemies: 10
+  _interval: 0.5
+  _maxEnemies: 50
   _minRadius: 10
   _maxRadius: 20
   _viewMargin: 0.1
