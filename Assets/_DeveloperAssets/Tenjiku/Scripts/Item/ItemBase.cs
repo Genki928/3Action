@@ -33,37 +33,27 @@ public class Item : ScriptableObject
     [SerializeField] List<InteractAsset> _interactAsset;  //インタラクト
 }
 
-public abstract class InteractAsset : ScriptableObject
-{
-    public abstract void Interact(InteractContext ctx);
-}
-
-public class InteractContext
-{
-    public PlayerController player;
-
-    public InteractContext(PlayerController player)
-    {
-        this.player = player;
-    }
-}
-
 [Serializable]
 public class ItemStack
 {
     // --- プロパティ ---
     public Item Item => _item;
     public int Count => _count;
+    public List<InteractAsset> ClickEvent => _interactAsset;
 
     // --- メンバ変数 ---
     [SerializeField] Item _item;
     [SerializeField] int _count = 1;
+    List<InteractAsset> _interactAsset;
 
     // --- コンストラクタ ---
     public ItemStack(Item item, int count = 1)
     {
         _item = item;
         _count = count;
+
+        if (item != null && item.InteractAsset != null)
+            _interactAsset = new(item.InteractAsset);
     }
 
     // --- メソッド ---
@@ -85,21 +75,11 @@ public class ItemStack
         //return _count == _item.MaxCount;
         _count = _count + add;
     }
-}
 
-[Serializable]
-public class Effect
-{
-    public EffectType Type => _effectType;
-    [SerializeField] EffectType _effectType;
-    [SerializeField] float _time;
-    [SerializeField] float _value;
-}
-
-public enum EffectType
-{
-    MoveSpeed,
-    Power,
+    public void AddClickEvent(InteractAsset assets)
+    {
+        _interactAsset.Add(assets);
+    }
 }
 
 public enum ItemType

@@ -104,14 +104,14 @@ public class PlayerController : CharacterBase
         }
 
         bool check = false;
-        var item = inventory.MainhandItem.Item;
+        var stack = inventory.MainhandItem;
 
         // メインハンドに持つアイテムが持つ、実行時におこる処理を実行
         InteractContext ictx = new(this);
-        for (int i = 0; i < item.InteractAsset.Count; i++)
+        foreach (var cEvent in stack.ClickEvent)
         {
             // インパクトアセットを持つなら、関数を実行
-            if (item.InteractAsset[i] is InteractAssetImpact impact)
+            if (cEvent is InteractAssetImpact impact)
             {
                 impact.Interact(ictx);
                 check = true;
@@ -119,7 +119,7 @@ public class PlayerController : CharacterBase
         }
 
         // 使い切りなら減少
-        if (check && item.Once)
+        if (check && stack.Item.Once)
             _inventory.RemoveItem(inventory.MainhandIndexOfSlot, 1);
     }
 

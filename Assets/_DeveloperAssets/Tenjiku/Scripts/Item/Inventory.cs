@@ -19,6 +19,7 @@ public class Inventory
     public void AddItem(ItemStack stack)
     {
         if (stack.Count == 0) return;
+        Debug.Log(stack.ClickEvent.Count);
 
         // 空のスロット、取得アイテムと同名のアイテムを保持するスロットを検索
         List<int> EmptySlotIndex = new(), FindItemSlotIndex = new();
@@ -53,7 +54,6 @@ public class Inventory
                 var addCount = slot.Item.MaxCount - slot.Count;
                 slot.AddItem(addCount);
                 stack.RemoveItem(addCount);
-                Debug.Log("not return");
             }
         }
 
@@ -66,7 +66,7 @@ public class Inventory
             if (stack.Count <= stack.Item.MaxCount)
             {
                 // アイテムを増加
-                _items[EmptySlotIndex[i]] = new(stack.Item, stack.Count);
+                _items[EmptySlotIndex[i]] = stack;
                 OnGetItem?.Invoke(this);
                 return;
             }

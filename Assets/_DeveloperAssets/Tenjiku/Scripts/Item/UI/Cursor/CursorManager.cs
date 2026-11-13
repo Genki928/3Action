@@ -69,7 +69,8 @@ public class CursorManager : MonoBehaviour
         else
         {
             if (_ui.Cauldron.IsLack) return;
-            _ui.Inventory.AddItem(_ui.Cauldron.Craft());
+            var item = _ui.Cauldron.Craft();
+            _ui.Inventory.AddItem(item);
         }
     }
 

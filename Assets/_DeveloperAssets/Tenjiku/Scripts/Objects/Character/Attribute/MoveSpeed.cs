@@ -7,4 +7,9 @@ public class MoveSpeed : Attribute<float>
     {
         _currentValue = start;
     }
+
+    public void AddEffect(EffectType effect)
+    {
+
+    }
 }

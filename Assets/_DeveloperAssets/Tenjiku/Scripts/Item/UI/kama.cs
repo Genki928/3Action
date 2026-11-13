@@ -21,7 +21,7 @@ public class Cauldron : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void ReceiveItem(Item item)
@@ -39,7 +39,21 @@ public class Cauldron : MonoBehaviour
             _image[i].color = new(1.0f, 1.0f, 1.0f, 0.0f);
         }
 
+        // アイテム作成
+        ItemStack craft = new(returnItem, 1);
+        foreach (var item in _items)
+        {
+            if (item.InteractAsset == null) continue;
+
+            // 素材が持つ効能をポーションに入れていく
+            foreach (var cEvent in item.InteractAsset)
+            {
+                craft.AddClickEvent(cEvent);
+            }
+        }
+
         _items = new();
-        return new(returnItem, 1);
+
+        return craft;
     }
 }

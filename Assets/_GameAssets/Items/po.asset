@@ -18,8 +18,8 @@ MonoBehaviour:
   _lore: 
   _maxCount: 1
   _value: 0
-  _type: 00000000
-  _once: 0
+  _type: 01000000
+  _once: 1
   _effect:
   - _effectType: 0
     _time: 0
@@ -27,5 +27,4 @@ MonoBehaviour:
   - _effectType: 0
     _time: 0
     _value: 0
-  _interactAsset:
-  - {fileID: 0}
+  _interactAsset: []
