@@ -21,5 +21,4 @@ MonoBehaviour:
   _type: 00000000
   _once: 0
   _effect: []
-  _interactAsset:
-  - {fileID: 11400000, guid: 38ec1366c940a9f44acbedae046705c7, type: 2}
+  _interactAsset: []
