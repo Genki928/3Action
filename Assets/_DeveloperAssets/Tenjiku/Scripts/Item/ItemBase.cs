@@ -33,21 +33,6 @@ public class Item : ScriptableObject
     [SerializeField] List<InteractAsset> _interactAsset;  //インタラクト
 }
 
-public abstract class InteractAsset : ScriptableObject
-{
-    public abstract void Interact(InteractContext ctx);
-}
-
-public class InteractContext
-{
-    public PlayerController player;
-
-    public InteractContext(PlayerController player)
-    {
-        this.player = player;
-    }
-}
-
 [Serializable]
 public class ItemStack
 {
