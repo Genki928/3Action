@@ -51,7 +51,8 @@ public class ItemSlot : MonoBehaviour
             image.color = Color.white;
 
             // 個数のテキストを変更
-            _count.text = stack.Count.ToString();
+            if (stack.Item.MaxCount == 1) _count.text = "";
+            else _count.text = stack.Count.ToString();
         }
         else
         {
