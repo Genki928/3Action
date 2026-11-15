@@ -1,7 +1,7 @@
 public class Attribute<T>
 {
     // --- プロパティ ---
-    public T Value => _currentValue;
+    public virtual T Value => _currentValue;
 
     // --- フィールド --- //
     protected T _currentValue;

@@ -20,6 +20,7 @@ MonoBehaviour:
   _value: 0
   _type: 
   _once: 1
-  _effect: []
   _interactAsset:
   - {fileID: 11400000, guid: 38ec1366c940a9f44acbedae046705c7, type: 2}
+  - {fileID: 11400000, guid: 7a3b96d46e1043a4cb443bb6266f1fd8, type: 2}
+  - {fileID: 11400000, guid: ed08f44bb60c2b24886b34c1c88c8d44, type: 2}

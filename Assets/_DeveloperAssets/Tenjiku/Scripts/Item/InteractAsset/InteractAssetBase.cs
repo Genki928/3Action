@@ -7,10 +7,10 @@ public abstract class InteractAsset : ScriptableObject
 
 public class InteractContext
 {
-    public PlayerController player;
+    public CharacterBase character;
 
-    public InteractContext(PlayerController player)
+    public InteractContext(CharacterBase character)
     {
-        this.player = player;
+        this.character = character;
     }
 }

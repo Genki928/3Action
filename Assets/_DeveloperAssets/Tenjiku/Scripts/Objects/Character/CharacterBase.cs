@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class CharacterBase : ObjectBase
 {
-    // --- プロパティ ---
+    // --- プロパティ --- //
     public Health Health => _health;
+    public MoveSpeed MoveSpeed => _moveSpeed;
+    public Power Power => _power;
 
-    // --- フィールド ---
+    // --- フィールド --- //
     protected Rigidbody _rigidbody;
-    protected MoveSpeed _moveSpeed;
-    protected Health _health;
-    protected Power power;
+    protected MoveSpeed _moveSpeed = new(1);
+    protected Health _health = new(1);
+    protected Power _power = new(1);
 
     protected Renderer _renderer;
 
@@ -18,11 +20,17 @@ public class CharacterBase : ObjectBase
     /// </summary>
     protected bool _isKnockBack;
 
-    // --- メソッド ---
+    // --- メソッド --- //
     protected virtual void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _renderer = GetComponent<Renderer>();
+    }
+
+    protected virtual void Update()
+    {
+        _moveSpeed.EffectUpdate(Time.deltaTime);
+        _power.EffectUpdate(Time.deltaTime);
     }
 
     /// <summary>

@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : CharacterBase
 {
-    // --- プロパティ ---
+    // --- プロパティ --- //
     public Inventory Inventory => _inventory;
-    public int AttackPower => _attackPower;
-    // --- フィールド ---
+    public int AttackPower => _power.Value;
+    // --- フィールド --- //
     [Header("▼ Camera")]
     [SerializeField] Transform _camera;
     [SerializeField] float DISTANCE_Y, DISTANCE_Z;
@@ -30,17 +30,24 @@ public class PlayerController : CharacterBase
     Inventory _inventory = new();
 
     [Header("▼ Attack")]
-    [SerializeField] int _attackPower = 1;
+    [SerializeField] int ATTACK_POWER = 1;
 
 
-    // --- メソッド ---
+    // --- メソッド --- //
     protected override void Start()
     {
         base.Start();
 
         // ステータス設定
         _moveSpeed = new(MOVE_SPEED);
+        _power = new(ATTACK_POWER);
         _health = new(START_HEALTH, 4);
+        _moveSpeed.AddEffect(new(100, 6.0f));
+    }
+
+    protected override void Update()
+    {
+        base.Update();
     }
 
     void LateUpdate()
@@ -114,6 +121,13 @@ public class PlayerController : CharacterBase
             if (cEvent is InteractAssetImpact impact)
             {
                 impact.Interact(ictx);
+                check = true;
+            }
+
+            // エフェクトアセットを持つなら、関数を実行
+            if (cEvent is InteractAssetEffect effect)
+            {
+                effect.Interact(ictx);
                 check = true;
             }
         }

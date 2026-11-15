@@ -2,7 +2,5 @@ using UnityEngine;
 
 public abstract class InteractAssetImpact : InteractAsset
 {
-    [SerializeField] protected int value = 1;
-
-
+    [SerializeField] protected int _value = 1;
 }
