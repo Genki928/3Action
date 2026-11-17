@@ -19,11 +19,10 @@ public class Inventory
     public void AddItem(ItemStack stack)
     {
         if (stack.Count == 0) return;
-        Debug.Log(stack.ClickEvent.Count);
 
         // 空のスロット、取得アイテムと同名のアイテムを保持するスロットを検索
         List<int> EmptySlotIndex = new(), FindItemSlotIndex = new();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 15; i++)
         {
             // インデックスの取得
             if (_items[i].Item == null) EmptySlotIndex.Add(i);

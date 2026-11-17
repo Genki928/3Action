@@ -42,7 +42,7 @@ public class PlayerController : CharacterBase
         _moveSpeed = new(MOVE_SPEED);
         _power = new(ATTACK_POWER);
         _health = new(START_HEALTH, 4);
-        _moveSpeed.AddEffect(new(100, 6.0f));
+        //_moveSpeed.AddEffect(new(100, 6.0f));
     }
 
     protected override void Update()
