@@ -809,6 +809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 935993318}
+  - component: {fileID: 935993321}
   - component: {fileID: 935993317}
   - component: {fileID: 935993316}
   - component: {fileID: 935993319}
@@ -926,6 +927,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt: {fileID: 80220702}
   state: {fileID: 935993317}
+--- !u!114 &935993321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935993315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d285cce1a4227704ab1b38252453e2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 3727085421031681642, guid: 757c5963efc169b45be6a99294c1c02b, type: 3}
 --- !u!1 &1282818702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,12 +1475,24 @@ PrefabInstance:
       value: 64
       objectReference: {fileID: 0}
     - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[0]._count
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
       propertyPath: _dropItem.Array.data[0]._stack
       value: 
       objectReference: {fileID: 11400000, guid: ff7c5437d894fa643a48f49be17c6dad, type: 2}
     - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[1]._count
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[1]._stack
+      value: 
+      objectReference: {fileID: 11400000, guid: ff7c5437d894fa643a48f49be17c6dad, type: 2}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
       propertyPath: _dropItem.Array.data[0]._dropChance
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1652064762787304387, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
       propertyPath: m_Name
