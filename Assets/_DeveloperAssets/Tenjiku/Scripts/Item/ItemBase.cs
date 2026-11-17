@@ -14,7 +14,7 @@ public class Item : ScriptableObject
     public int Value => _value;
     public List<ItemType> Type => _type;
     public bool Once => _once;
-    public List<InteractAsset> InteractAsset => _interactAsset;
+    public List<ItemAbility> ItemAbility => _itemAbility;
 
     // --- メンバ変数 ---
     [Header("▼ 概要")]
@@ -28,7 +28,7 @@ public class Item : ScriptableObject
 
     [Header("▼ 効能")]
     [SerializeField] bool _once = false;
-    [SerializeField] List<InteractAsset> _interactAsset;  //インタラクト
+    [SerializeField] List<ItemAbility> _itemAbility;  //インタラクト
 }
 
 [Serializable]
@@ -37,12 +37,12 @@ public class ItemStack
     // --- プロパティ ---
     public Item Item => _item;
     public int Count => _count;
-    public List<InteractAsset> ClickEvent => _interactAsset;
+    public List<ItemAbility> ClickEvent => _itemAbility;
 
     // --- メンバ変数 ---
     [SerializeField] Item _item;
     [SerializeField] int _count = 1;
-    List<InteractAsset> _interactAsset;
+    List<ItemAbility> _itemAbility;
 
     // --- コンストラクタ ---
     public ItemStack(Item item, int count = 1)
@@ -50,8 +50,8 @@ public class ItemStack
         _item = item;
         _count = count;
 
-        if (item != null && item.InteractAsset != null)
-            _interactAsset = new(item.InteractAsset);
+        if (item != null && item.ItemAbility != null)
+            _itemAbility = new(item.ItemAbility);
     }
 
     // --- メソッド ---
@@ -74,9 +74,9 @@ public class ItemStack
         _count = _count + add;
     }
 
-    public void AddClickEvent(InteractAsset assets)
+    public void AddClickEvent(ItemAbility assets)
     {
-        _interactAsset.Add(assets);
+        _itemAbility.Add(assets);
     }
 }
 

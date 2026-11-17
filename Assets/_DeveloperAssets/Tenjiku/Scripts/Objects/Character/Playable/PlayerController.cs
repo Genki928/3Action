@@ -26,7 +26,6 @@ public class PlayerController : CharacterBase
 
     [Header("Бе Inventory")]
     [SerializeField] InventoryManager inventory;
-    [SerializeField] ItemObj _itemPrefab;
     Inventory _inventory = new();
 
     [Header("Бе Attack")]
@@ -144,12 +143,6 @@ public class PlayerController : CharacterBase
         _attacker.Attack(_direction);
     }
 
-    void OverTheItem(ItemStack stack)
-    {
-        var obj = Instantiate(_itemPrefab, new(transform.position.x, transform.position.y + 3.0f, transform.position.z + 1.0f), Quaternion.identity);
-        obj.Init(stack);
-    }
-
     void OnTriggerStay(Collider col)
     {
         if (col.TryGetComponent<ItemObj>(out var item) && item.PickupCooltime == 0.0f)
@@ -159,13 +152,18 @@ public class PlayerController : CharacterBase
         }
     }
 
+    void ItemOver(ItemStack stack)
+    {
+        ItemGenerator.Instance.ItemGenerate(transform.position, stack, 3.0f);
+    }
+
     void OnEnable()
     {
-        _inventory.OnOverItem += OverTheItem;
+        _inventory.OnOverItem += ItemOver;
     }
 
     void OnDisable()
     {
-        _inventory.OnOverItem -= OverTheItem;
+        _inventory.OnOverItem -= ItemOver;
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item/InteractAsset/SpeedEffect")]
+[CreateAssetMenu(menuName = "Item/ItemAbility/InteractAsset/SpeedEffect")]
 public class InteractAssetSpeedEffect : InteractAssetEffect
 {
     public override void Interact(InteractContext ctx)

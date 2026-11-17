@@ -86,6 +86,8 @@ public class Zombie : EnemyBase
     {
         if (_health.Value <= 0)
         {
+            foreach (var item in _dropItem)
+                item.Drop(this);
             Destroy(gameObject);
         }
     }

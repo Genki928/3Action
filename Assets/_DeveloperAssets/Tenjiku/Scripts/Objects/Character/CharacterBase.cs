@@ -8,6 +8,7 @@ public class CharacterBase : ObjectBase
     public Power Power => _power;
 
     // --- フィールド --- //
+    [SerializeField] protected ItemObj _itemPrefab;
     protected Rigidbody _rigidbody;
     protected MoveSpeed _moveSpeed = new(1);
     protected Health _health = new(1);

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class InteractAsset : ScriptableObject
+public abstract class ItemAbility : ScriptableObject
 {
     public abstract void Interact(InteractContext ctx);
 }

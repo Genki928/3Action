@@ -1289,7 +1289,12 @@ MonoBehaviour:
   _maxEnemies: 10
   _minRadius: 10
   _maxRadius: 20
+  _radiusStep: 1
   _viewMargin: 0.1
+  _minSpawnDistance: 10
+  _searchLimit: 60
+  _searchStep: 1
+  _extraOffset: 2
   _retryInterval: 0.25
   _candidateCount: 24
 --- !u!4 &1579453136
@@ -1447,6 +1452,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[0].Count
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[0]._stack
+      value: 
+      objectReference: {fileID: 11400000, guid: ff7c5437d894fa643a48f49be17c6dad, type: 2}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[0]._dropChance
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1652064762787304387, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
       propertyPath: m_Name
       value: Zombie

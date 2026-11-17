@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class InteractAssetImpact : InteractAsset
+public abstract class InteractAssetImpact : ItemAbility
 {
     [SerializeField] protected int _value = 1;
 }
