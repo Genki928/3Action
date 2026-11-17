@@ -1289,7 +1289,12 @@ MonoBehaviour:
   _maxEnemies: 50
   _minRadius: 10
   _maxRadius: 20
+  _radiusStep: 1
   _viewMargin: 0.1
+  _minSpawnDistance: 10
+  _searchLimit: 60
+  _searchStep: 1
+  _extraOffset: 2
   _retryInterval: 0.25
   _candidateCount: 24
 --- !u!4 &1579453136
