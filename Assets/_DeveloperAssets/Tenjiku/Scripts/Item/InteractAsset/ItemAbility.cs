@@ -2,6 +2,10 @@
 
 public abstract class ItemAbility : ScriptableObject
 {
+}
+
+public abstract class InteractAbility : ItemAbility
+{
     public abstract void Interact(InteractContext ctx);
 }
 
