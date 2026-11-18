@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -150,6 +151,9 @@ public class InventoryCursor : MonoBehaviour
             _selectSlot.SlotDeselect();
             _selectSlot = null;
         }
+
+        if (TryGetComponent<Image>(out var img))
+            img.enabled = true;
 
         // •`‰æ
         Draw();

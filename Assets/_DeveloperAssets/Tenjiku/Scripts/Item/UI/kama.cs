@@ -43,10 +43,10 @@ public class Cauldron : MonoBehaviour
         ItemStack craft = new(returnItem, 1);
         foreach (var item in _items)
         {
-            if (item.InteractAsset == null) continue;
+            if (item.ItemAbility == null) continue;
 
             // 素材が持つ効能をポーションに入れていく
-            foreach (var cEvent in item.InteractAsset)
+            foreach (var cEvent in item.ItemAbility)
             {
                 craft.AddClickEvent(cEvent);
             }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item/InteractAsset/PowerEffect")]
+[CreateAssetMenu(menuName = "Item/ItemAbility/InteractAsset/PowerEffect")]
 public class InteractAssetPowerEffect : InteractAssetEffect
 {
     public override void Interact(InteractContext ctx)

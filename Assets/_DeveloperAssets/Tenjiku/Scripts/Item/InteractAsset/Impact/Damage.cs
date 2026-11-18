@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item/InteractAsset/Damage")]
+[CreateAssetMenu(menuName = "Item/ItemAbility/InteractAsset/Damage")]
 public class InteractAssetDamage : InteractAssetImpact
 {
     public override void Interact(InteractContext ctx)

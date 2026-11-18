@@ -809,6 +809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 935993318}
+  - component: {fileID: 935993321}
   - component: {fileID: 935993317}
   - component: {fileID: 935993316}
   - component: {fileID: 935993319}
@@ -926,6 +927,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txt: {fileID: 80220702}
   state: {fileID: 935993317}
+--- !u!114 &935993321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935993315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d285cce1a4227704ab1b38252453e2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 3727085421031681642, guid: 757c5963efc169b45be6a99294c1c02b, type: 3}
 --- !u!1 &1282818702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1303,12 @@ MonoBehaviour:
   _maxEnemies: 10
   _minRadius: 10
   _maxRadius: 20
+  _radiusStep: 1
   _viewMargin: 0.1
+  _minSpawnDistance: 10
+  _searchLimit: 60
+  _searchStep: 1
+  _extraOffset: 2
   _retryInterval: 0.25
   _candidateCount: 24
 --- !u!4 &1579453136
@@ -1447,6 +1466,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[0].Count
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[0]._count
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[0]._stack
+      value: 
+      objectReference: {fileID: 11400000, guid: ff7c5437d894fa643a48f49be17c6dad, type: 2}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[1]._count
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[1]._stack
+      value: 
+      objectReference: {fileID: 11400000, guid: ff7c5437d894fa643a48f49be17c6dad, type: 2}
+    - target: {fileID: -4937664714572069648, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+      propertyPath: _dropItem.Array.data[0]._dropChance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1652064762787304387, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
       propertyPath: m_Name
       value: Zombie
@@ -1585,7 +1632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 30899047710200027, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1817257854494807490, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: m_Name
@@ -1593,7 +1640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1817257854494807490, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3035429322645006027, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: m_Name
@@ -1601,7 +1648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3035429322645006027, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3172801086791773176, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: _player
@@ -1653,7 +1700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6325538812982557279, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8771232769320032321, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: m_Pivot.x
