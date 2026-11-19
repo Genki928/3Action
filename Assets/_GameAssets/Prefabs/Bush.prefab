@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7644452549973466872}
   - component: {fileID: 3134635189429695758}
   - component: {fileID: 78105322490900921}
+  - component: {fileID: -6832378857915176629}
   m_Layer: 0
   m_Name: Bush
   m_TagString: object
@@ -104,8 +105,8 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: 14434ac60a1f12a41b6a5b0c7627776b, type: 2}
   collectedMaterial: {fileID: 2100000, guid: dbb40010c0076534c92f344420c97cd5, type: 2}
   _itemData:
-    _item: {fileID: 0}
-    _count: 0
+    _item: {fileID: 11400000, guid: ff7c5437d894fa643a48f49be17c6dad, type: 2}
+    _count: 1
 --- !u!136 &78105322490900921
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -129,3 +130,21 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: -0.4, z: 0}
+--- !u!114 &-6832378857915176629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235069080648983525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f7156f6b624924e94f308a19d5e31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GROUND_MASK:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  RAY_START_HEIGHT: 50
+  RAY_LENGTH: 200
+  OFFSET_Y: 0

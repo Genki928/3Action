@@ -7,15 +7,22 @@ public class Sword : DamageCollisionBase
     [SerializeField] float _rotateSpeed = 720.0f;
     [SerializeField] float _radius = 1.0f;
 
+    [Header("見た目の設定")]
+    [SerializeField] bool _mirrorRightToLeft = false; // OFF: 左から右のときに左右反転 / ON: 右から左のときに反転
+
     [Header("ノックバック設定")]
     [SerializeField] float _knockBackPower = 5.0f;
     [SerializeField] float _knockBackDuration = 0.2f;
+
+    // 次に振る向き(振るたびに反転する。全ての剣で共有)
+    static bool s_reverseNext;
 
     Transform _player;
     PlayerController _playerController;
     Vector3 _attackDirection;
 
     float _currentAngle;
+    float _swingSign = 1.0f; // 1: 右から左 / -1: 左から右
     bool _isAttacking;
 
     PlayerController _controller;
@@ -25,6 +32,16 @@ public class Sword : DamageCollisionBase
         _playerController = player;
         _player = player.transform;
         _attackDirection = direction.normalized;
+
+        // 振るたびに向きを交互に切り替える
+        _swingSign = s_reverseNext ? -1.0f : 1.0f;
+        s_reverseNext = !s_reverseNext;
+
+        // 剣の絵は片方の向きに合わせて作ってあるので、逆に振るときは左右反転して見た目を合わせる
+        bool mirror = (_swingSign > 0.0f) == _mirrorRightToLeft;
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * (mirror ? -1.0f : 1.0f);
+        transform.localScale = scale;
 
         _currentAngle = 0.0f;
         _isAttacking = true;
@@ -41,14 +58,15 @@ public class Sword : DamageCollisionBase
         if (!_isAttacking || _player == null || _isPaused)
             return;
 
-        // 右から左へ回転
+        // 回転を進める
         _currentAngle += _rotateSpeed * Time.deltaTime;
 
         float angle = Mathf.Min(_currentAngle, _rotateAngle);
 
+        // _swingSign が 1 なら右から左、-1 なら左から右
         Vector3 rotatedDirection =
             Quaternion.AngleAxis(
-                angle - _rotateAngle / 2.0f,
+                _swingSign * (angle - _rotateAngle / 2.0f),
                 Vector3.up
             ) * _attackDirection;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBase : CharacterBase
 {
     [SerializeField] protected List<DropItem> _dropItem = new();
+    [SerializeField] protected GameObject _deathEffect; // 倒したときに出すエフェクト(煙など。未設定なら出さない)
 
     // --- 共通フィールド ---
     protected CharacterBase _target;
@@ -128,6 +129,13 @@ public class EnemyBase : CharacterBase
     {
         foreach (var item in _dropItem)
             item.Drop(this);
+
+        // 倒した場所にエフェクトを出す(向きはプレハブ自身の向きを使う)
+        if (_deathEffect != null)
+        {
+            Instantiate(_deathEffect, transform.position, _deathEffect.transform.rotation);
+        }
+
         Destroy(gameObject);
     }
 

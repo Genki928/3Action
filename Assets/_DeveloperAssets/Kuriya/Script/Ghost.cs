@@ -47,10 +47,4 @@ public class Ghost : EnemyBase
         vel.y = (GetTargetY() - transform.position.y) * HEIGHT_FOLLOW;
         return vel;
     }
-
-    // kari
-    protected override void OnDefeated()
-    {
-        Destroy(gameObject);
-    }
 }

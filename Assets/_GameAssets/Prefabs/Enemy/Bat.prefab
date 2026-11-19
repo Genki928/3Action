@@ -103,7 +103,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemPrefab: {fileID: 0}
-  _dropItem: []
+  _dropItem:
+  - _dropChance: 100
+    _stack: {fileID: 11400000, guid: cb1e1b2427b52e44da73453d4b4ca09b, type: 2}
+    _count: 1
+  _deathEffect: {fileID: 1177370452557509393, guid: 3206d35a761e2ef49b33c882302f3549, type: 3}
   MOVE_SPEED: 1
   KNOCKBACK_POWER: 5
   KNOCKBACK_DURATION: 0.2
@@ -127,6 +131,7 @@ MonoBehaviour:
   RETREAT_SPEED: 2.5
   RETREAT_RISE_ANGLE: 50
   RETREAT_TIME: {x: 0.8, y: 1.2}
+  REFLECT_SPEED_RATIO: 0.6
 --- !u!114 &-660040080036219112
 MonoBehaviour:
   m_ObjectHideFlags: 0

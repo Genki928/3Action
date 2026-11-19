@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8865789773332973250}
   - component: {fileID: 6566674881133888649}
   - component: {fileID: 770019810222589169}
+  - component: {fileID: -309187750396468723}
   - component: {fileID: 6702016110794247169}
   - component: {fileID: 3263376362673995159}
   m_Layer: 0
@@ -107,8 +108,30 @@ MonoBehaviour:
   _rotateAngle: 180
   _rotateSpeed: 720
   _radius: 1
+  _mirrorRightToLeft: 0
   _knockBackPower: 5
   _knockBackDuration: 0.2
+--- !u!114 &-309187750396468723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634813796808292022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7140d69d2cd6fa44ea0f42baf1b8a0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TIP_LOCAL_POSITION: {x: 2, y: 0, z: -2}
+  TRAIL_TIME: 0.25
+  START_WIDTH: 1
+  MIN_VERTEX_DISTANCE: 0.01
+  START_COLOR: {r: 0.55, g: 0.85, b: 1, a: 0.9}
+  END_COLOR: {r: 0.1, g: 0.3, b: 1, a: 0}
+  TRAIL_MATERIAL: {fileID: 0}
+  SORTING_LAYER: Default
+  SORTING_ORDER: 10
 --- !u!54 &6702016110794247169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,5 +178,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 1, z: 10}
+  m_Size: {x: 15, y: 2, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
