@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Playables;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item/ItemBase")]
+[CreateAssetMenu(menuName = "Item/Item")]
 public class Item : ScriptableObject
 {
     // --- プロパティ ---
-    public Sprite Sprite => _sprite;
-    public Material Material => _material;
     public string Name => _name;
     public string Lore => _lore;
+    public ItemId Id => _id;
+    public Sprite Sprite => _sprite;
+    public Material Material => _material;
     public int MaxCount => _maxCount;
     public int Value => _value;
     //public List<ItemType> Type => _type;
@@ -19,10 +19,11 @@ public class Item : ScriptableObject
 
     // --- メンバ変数 ---
     [Header("▼ 概要")]
-    [SerializeField] protected Sprite _sprite; //画像
-    [SerializeField] protected Material _material; //画像
+    [SerializeField] protected ItemId _id;
     [SerializeField] protected string _name;  //名前
     [SerializeField] protected string _lore;  //説明
+    [SerializeField] protected Sprite _sprite; //画像
+    [SerializeField] protected Material _material; //画像
     [SerializeField] protected int _maxCount = int.MaxValue; //最大数
     [SerializeField] protected int _value;    //売値
     //[SerializeField] protected List<ItemType> _type;
@@ -42,7 +43,7 @@ public class ItemStack
     {
         get
         {
-            if (this is Potion)
+            if (this is PotionItem)
                 foreach (var ability in _ability)
                     if (ability is AbilityAssetThrowRange range)
                         return range.Sprite;
@@ -56,19 +57,22 @@ public class ItemStack
     [SerializeField] protected Item _item;
     [SerializeField] protected int _count = 1;
     protected List<ItemAbility> _ability;
+    protected Sprite _sprite;
 
     // --- コンストラクタ ---
     public ItemStack(Item item, int count = 1)
     {
+        if (item == null) return;
+
         _item = item;
         _count = count;
 
-        if (item == null) return;
+        // 画像の設定
+        _sprite = Item.Sprite;
 
+        // アビリティがあれば取得
         if (item.ItemAbility != null)
-        {
             _ability = new(item.ItemAbility);
-        }
     }
 
     // --- メソッド ---
@@ -94,17 +98,6 @@ public class ItemStack
     public void AddClickEvent(ItemAbility assets)
     {
         _ability.Add(assets);
-    }
-
-    public void SetItem(Item item, int count)
-    {
-        _item = item;
-        _count = count;
-    }
-
-    public void GetSprite()
-    {
-        ;
     }
 }
 

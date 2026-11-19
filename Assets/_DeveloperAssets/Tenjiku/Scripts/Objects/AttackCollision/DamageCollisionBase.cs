@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageCollisionBase : ObjectBase
@@ -8,6 +9,7 @@ public class DamageCollisionBase : ObjectBase
     protected Rigidbody _rigidbody;
     protected GameObject _owner;
     protected Vector3 _vector;
+    [SerializeField] protected List<ItemAbility> _ability;
 
     public void Start()
     {
@@ -27,8 +29,9 @@ public class DamageCollisionBase : ObjectBase
         }
     }
 
-    public void Init(Vector3 vector)
+    public void Init(Vector3 vector, List<ItemAbility> ability)
     {
         _vector = vector;
+        _ability = ability;
     }
 }

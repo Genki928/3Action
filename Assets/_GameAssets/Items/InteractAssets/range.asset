@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: range
   m_EditorClassIdentifier: 
   _throwRange: 1
-  _potionSprites: {fileID: 0}
+  _potionSprites: {fileID: 5793586284758688501, guid: 3ee8637a5aecb9544ae1ed968c947640, type: 3}

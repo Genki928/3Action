@@ -1,3 +1,4 @@
+using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +31,7 @@ public class PlayerController : CharacterBase
 
     [Header("▼ Attack")]
     [SerializeField] int ATTACK_POWER = 1;
+    [SerializeField] PotionObj _potion;
 
 
     // --- メソッド --- //
@@ -114,19 +116,21 @@ public class PlayerController : CharacterBase
 
         // メインハンドに持つアイテムが持つ、実行時におこる処理を実行
         InteractContext ictx = new(this);
-        foreach (var cEvent in stack.Ability)
+        if (stack.Ability.Exists(x => x is AbilityAssetThrowRange range))
         {
-            // インパクトアセットを持つなら、関数を実行
-            if (cEvent is InteractAssetImpact impact)
-            {
-                impact.Interact(ictx);
-                check = true;
-            }
+            Vector3 pos = new(transform.position.x, transform.position.y + 3.0f, transform.position.z);
+            var obj = Instantiate(_potion, pos, Quaternion.identity);
+            obj.SetAbility(stack.Ability);
+            return;
+        }
 
-            // エフェクトアセットを持つなら、関数を実行
-            if (cEvent is InteractAssetEffect effect)
+        foreach (var ability in stack.Ability)
+        {
+            // 実行時効果を持つなら関数を実行
+            if (ability is InteractAbility impact)
             {
-                effect.Interact(ictx);
+                Debug.Log("testestestesfesfesfefe");
+                impact.Interact(ictx);
                 check = true;
             }
         }
@@ -147,6 +151,7 @@ public class PlayerController : CharacterBase
     {
         if (col.TryGetComponent<ItemObj>(out var item) && item.PickupCooltime == 0.0f)
         {
+            Debug.Log(item.Stack.Item.Id);
             Inventory.AddItem(item.Stack);
             Destroy(item.gameObject);
         }

@@ -40,7 +40,7 @@ public class Cauldron : MonoBehaviour
         }
 
         // アイテム作成
-        Potion craft = new(returnItem, 1);
+        PotionItem craft = new(returnItem, 1);
         foreach (var item in _items)
         {
             if (item.ItemAbility == null) continue;

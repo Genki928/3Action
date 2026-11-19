@@ -426,7 +426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 850747091121558446, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.88
       objectReference: {fileID: 0}
     - target: {fileID: 850747091121558446, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -434,7 +434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 850747091121558446, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -4.09
       objectReference: {fileID: 0}
     - target: {fileID: 850747091121558446, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -468,6 +468,10 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 1385079605}
+    - target: {fileID: 1846991077691305263, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: _potion
+      value: 
+      objectReference: {fileID: 1184599141640355561, guid: 498442bbbd6b8144bab283852a8aa297, type: 3}
     - target: {fileID: 1846991077691305263, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: inventory
       value: 
@@ -511,7 +515,7 @@ GameObject:
   - component: {fileID: 717378699}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -533,7 +537,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -625,7 +629,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 0.1, z: 10}
+  m_Size: {x: 10, y: 0.2, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!224 &779726298 stripped
 RectTransform:
@@ -1661,7 +1665,7 @@ PrefabInstance:
     - target: {fileID: 3172801086791773176, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: _startItem.Array.data[0]._item
       value: 
-      objectReference: {fileID: 11400000, guid: ef17f227e6cbfca449a5d3d4286cd9fe, type: 2}
+      objectReference: {fileID: 11400000, guid: 2261aac1ba606af4e8aea6ab56138138, type: 2}
     - target: {fileID: 3172801086791773176, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
       propertyPath: _startItem.Array.data[1]._item
       value: 

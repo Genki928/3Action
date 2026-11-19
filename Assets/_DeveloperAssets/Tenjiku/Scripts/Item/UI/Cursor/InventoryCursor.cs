@@ -122,7 +122,7 @@ public class InventoryCursor : MonoBehaviour
         if (_currentSlot.Stack.Item == null || _ui.Cauldron.IsMax) return;
 
         // 窯に入れられないアイテムなら中断
-        if (_currentSlot.Stack is Potion) return;
+        if (_currentSlot.Stack is PotionItem) return;
 
         // アイテムを投入->持ち物から削除
         _ui.Cauldron.ReceiveItem(_currentSlot.Stack.Item);

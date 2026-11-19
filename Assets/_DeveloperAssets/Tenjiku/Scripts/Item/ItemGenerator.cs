@@ -15,7 +15,7 @@ public class ItemGenerator : MonoBehaviour
 
     public void ItemGenerate(Vector3 ownerPos, ItemStack stack, float cooltime = 1.0f)
     {
-        Vector3 pos = new(ownerPos.x, ownerPos.y + 3.0f, ownerPos.z + 1.0f);
+        Vector3 pos = new(ownerPos.x, ownerPos.y + 3.0f, ownerPos.z - 1.5f);
         var obj = Instantiate(_prefab, pos, Quaternion.identity);
         obj.Init(stack, cooltime);
     }

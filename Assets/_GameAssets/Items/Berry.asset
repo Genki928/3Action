@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a8c5155f1b434d928ec5c95a6d6bb, type: 3}
   m_Name: Berry
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 3688632228890968987, guid: c80a3d0d94153fd46a40009201b69c4d, type: 3}
-  _material: {fileID: 2100000, guid: 9386a154f33c89f43a6c3a1b0bdb5f73, type: 2}
+  _id: 0
   _name: "\u30D9\u30EA\u30FC\u3001\u30A2\u30EA"
   _lore: 
+  _sprite: {fileID: 3688632228890968987, guid: c80a3d0d94153fd46a40009201b69c4d, type: 3}
+  _material: {fileID: 2100000, guid: 9386a154f33c89f43a6c3a1b0bdb5f73, type: 2}
   _maxCount: 64
   _value: 0
-  _type: 
   _once: 1
   _itemAbility:
   - {fileID: 11400000, guid: 38ec1366c940a9f44acbedae046705c7, type: 2}
   - {fileID: 11400000, guid: 7a3b96d46e1043a4cb443bb6266f1fd8, type: 2}
+  - {fileID: 11400000, guid: 0d6fbce041a46324e96c6b5cb4269e35, type: 2}
