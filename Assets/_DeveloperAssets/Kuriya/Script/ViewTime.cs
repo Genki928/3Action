@@ -1,28 +1,31 @@
+
 using UnityEngine;
-using UnityEngine.UI;
+
 /*
- * タイマー描画用スクリプト
+ * 時計回転用スクリプト
  */
 public class ViewTime : MonoBehaviour
 {
-    [SerializeField] GameObject txt;
+    [SerializeField] RectTransform clock;
     [SerializeField] LegStateManager state;
 
-    Text text;
-    private void Start()
-    {
-        text = txt.GetComponent<Text>();
-    }
-    // Update is called once per frame
+    [Header("時計設定")]
+    [SerializeField] float phaseTime = 60f;
+
+    float timer = 0f;
+
     void Update()
     {
-        if(state.State is ExploringState)
+        if (state.State is ExploringState ||
+            state.State is RaidState)
         {
-            text.text = "フェーズ：昼";
-        }
-        else if(state.State is RaidState)
-        {
-            text.text = "フェーズ：夜";
+            timer += Time.deltaTime;
+
+            // 時間経過に応じて時計全体を回転
+            float angle = (timer / phaseTime) * 360f + 90f;
+
+            clock.localRotation =
+                Quaternion.Euler(0f, 0f, +angle);
         }
     }
 }
