@@ -47,7 +47,7 @@ public class ItemSlot : MonoBehaviour
         if (stack.Item != null)
         {
             // アイテムを描画
-            image.sprite = stack.Item.Sprite;
+            image.sprite = stack.Sprite;
             image.color = Color.white;
 
             // 個数のテキストを変更

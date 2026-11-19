@@ -40,20 +40,21 @@ public class Cauldron : MonoBehaviour
         }
 
         // アイテム作成
-        ItemStack craft = new(returnItem, 1);
+        Potion craft = new(returnItem, 1);
         foreach (var item in _items)
         {
             if (item.ItemAbility == null) continue;
 
             // 素材が持つ効能をポーションに入れていく
-            foreach (var cEvent in item.ItemAbility)
+            foreach (var ability in item.ItemAbility)
             {
-                craft.AddClickEvent(cEvent);
+                craft.AddClickEvent(ability);
             }
         }
 
         _items = new();
 
+        Debug.Log(craft.Ability.Count);
         return craft;
     }
 }
