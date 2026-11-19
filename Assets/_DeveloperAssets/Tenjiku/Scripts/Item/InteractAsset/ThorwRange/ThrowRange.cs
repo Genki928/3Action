@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item/ItemAbility/Damage")]
+[CreateAssetMenu(menuName = "Item/ItemAbility/ThrowRange")]
 public class AbilityAssetThrowRange : ItemAbility
 {
     public Sprite Sprite => _potionSprites;

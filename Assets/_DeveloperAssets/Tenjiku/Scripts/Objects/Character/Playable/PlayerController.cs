@@ -86,7 +86,7 @@ public class PlayerController : CharacterBase
         if (!ctx.performed || inventory.IsOpenUI || _isPaused) return;
 
         //持っているアイテムが武器なら
-        if (inventory.MainhandItem.Item.Type.Contains(ItemType.Tool))
+        if (inventory.MainhandItem.Item.Name == "剣")
         {
             Attack();
         }
@@ -114,7 +114,7 @@ public class PlayerController : CharacterBase
 
         // メインハンドに持つアイテムが持つ、実行時におこる処理を実行
         InteractContext ictx = new(this);
-        foreach (var cEvent in stack.ClickEvent)
+        foreach (var cEvent in stack.Ability)
         {
             // インパクトアセットを持つなら、関数を実行
             if (cEvent is InteractAssetImpact impact)
