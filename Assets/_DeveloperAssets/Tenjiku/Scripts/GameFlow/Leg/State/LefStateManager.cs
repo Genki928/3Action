@@ -38,7 +38,7 @@ public class LegStateManager : StateManagerBase<LegStateManager, IExploringState
         // ステート追加
         _states.Add(() => new ExploringState());
         _states.Add(() => new RaidState());
-        _states.Add(() => new PhaseResultState());
+        //_states.Add(() => new PhaseResultState());
 
         OnRaidFinished += FinishedMessage;
 

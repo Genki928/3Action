@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Playables;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Item/ItemBase")]
@@ -12,23 +13,23 @@ public class Item : ScriptableObject
     public string Lore => _lore;
     public int MaxCount => _maxCount;
     public int Value => _value;
-    public List<ItemType> Type => _type;
+    //public List<ItemType> Type => _type;
     public bool Once => _once;
     public List<ItemAbility> ItemAbility => _itemAbility;
 
     // --- メンバ変数 ---
     [Header("▼ 概要")]
-    [SerializeField] Sprite _sprite; //画像
-    [SerializeField] Material _material; //画像
-    [SerializeField] string _name;  //名前
-    [SerializeField] string _lore;  //説明
-    [SerializeField] int _maxCount = int.MaxValue; //最大数
-    [SerializeField] int _value;    //売値
-    [SerializeField] List<ItemType> _type;
+    [SerializeField] protected Sprite _sprite; //画像
+    [SerializeField] protected Material _material; //画像
+    [SerializeField] protected string _name;  //名前
+    [SerializeField] protected string _lore;  //説明
+    [SerializeField] protected int _maxCount = int.MaxValue; //最大数
+    [SerializeField] protected int _value;    //売値
+    //[SerializeField] protected List<ItemType> _type;
 
     [Header("▼ 効能")]
-    [SerializeField] bool _once = false;
-    [SerializeField] List<ItemAbility> _itemAbility;  //インタラクト
+    [SerializeField] protected bool _once = false;
+    [SerializeField] protected List<ItemAbility> _itemAbility;  //インタラクト
 }
 
 [Serializable]
@@ -37,12 +38,24 @@ public class ItemStack
     // --- プロパティ ---
     public Item Item => _item;
     public int Count => _count;
-    public List<ItemAbility> ClickEvent => _itemAbility;
+    public Sprite Sprite
+    {
+        get
+        {
+            if (this is Potion)
+                foreach (var ability in _ability)
+                    if (ability is AbilityAssetThrowRange range)
+                        return range.Sprite;
+
+            return Item.Sprite;
+        }
+    }
+    public List<ItemAbility> Ability => _ability;
 
     // --- メンバ変数 ---
-    [SerializeField] Item _item;
-    [SerializeField] int _count = 1;
-    List<ItemAbility> _itemAbility;
+    [SerializeField] protected Item _item;
+    [SerializeField] protected int _count = 1;
+    protected List<ItemAbility> _ability;
 
     // --- コンストラクタ ---
     public ItemStack(Item item, int count = 1)
@@ -50,8 +63,12 @@ public class ItemStack
         _item = item;
         _count = count;
 
-        if (item != null && item.ItemAbility != null)
-            _itemAbility = new(item.ItemAbility);
+        if (item == null) return;
+
+        if (item.ItemAbility != null)
+        {
+            _ability = new(item.ItemAbility);
+        }
     }
 
     // --- メソッド ---
@@ -76,7 +93,18 @@ public class ItemStack
 
     public void AddClickEvent(ItemAbility assets)
     {
-        _itemAbility.Add(assets);
+        _ability.Add(assets);
+    }
+
+    public void SetItem(Item item, int count)
+    {
+        _item = item;
+        _count = count;
+    }
+
+    public void GetSprite()
+    {
+        ;
     }
 }
 

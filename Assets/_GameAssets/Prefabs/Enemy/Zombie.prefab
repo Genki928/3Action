@@ -50,6 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ad46c1f60a3e348864ce71585ffe09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemPrefab: {fileID: 0}
+  _dropItem: []
+  _deathEffect: {fileID: 1177370452557509393, guid: 3206d35a761e2ef49b33c882302f3549, type: 3}
   MOVE_SPEED: 2
   KNOCKBACK_POWER: 5
   KNOCKBACK_DURATION: 0.2
