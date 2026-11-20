@@ -87,12 +87,6 @@ public class PlayerController : CharacterBase
         // ボタンを押した瞬間の1回だけ処理する
         if (!ctx.performed || inventory.IsOpenUI || _isPaused) return;
 
-        //持っているアイテムが武器なら
-        if (inventory.MainhandItem.Item.Name == "剣")
-        {
-            Attack();
-        }
-
         // 自分の周り(INTERACT_RANGE の球)にあるものを調べる
         var hits = Physics.OverlapSphere(transform.position, INTERACT_RANGE);
         foreach (var hit in hits)
@@ -108,7 +102,14 @@ public class PlayerController : CharacterBase
             {
                 bush.Interact(_inventory);
             }
+        }
 
+        if (inventory.MainhandItem.Item == null) return;
+
+        //持っているアイテムが武器なら
+        if (inventory.MainhandItem.Item.Name == "剣")
+        {
+            Attack();
         }
 
         bool check = false;
@@ -160,7 +161,6 @@ public class PlayerController : CharacterBase
     {
         if (col.TryGetComponent<ItemObj>(out var item) && item.PickupCooltime == 0.0f)
         {
-            Debug.Log(item.Stack.Item.Id);
             Inventory.AddItem(item.Stack);
             Destroy(item.gameObject);
         }

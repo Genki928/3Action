@@ -15,6 +15,7 @@ public class ItemObj : ObjectBase
     private Vector3 startPos;
     bool _onGround = false;
     Rigidbody _rigidbody;
+    [SerializeField] float timer = 2.0f;
 
     // --- メソッド --- //
     void Start()
@@ -37,7 +38,8 @@ public class ItemObj : ObjectBase
         if (!_onGround) return;
 
         // 初期位置のY座標を基準にサイン波で上下させる
-        float newY = startPos.y + Mathf.Sin(Time.time * speed) * amplitude;
+        timer += Time.deltaTime;
+        float newY = startPos.y + Mathf.Cos(timer * speed) * amplitude;
         transform.position = new Vector3(startPos.x, newY, startPos.z);
     }
 
@@ -54,7 +56,7 @@ public class ItemObj : ObjectBase
         if (col.CompareTag("Ground"))
         {
             _onGround = true;
-            startPos = transform.position;
+            startPos = new(transform.position.x, transform.position.y + speed, transform.position.z);
         }
     }
 }

@@ -43,7 +43,6 @@ public class Inventory
                 // ƒAƒCƒeƒ€‚ğ‘‰Á
                 slot.AddItem(stack.Count);
                 OnGetItem?.Invoke(this);
-                Debug.Log("return");
                 return;
             }
             else
