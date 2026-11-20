@@ -4,7 +4,6 @@ public class SimpleDamageCollision : DamageCollisionBase
 {
     public void OnTriggerEnter(Collider col)
     {
-        Debug.Log("yeyeyeyeyeyeyey");
         if (col.TryGetComponent<CharacterBase>(out var cb))
         {
             InteractContext ictx = new(cb);

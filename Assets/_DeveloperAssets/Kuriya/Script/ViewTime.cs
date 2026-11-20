@@ -16,6 +16,8 @@ public class ViewTime : MonoBehaviour
 
     void Update()
     {
+        if (clock == null) return;
+
         if (state.State is ExploringState ||
             state.State is RaidState)
         {

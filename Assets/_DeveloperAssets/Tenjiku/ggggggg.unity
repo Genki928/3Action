@@ -484,6 +484,18 @@ PrefabInstance:
       propertyPath: _defaultAttackCollision
       value: 
       objectReference: {fileID: 8634813796808292022, guid: 42d924d0168d99e4598e150ec99496db, type: 3}
+    - target: {fileID: 5736530488469551183, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_Height
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736530488469551183, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_Center.x
+      value: -0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736530488469551183, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: m_Center.y
+      value: -0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -929,8 +941,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ed859f63c9c0647a1ffa19ccb7208e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txt: {fileID: 80220702}
+  clock: {fileID: 0}
   state: {fileID: 935993317}
+  phaseTime: 60
 --- !u!114 &935993321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,9 +1310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f42689f6a780fc40a720120832f3060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefabs:
-  - {fileID: 1652064762787304387, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
-  - {fileID: 1652064762787304387, guid: a573d423ed06ac04a8d8d6d9123f89d9, type: 3}
+  _enemies: []
   _player: {fileID: 850747091121558446, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
   _camera: {fileID: 1385079603}
   state: {fileID: 935993317}
