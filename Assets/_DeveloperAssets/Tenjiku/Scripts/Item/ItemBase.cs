@@ -39,19 +39,8 @@ public class ItemStack
     // --- プロパティ ---
     public Item Item => _item;
     public int Count => _count;
-    public Sprite Sprite
-    {
-        get
-        {
-            if (this is PotionItem)
-                foreach (var ability in _ability)
-                    if (ability is AbilityAssetThrowRange range)
-                        return range.Sprite;
-
-            return Item.Sprite;
-        }
-    }
     public List<ItemAbility> Ability => _ability;
+    public virtual Sprite Sprite => _sprite;
 
     // --- メンバ変数 ---
     [SerializeField] protected Item _item;
@@ -95,7 +84,7 @@ public class ItemStack
         _count = _count + add;
     }
 
-    public void AddClickEvent(ItemAbility assets)
+    public void AddAbility(ItemAbility assets)
     {
         _ability.Add(assets);
     }

@@ -1,22 +1,32 @@
-﻿public class PotionItem : ItemStack
+﻿using UnityEngine;
+
+public class PotionItem : ItemStack
 {
-    public float ThrowRange => _range;
-    float _range = 0.0f;
+    public float ThrowRange
+    {
+        get
+        {
+            if (!_ability.Exists(x => x is AbilityAssetThrowRange)) return 0.0f;
+
+            float total = 0.0f;
+            foreach (var ability in _ability)
+                if (ability is AbilityAssetThrowRange range)
+                    total += range.ThrowRange;
+            return total;
+        }
+    }
+    public override Sprite Sprite
+    {
+        get
+        {
+            foreach (var ability in _ability)
+                if (ability is AbilityAssetThrowRange range) return range.Sprite;
+            return _sprite;
+        }
+    }
 
     public PotionItem(Item item, int count) : base(item, count)
     {
         _item = item;
-        _range = 0.0f;
-        _sprite = Item.Sprite;
-
-        // 飛距離を持つなら画像を変更
-        foreach (var ability in _ability)
-        {
-            if (ability is AbilityAssetThrowRange range)
-            {
-                _range += range.ThrowRange;
-                _sprite = range.Sprite;
-            }
-        }
     }
 }

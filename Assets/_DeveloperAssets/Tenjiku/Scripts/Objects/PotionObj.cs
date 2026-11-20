@@ -15,8 +15,11 @@ public class PotionObj : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetAbility(List<ItemAbility> ability)
+    public void SetAbility(Vector3 vec, List<ItemAbility> ability)
     {
         _ability = ability;
+        var rigidbody = GetComponent<Rigidbody>();
+        Debug.Log(vec);
+        rigidbody.linearVelocity = vec;
     }
 }
