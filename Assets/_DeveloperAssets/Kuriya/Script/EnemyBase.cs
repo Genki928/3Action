@@ -21,11 +21,29 @@ public class EnemyBase : CharacterBase
     [SerializeField] protected int MAX_HP = 3;
     [SerializeField] protected int POWER = 1;
 
+    [Header("▼ Facing")]
+    [SerializeField] protected float FACING_DEADZONE = 0.1f; // これより横成分が小さいときは向きを変えない
+    [SerializeField] protected float FACING_HOLD_TIME = 0.3f; // 向きを変えたあと、この秒数は再び変えない(チラつき防止)
+
+    int _facingSign;          // 今の向き(-1 / 0:未設定 / 1)
+    float _lastFlipTime;      // 最後に向きを変えた時刻
+
     [Header("▼ Avoid")]
     [SerializeField] protected string OBSTACLE_TAG = "object";
     [SerializeField] protected float AVOID_DISTANCE = 3.0f;
     [SerializeField] protected float AVOID_RADIUS = 0.4f;
     [SerializeField] protected float TURN_SPEED = 10.0f;
+
+    [Header("▼ Flee")]
+    [SerializeField] protected float FLEE_SPEED_RATE = 1.0f; // 昼に逃げるときの速度倍率
+    [SerializeField] protected float FLEE_FADE_DELAY = 5.0f;    // 逃げ始めてから透明化を始めるまでの時間(秒)
+    [SerializeField] protected float FLEE_FADE_DURATION = 2.0f; // 透明になりきって消えるまでの時間(秒)
+
+    LegStateManager _phaseManager;
+    float _fleeTimer; // 逃げ続けている時間
+
+    static readonly int BaseColorId = Shader.PropertyToID("_BaseColor"); // URP
+    static readonly int ColorId = Shader.PropertyToID("_Color");         // Built-in
 
     // --- 共通メソッド ---
     protected override void Start()
@@ -41,10 +59,57 @@ public class EnemyBase : CharacterBase
         _health.OnDamage += OnDamaged;
 
         _target = FindAnyObjectByType<PlayerController>();
+        _phaseManager = FindAnyObjectByType<LegStateManager>();
+    }
+
+    // 昼は逃げる。RaidState以外を昼とみなしている(昼夜の管理に合わせて書き換える)。
+    // 敵ごとに変えたい場合はオーバーライドする
+    protected virtual bool IsFleeing =>
+        _phaseManager != null && _phaseManager.State is not RaidState;
+
+    // 逃げ続けた時間に応じて徐々に透明にして、最後は消す
+    void UpdateFleeFade(float dt)
+    {
+        if (!IsFleeing)
+        {
+            // 昼が終わったら元に戻す
+            if (_fleeTimer > 0.0f)
+            {
+                _fleeTimer = 0.0f;
+                SetAlpha(1.0f);
+            }
+            return;
+        }
+
+        _fleeTimer += dt;
+
+        float fade = (_fleeTimer - FLEE_FADE_DELAY) / Mathf.Max(FLEE_FADE_DURATION, 0.01f);
+        if (fade <= 0.0f) return;
+
+        SetAlpha(1.0f - Mathf.Clamp01(fade));
+
+        // 完全に透明になったら消える(ドロップやエフェクトは出さない)
+        if (fade >= 1.0f) Destroy(gameObject);
+    }
+
+    void SetAlpha(float alpha)
+    {
+        if (_renderer == null) return;
+
+        Material m = _renderer.material;
+        int id = m.HasProperty(BaseColorId) ? BaseColorId : ColorId;
+        if (!m.HasProperty(id)) return;
+
+        Color c = m.GetColor(id);
+        c.a = alpha;
+        m.SetColor(id, c);
     }
 
     protected virtual void FixedUpdate()
     {
+        // 逃走時間の計測と透明化(ノックバック中やターゲットなしでも進める)
+        UpdateFleeFade(Time.fixedDeltaTime);
+
         // ノックバック中は自分の移動処理で速度を上書きしない
         if (_isKnockBack) return;
 
@@ -57,6 +122,10 @@ public class EnemyBase : CharacterBase
         // プレイヤーの方向
         Vector3 moveVec = _target.transform.position - transform.position;
         moveVec.y = 0.0f;
+
+        // 昼はプレイヤーと反対方向へ
+        bool fleeing = IsFleeing;
+        if (fleeing) moveVec = -moveVec;
 
         if (moveVec.sqrMagnitude > 0.0f)
         {
@@ -71,7 +140,8 @@ public class EnemyBase : CharacterBase
         _currentDir = Vector3.Slerp(_currentDir, moveVec, TURN_SPEED * Time.fixedDeltaTime);
 
         // 横方向の速度(追従+迂回) → 敵ごとの味付けは派生側で
-        Vector3 vel = ComputeVelocity(_currentDir * MOVE_SPEED);
+        float speed = MOVE_SPEED * (fleeing ? FLEE_SPEED_RATE : 1.0f);
+        Vector3 vel = ComputeVelocity(_currentDir * speed);
         _rigidbody.linearVelocity = vel;
 
         FaceMoveDirection();
@@ -98,9 +168,19 @@ public class EnemyBase : CharacterBase
     protected void FaceMoveDirection()
     {
         float x = FacingX;
-        if (x == 0.0f) return;
+        if (Mathf.Abs(x) < FACING_DEADZONE) return;
 
-        float dir = Mathf.Sign(x);
+        int sign = x > 0.0f ? 1 : -1;
+
+        // 向きを変えた直後は、一定時間は変えない
+        if (sign != _facingSign)
+        {
+            if (_facingSign != 0 && Time.time - _lastFlipTime < FACING_HOLD_TIME) return;
+            _facingSign = sign;
+            _lastFlipTime = Time.time;
+        }
+
+        float dir = sign;
 
         // AnimControl がある場合は、そちらが毎フレーム Tiling/Offset を上書きするので flipX で渡す
         if (_animControl != null)

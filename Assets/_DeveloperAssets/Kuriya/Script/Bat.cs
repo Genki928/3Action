@@ -103,6 +103,13 @@ public class BAT : EnemyBase
     {
         float dt = Time.fixedDeltaTime;
 
+        // 昼は突進をやめて逃げる(突進中なら中断して通常の飛行に戻す)
+        if (IsFleeing && _state == State.Dive)
+        {
+            _state = State.Flutter;
+            _cooldown = Random.Range(DIVE_COOLDOWN.x, DIVE_COOLDOWN.y);
+        }
+
         Vector3 flat = _target.transform.position - transform.position;
         flat.y = 0.0f;
 
