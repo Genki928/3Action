@@ -34,7 +34,7 @@ public class EnemyBase : CharacterBase
 
         _animControl = GetComponentInChildren<AnimControl>();
 
-        // HPを作る
+        // HPを持たせえる
         _health = new Health(MAX_HP, MAX_HP);
 
         // ダメージを受けたとき、HPが0なら倒す
