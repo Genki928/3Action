@@ -116,12 +116,20 @@ public class PlayerController : CharacterBase
 
         // メインハンドに持つアイテムが持つ、実行時におこる処理を実行
         InteractContext ictx = new(this);
-        if (stack is PotionItem && stack.Ability.Exists(x => x is AbilityAssetThrowRange range))
+        if (stack is PotionItem test)
+            Debug.Log(test.ThrowRange);
+        if (stack is PotionItem potion && potion.ThrowRange > 0.0f)
         {
-            Vector3 pos = new(transform.position.x, transform.position.y + 3.0f, transform.position.z);
+            // 生成
+            Vector3 pos = new(transform.position.x, transform.position.y + 1.0f, transform.position.z);
             var obj = Instantiate(_potion, pos, Quaternion.identity);
-            obj.SetAbility(stack.Ability);
-            obj.GetComponent<Rigidbody>().linearVelocity = new(_moveVec.x * 3, 2.0f, _moveVec.z * 3);
+            
+            // ベクトル、効果の受け渡し
+            var range = potion.ThrowRange;
+            Vector3 vec = new(_direction.x * range, 3.0f, _direction.z * range);
+            obj.SetAbility(vec, stack.Ability);
+            
+            // 終了
             _inventory.RemoveItem(inventory.MainhandIndexOfSlot, 1);
             return;
         }

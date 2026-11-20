@@ -31,7 +31,7 @@ public class Cauldron : MonoBehaviour
         _image[_items.Count - 1].color = new(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
-    public ItemStack Craft()
+    public PotionItem Craft()
     {
         for (int i = 0; i < _image.Count; i++)
         {
@@ -48,13 +48,13 @@ public class Cauldron : MonoBehaviour
             // 素材が持つ効能をポーションに入れていく
             foreach (var ability in item.ItemAbility)
             {
-                craft.AddClickEvent(ability);
+                craft.AddAbility(ability);
             }
         }
 
         _items = new();
 
-        Debug.Log(craft.Ability.Count);
+        Debug.Log(craft.ThrowRange);
         return craft;
     }
 }
