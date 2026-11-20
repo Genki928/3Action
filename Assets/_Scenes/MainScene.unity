@@ -1030,14 +1030,14 @@ MonoBehaviour:
   - name: Tree
     prefab: {fileID: 335178322606994971, guid: a96355b1613b00b4687d7091e7fdb2cb, type: 3}
     count: 30
-    minSpacing: 2
+    minSpacing: 1
     scaleRange: {x: 0, y: 0}
     yOffset: 0
     randomYRotation: 0
   - name: Bush
     prefab: {fileID: 8235069080648983525, guid: f4bac4e7f67695a4c9b6cde48b81e2a3, type: 3}
     count: 50
-    minSpacing: 0.5
+    minSpacing: 1
     scaleRange: {x: 0, y: 0}
     yOffset: 0
     randomYRotation: 0
@@ -1435,17 +1435,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f42689f6a780fc40a720120832f3060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefabs:
-  - {fileID: 1652064762787304387, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
-  - {fileID: 1652064762787304387, guid: a573d423ed06ac04a8d8d6d9123f89d9, type: 3}
-  - {fileID: 1652064762787304387, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
+  _enemies:
+  - prefab: {fileID: 1652064762787304387, guid: 4e189a2ef0510cf44bae8a4309515416, type: 3}
+    weight: 5
+  - prefab: {fileID: 1652064762787304387, guid: a573d423ed06ac04a8d8d6d9123f89d9, type: 3}
+    weight: 4
+  - prefab: {fileID: 1652064762787304387, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
+    weight: 1
   _player: {fileID: 850747091121558446, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
   _camera: {fileID: 1385079603}
   state: {fileID: 935993317}
   _interval: 0.5
   _maxEnemies: 50
   _minRadius: 10
-  _maxRadius: 20
+  _maxRadius: 250
   _radiusStep: 1
   _viewMargin: 0.1
   _minSpawnDistance: 10
@@ -1788,63 +1791,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdb2cfa557e53694c96fc936edef9f3d, type: 3}
---- !u!1001 &2004807006
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1652064762787304387, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_Name
-      value: Bat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.033811
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.049999952
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.6491075
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1768644663118044171, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 47abbfc79f0d5014394ecc7f4b48e41d, type: 3}
 --- !u!1 &2060733944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,4 +1883,3 @@ SceneRoots:
   - {fileID: 785517673}
   - {fileID: 935993318}
   - {fileID: 1579453136}
-  - {fileID: 2004807006}

@@ -1,11 +1,17 @@
-
 using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public class EnemySpawnEntry
+{
+    public GameObject prefab;
+    [Min(0f)] public float weight = 1f;   // 大きいほど出やすい
+}
 
 public class EnemySpawner : MonoBehaviour
 {
     [Header("▼ 出す敵")]
-    [SerializeField] List<GameObject> _enemyPrefabs = new();
+    [SerializeField] List<EnemySpawnEntry> _enemies = new();
 
     [Header("▼ 参照")]
     [SerializeField] Transform _player;
@@ -24,7 +30,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _searchStep = 1f;
     [SerializeField] float _extraOffset = 2f;         // 画面外になってから、さらに外へずらす距離
 
-
     [Header("▼ 安定化")]
     [SerializeField] float _retryInterval = 0.25f;
     [SerializeField] int _candidateCount = 24;
@@ -40,13 +45,12 @@ public class EnemySpawner : MonoBehaviour
             _camera = Camera.main;
     }
 
-
     void Update()
     {
         if (state == null || state.State is not RaidState)
             return;
 
-        if (_player == null || _enemyPrefabs.Count == 0)
+        if (_player == null || _enemies.Count == 0)
             return;
 
         _alive.RemoveAll(e => e == null);
@@ -68,14 +72,18 @@ public class EnemySpawner : MonoBehaviour
 
     bool TrySpawn()
     {
+        GameObject prefab = PickPrefab();
+        if (prefab == null)
+        {
+            Debug.LogWarning("出現できる敵がありません(重みが全て0 or 未設定)");
+            return false;
+        }
+
         if (!TryGetSpawnPoint(out Vector3 pos))
         {
             Debug.LogWarning("出現位置が見つかりません。次のフレームで再試行します。");
             return false;
         }
-
-        GameObject prefab =
-            _enemyPrefabs[Random.Range(0, _enemyPrefabs.Count)];
 
         GameObject enemy = Instantiate(prefab, pos, Quaternion.identity);
 
@@ -86,7 +94,33 @@ public class EnemySpawner : MonoBehaviour
         return true;
     }
 
+    /// <summary>重み付きランダムで出現させるプレハブを選ぶ</summary>
+    GameObject PickPrefab()
+    {
+        float total = 0f;
+        foreach (var e in _enemies)
+        {
+            if (e.prefab != null && e.weight > 0f)
+                total += e.weight;
+        }
 
+        if (total <= 0f)
+            return null;
+
+        float r = Random.value * total;
+
+        foreach (var e in _enemies)
+        {
+            if (e.prefab == null || e.weight <= 0f)
+                continue;
+
+            r -= e.weight;
+            if (r <= 0f)
+                return e.prefab;
+        }
+
+        return null; // 浮動小数点誤差の保険
+    }
 
     bool TryGetSpawnPoint(out Vector3 pos)
     {
@@ -115,7 +149,6 @@ public class EnemySpawner : MonoBehaviour
         pos = default;
         return false;
     }
-
 
     bool IsOffScreen(Vector3 worldPos)
     {
