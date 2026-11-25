@@ -132,6 +132,7 @@ public class PlayerController : CharacterBase
             
             // èIóπ
             _inventory.RemoveItem(inventory.MainhandIndexOfSlot, 1);
+            Inventory.UpdateResultItems();
             return;
         }
 
@@ -148,6 +149,7 @@ public class PlayerController : CharacterBase
         // égÇ¢êÿÇËÇ»ÇÁå∏è≠
         if (check && stack.Item.Once)
             _inventory.RemoveItem(inventory.MainhandIndexOfSlot, 1);
+        Inventory.UpdateResultItems();
     }
 
     void Attack()
@@ -162,6 +164,8 @@ public class PlayerController : CharacterBase
         if (col.TryGetComponent<ItemObj>(out var item) && item.PickupCooltime == 0.0f)
         {
             Inventory.AddItem(item.Stack);
+            Inventory.UpdateResultItems();
+            Debug.Log("aaaaaaaaa" + Inventory.ResultItems[1]);
             Destroy(item.gameObject);
         }
     }

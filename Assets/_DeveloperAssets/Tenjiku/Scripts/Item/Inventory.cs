@@ -7,6 +7,8 @@ public class Inventory
     public ItemStack[] Stack => _items;
     ItemStack[] _items = new ItemStack[15];
 
+    public static ItemStack[] ResultItems { get; private set; }
+
     public event Action<Inventory> OnGetItem;
     public event Action<ItemStack> OnOverItem;
 
@@ -93,5 +95,11 @@ public class Inventory
         if (a == b) return;
         (_items[a], _items[b]) = (_items[b], _items[a]);
         OnGetItem?.Invoke(this);
+    }
+
+    //アイテム追加と削除で更新を行う
+    public void UpdateResultItems()
+    {
+        ResultItems = (ItemStack[])_items.Clone();
     }
 }
