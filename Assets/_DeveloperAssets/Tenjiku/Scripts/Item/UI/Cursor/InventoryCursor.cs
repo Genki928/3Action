@@ -1,11 +1,8 @@
 using System;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class InventoryCursor : MonoBehaviour
+public class InventoryCursor : CursorBase
 {
     // --- プロパティ ---
     public ItemSlot Mainhand => _mainhand;
@@ -13,11 +10,8 @@ public class InventoryCursor : MonoBehaviour
 
     // --- フィールド ---
     [SerializeField] ItemSlot _baseSlot;
-    [SerializeField] InventoryManager _ui;
     ItemSlot _currentSlot;
-    ItemSlot _selectSlot;
     ItemSlot _mainhand;
-    bool _active = true;
     int _currentSlotIndex = 0;
 
 
@@ -31,8 +25,10 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void CursorUp()
+    public override void CursorUp()
     {
+        if (!_ui.IsOpenUI) return;
+
         // 位置の計算
         _currentSlotIndex = (_currentSlotIndex - 5 + 15) % 15;
         _currentSlot = SlotList[_currentSlotIndex];
@@ -41,8 +37,10 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void CursorDown()
+    public override void CursorDown()
     {
+        if (!_ui.IsOpenUI) return;
+
         // 位置の計算
         _currentSlotIndex = (_currentSlotIndex + 5) % 15;
         _currentSlot = SlotList[_currentSlotIndex];
@@ -51,7 +49,7 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void CursorRight()
+    public override void CursorRight()
     {
         // 位置の計算
         _currentSlotIndex = (_currentSlotIndex / 5 * 5) + (_currentSlotIndex + 1) % 5;
@@ -62,7 +60,7 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void CursorLeft()
+    public override void CursorLeft()
     {
         // 位置の計算
         _currentSlotIndex = (_currentSlotIndex / 5 * 5) + (--_currentSlotIndex + 5) % 5;
@@ -73,27 +71,12 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    public void CategoryChange(bool active)
-    {
-        // 表示を無効化
-        _active = active;
-        if (TryGetComponent<Image>(out var img))
-            img.enabled = _active;
-
-        // 選択中のスロットがあるなら、選択解除
-        if (_selectSlot != null)
-        {
-            _selectSlot.SlotDeselect();
-            _selectSlot = null;
-        }
-    }
-
     void Draw()
     {
         transform.position = _currentSlot.transform.position;
     }
 
-    public void Interact()
+    public override void Interact()
     {
         // 選択中のスロットがなければ、選択
         if (_selectSlot == null)
@@ -122,7 +105,7 @@ public class InventoryCursor : MonoBehaviour
         if (_currentSlot.Stack.Item == null || _ui.Cauldron.IsMax) return;
 
         // 窯に入れられないアイテムなら中断
-        if (_currentSlot.Stack is PotionItem) return;
+        if (!_currentSlot.Stack.Item.CanMix) return;
 
         // アイテムを投入->持ち物から削除
         _ui.Cauldron.ReceiveItem(_currentSlot.Stack.Item);
@@ -137,7 +120,7 @@ public class InventoryCursor : MonoBehaviour
         _mainhand = _currentSlot;
     }
 
-    void UIClosed()
+    protected override void UIClosed()
     {
         // 位置の計算
         _currentSlotIndex %= 5;
@@ -158,17 +141,27 @@ public class InventoryCursor : MonoBehaviour
         Draw();
     }
 
-    void OnEnable()
+    public override void CategoryChange(bool active)
     {
-        _ui.OnOpenUI += UIOpend;
-        _ui.OnCloseUI += UIClosed;
-        _ui.OnToggleCategory += CategoryChange;
+        base.CategoryChange(active);
+
+        // 選択中のスロットがあるなら、選択解除
+        if (_selectSlot != null)
+        {
+            _selectSlot.SlotDeselect();
+            _selectSlot = null;
+        }
     }
 
-    void OnDisable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+        _ui.OnOpenUI += UIOpend;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
         _ui.OnOpenUI -= UIOpend;
-        _ui.OnCloseUI -= UIClosed;
-        _ui.OnToggleCategory -= CategoryChange;
     }
 }

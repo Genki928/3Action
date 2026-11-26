@@ -10,10 +10,20 @@ public class CursorManager : MonoBehaviour
     [SerializeField] InventoryManager _ui;
     [SerializeField] InventoryCursor _invCursor;
     [SerializeField] CraftCursor _craCursor;
+    CursorBase _currentCursor;
+
 
     // --- ÉÅÉ\ÉbÉh ---
+    void Awake()
+    {
+        _invCursor.SetUI(_ui);
+        //_craCursor.SetUI(_ui);
+    }
+
     void Start()
     {
+        _currentCursor = _invCursor;
+
         // ï`âÊ
         Draw();
     }
@@ -21,9 +31,8 @@ public class CursorManager : MonoBehaviour
     public void CursorUp(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
-        if (!_ui.IsOpenUI) return;
 
-        if (_ui.IsInventory) _invCursor.CursorUp();
+        if (_ui.IsInventory) _currentCursor.CursorUp();
         // ï`âÊ
         Draw();
     }
@@ -31,9 +40,8 @@ public class CursorManager : MonoBehaviour
     public void CursorDown(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
-        if (!_ui.IsOpenUI) return;
 
-        if (_ui.IsInventory) _invCursor.CursorDown();
+        if (_ui.IsInventory) _currentCursor.CursorDown();
 
         // ï`âÊ
         Draw();
@@ -43,7 +51,7 @@ public class CursorManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (_ui.IsInventory) _invCursor.CursorRight();
+        if (_ui.IsInventory) _currentCursor.CursorRight();
 
         // ï`âÊ
         Draw();
@@ -53,7 +61,7 @@ public class CursorManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (_ui.IsInventory) _invCursor.CursorLeft();
+        if (_ui.IsInventory) _currentCursor.CursorLeft();
 
         // ï`âÊ
         Draw();
@@ -61,6 +69,7 @@ public class CursorManager : MonoBehaviour
 
     void Draw()
     {
+        ;
     }
 
     public void Interact()

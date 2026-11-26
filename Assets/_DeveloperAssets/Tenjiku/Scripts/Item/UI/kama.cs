@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Cauldron : MonoBehaviour
 {
@@ -8,36 +9,38 @@ public class Cauldron : MonoBehaviour
     public bool IsLack => _items.Count < 2;
     List<Item> _items = new();
     [SerializeField] Item returnItem;
-    [SerializeField] List<Image> _image = new();
+    [SerializeField] List<CraftSlot> _slot = new();
+
+    [SerializeField] private Vector2 center = Vector2.zero; // 楕円の中心
+    [SerializeField] private float radiusX = 3f;            // 横方向の半径
+    [SerializeField] private float radiusY = 1.5f;          // 縦方向の半径
+    [SerializeField] private float speed = 2f;              // 移動速度（rad/秒）
 
     void Start()
     {
-        for (int i = 0; i < _image.Count; i++)
-        {
-            _image[i].sprite = null;
-            _image[i].color = new(1.0f, 1.0f, 1.0f, 0.0f);
-        }
+        foreach (var slot in _slot)
+            slot.SetImage(null, new(1.0f, 1.0f, 1.0f, 0.0f));
     }
 
     void Update()
     {
-
+        for (int i = 0; i < _slot.Count; i++)
+        {
+            _slot[i].Move(speed, center, radiusX, radiusY, Mathf.PI * 2 / _slot.Count * i);
+        }
     }
 
     public void ReceiveItem(Item item)
     {
         _items.Add(item);
-        _image[_items.Count - 1].sprite = item.Sprite;
-        _image[_items.Count - 1].color = new(1.0f, 1.0f, 1.0f, 1.0f);
+        _slot[_items.Count - 1].SetImage(item.Sprite, new(1.0f, 1.0f, 1.0f, 1.0f));
     }
 
     public PotionItem Craft()
     {
-        for (int i = 0; i < _image.Count; i++)
-        {
-            _image[i].sprite = null;
-            _image[i].color = new(1.0f, 1.0f, 1.0f, 0.0f);
-        }
+        foreach (var slot in _slot)
+
+            slot.SetImage(null, new(1.0f, 1.0f, 1.0f, 1.0f));
 
         // アイテム作成
         PotionItem craft = new(returnItem, 1);
@@ -54,7 +57,9 @@ public class Cauldron : MonoBehaviour
 
         _items = new();
 
-        Debug.Log(craft.ThrowRange);
+        foreach (var slot in _slot)
+            slot.SetImage(null, new(1.0f, 1.0f, 1.0f, 0.0f));
+
         return craft;
     }
 }

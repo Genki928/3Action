@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145a8c5155f1b434d928ec5c95a6d6bb, type: 3}
   m_Name: BatWing
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 5274713609904298290, guid: 6f2caf5569739e14bbe0d86b4307b6db, type: 3}
-  _material: {fileID: 0}
+  _id: 0
   _name: "\u30B3\u30A6\u30E2\u30EA\u306E\u7FBD"
   _lore: 
+  _sprite: {fileID: 5274713609904298290, guid: 6f2caf5569739e14bbe0d86b4307b6db, type: 3}
+  _material: {fileID: 0}
   _maxCount: 64
   _value: 0
-  _type: 
+  _cooltime: 2
   _once: 0
+  _canMix: 1
   _itemAbility: []

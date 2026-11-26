@@ -28,5 +28,6 @@ public class PotionItem : ItemStack
     public PotionItem(Item item, int count) : base(item, count)
     {
         _item = item;
+        _count = count;
     }
 }

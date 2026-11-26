@@ -1,17 +1,36 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftSlot : MonoBehaviour, IItemSlot
+public class CraftSlot : MonoBehaviour
 {
     // --- プロパティ ---
-    public ItemSlot Hotbar => _hotbar;
-    public ItemSlot[] Slots => _slots;
-
     // --- フィールド ---
     [Header("▼ アイテムスロット")]
-    [SerializeField] ItemSlot _hotbar;  // インベントリを閉じた時、カーソルにホットバーを戻す
-    [SerializeField] ItemSlot[] _slots = new ItemSlot[4];    // 移動先のインベントリ
+    [SerializeField] Image _itemImg;
+
+    private RectTransform rectTransform;
+    private float angle;
 
     // --- メソッド ---
+    void Start()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
 
+    public void Move(float speed, Vector3 center, float radiusX, float radiusY, float deco)
+    {
+        if (angle == 0.0f) angle += deco;
+        angle += speed * Time.deltaTime;
+
+        float x = center.x + Mathf.Cos(angle) * radiusX;
+        float y = center.y + Mathf.Sin(angle) * radiusY;
+
+        rectTransform.anchoredPosition = new Vector2(x, y);
+    }
+
+    public void SetImage(Sprite sprite, Color color)
+    {
+        _itemImg.sprite = sprite;
+        _itemImg.color = color;
+    }
 }

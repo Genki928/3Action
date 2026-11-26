@@ -5,7 +5,6 @@ public interface IItemSlot
 {
     // --- プロパティ ---
     public ItemSlot Hotbar {  get; }
-    public ItemSlot[] Slots { get; }
 }
 
 public class ItemSlot : MonoBehaviour

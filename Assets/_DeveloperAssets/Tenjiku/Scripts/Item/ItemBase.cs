@@ -17,6 +17,7 @@ public class Item : ScriptableObject
     public bool Once => _once;
     public List<ItemAbility> ItemAbility => _itemAbility;
     public float Cooltime => _cooltime;
+    public bool CanMix => _canMix;
 
     // --- メンバ変数 ---
     [Header("▼ 概要")]
@@ -32,6 +33,7 @@ public class Item : ScriptableObject
 
     [Header("▼ 効能")]
     [SerializeField] protected bool _once = false;
+    [SerializeField] protected bool _canMix = true;
     [SerializeField] protected List<ItemAbility> _itemAbility;  //インタラクト
 }
 
