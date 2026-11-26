@@ -15,6 +15,8 @@ public class ResultManager : MonoBehaviour
     [Header("アニメーション")]
     [SerializeField] private float countDuration = 2.0f;//カウントしてからの経過時間
 
+    [Header("オーディオ")]
+    [SerializeField] AudioClip countupSE;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +24,9 @@ public class ResultManager : MonoBehaviour
        // nowScore = CurrentScore();
 
         StartCoroutine(CountUP());
+       
+           
+        
     }
 
     // Update is called once per frame
@@ -54,6 +59,8 @@ public class ResultManager : MonoBehaviour
             int creentScore = Mathf.RoundToInt(Mathf.Lerp(0, nowScore, progress));
 
             nowScoreText.text = creentScore + "Gold";
+
+            SoundManager.Instance.PlaySE(countupSE);
 
             yield return null;
         }
