@@ -16,6 +16,7 @@ public class Item : ScriptableObject
     //public List<ItemType> Type => _type;
     public bool Once => _once;
     public List<ItemAbility> ItemAbility => _itemAbility;
+    public float Cooltime => _cooltime;
 
     // --- メンバ変数 ---
     [Header("▼ 概要")]
@@ -26,6 +27,7 @@ public class Item : ScriptableObject
     [SerializeField] protected Material _material; //画像
     [SerializeField] protected int _maxCount = int.MaxValue; //最大数
     [SerializeField] protected int _value;    //売値
+    [SerializeField] protected float _cooltime = 0.0f;
     //[SerializeField] protected List<ItemType> _type;
 
     [Header("▼ 効能")]
