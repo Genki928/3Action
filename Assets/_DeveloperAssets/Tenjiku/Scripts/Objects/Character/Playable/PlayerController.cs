@@ -1,4 +1,4 @@
-using UnityEditor.Playables;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +7,8 @@ public class PlayerController : CharacterBase
     // --- プロパティ --- //
     public Inventory Inventory => _inventory;
     public int AttackPower => _power.Value;
+    public Vector3 Direction => _direction;
+
     // --- フィールド --- //
     [Header("▼ Camera")]
     [SerializeField] Transform _camera;
@@ -28,6 +30,7 @@ public class PlayerController : CharacterBase
     [Header("▼ Inventory")]
     [SerializeField] InventoryManager inventory;
     Inventory _inventory = new();
+    List<ItemCooltime> _cooltime = new();
 
     [Header("▼ Attack")]
     [SerializeField] int ATTACK_POWER = 1;
@@ -49,6 +52,9 @@ public class PlayerController : CharacterBase
     protected override void Update()
     {
         base.Update();
+
+        if (_cooltime.Count > 0)
+            _cooltime.RemoveAll(x => x.CooltimeUpdate(Time.deltaTime));
     }
 
     void LateUpdate()
@@ -106,30 +112,24 @@ public class PlayerController : CharacterBase
 
         if (inventory.MainhandItem.Item == null) return;
 
-        //持っているアイテムが武器なら
-        if (inventory.MainhandItem.Item.Name == "剣")
-        {
-            Attack();
-        }
-
         bool check = false;
         var stack = inventory.MainhandItem;
 
+        if (_cooltime.Exists(x => x.Item == stack.Item.Id)) return;
+
         // メインハンドに持つアイテムが持つ、実行時におこる処理を実行
         InteractContext ictx = new(this);
-        if (stack is PotionItem test)
-            Debug.Log(test.ThrowRange);
         if (stack is PotionItem potion && potion.ThrowRange > 0.0f)
         {
             // 生成
             Vector3 pos = new(transform.position.x, transform.position.y + 1.0f, transform.position.z);
             var obj = Instantiate(_potion, pos, Quaternion.identity);
-            
+
             // ベクトル、効果の受け渡し
             var range = potion.ThrowRange;
             Vector3 vec = new(_direction.x * range, 3.0f, _direction.z * range);
             obj.SetAbility(vec, stack.Ability);
-            
+
             // 終了
             _inventory.RemoveItem(inventory.MainhandIndexOfSlot, 1);
             Inventory.UpdateResultItems();
@@ -147,16 +147,14 @@ public class PlayerController : CharacterBase
         }
 
         // 使い切りなら減少
-        if (check && stack.Item.Once)
-            _inventory.RemoveItem(inventory.MainhandIndexOfSlot, 1);
-        Inventory.UpdateResultItems();
-    }
+        if (check)
+        {
+            _cooltime.Add(new(stack.Item.Id, stack.Item.Cooltime));
+            if (stack.Item.Once)
+                _inventory.RemoveItem(inventory.MainhandIndexOfSlot, 1);
+        }
 
-    void Attack()
-    {
-        // 攻撃処理をPlayerAttackerに任せる
-        Debug.Log("Ataaaaaaaaaaaaaaaack");
-        _attacker.Attack(_direction);
+        Inventory.UpdateResultItems();
     }
 
     void OnTriggerStay(Collider col)
@@ -183,5 +181,27 @@ public class PlayerController : CharacterBase
     void OnDisable()
     {
         _inventory.OnOverItem -= ItemOver;
+    }
+
+    class ItemCooltime
+    {
+        public ItemId Item => _item;
+        public float Cooltime => _cooltime;
+
+        ItemId _item;
+        float _cooltime = 0.0f;
+
+        public ItemCooltime(ItemId item, float cooltime)
+        {
+            _item = item;
+            _cooltime = cooltime;
+        }
+
+        /// <returns> 時間切れならtrue </returns>
+        public bool CooltimeUpdate(float deltaTime)
+        {
+            _cooltime = Mathf.Max(0.0f, _cooltime - deltaTime);
+            return _cooltime == 0.0f;
+        }
     }
 }
