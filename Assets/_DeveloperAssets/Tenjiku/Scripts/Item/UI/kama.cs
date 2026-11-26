@@ -25,9 +25,7 @@ public class Cauldron : MonoBehaviour
     void Update()
     {
         for (int i = 0; i < _slot.Count; i++)
-        {
             _slot[i].Move(speed, center, radiusX, radiusY, Mathf.PI * 2 / _slot.Count * i);
-        }
     }
 
     public void ReceiveItem(Item item)
@@ -56,7 +54,6 @@ public class Cauldron : MonoBehaviour
         }
 
         _items = new();
-
         foreach (var slot in _slot)
             slot.SetImage(null, new(1.0f, 1.0f, 1.0f, 0.0f));
 

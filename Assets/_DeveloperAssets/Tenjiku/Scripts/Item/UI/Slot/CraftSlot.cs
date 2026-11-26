@@ -12,7 +12,7 @@ public class CraftSlot : MonoBehaviour
     private float angle;
 
     // --- メソッド ---
-    void Start()
+    void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
     }
