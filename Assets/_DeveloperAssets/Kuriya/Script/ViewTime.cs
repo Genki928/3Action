@@ -1,5 +1,7 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Windows;
 
 /*
  * 時計回転用スクリプト
@@ -28,6 +30,11 @@ public class ViewTime : MonoBehaviour
 
             clock.localRotation =
                 Quaternion.Euler(0f, 0f, +angle);
+        }
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.L))
+        {
+            SceneManager.LoadScene("result");
         }
     }
 }

@@ -21,7 +21,7 @@ public class ResultManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       // nowScore = CurrentScore();
+       nowScore = CurrentScore();
 
         StartCoroutine(CountUP());
        
@@ -35,18 +35,24 @@ public class ResultManager : MonoBehaviour
         
     }
 
-    //private int CurrentScore()
-    //{
-    //    int score = 0;
+    private int CurrentScore()
+    {
+        int score = 0;
 
-    //    foreach (var item in Inventory.ResultItems)
-    //    {
-    //        if (item.Item == null) continue;
+        if(Inventory.ResultItems==null)
+        {
+            Debug.LogWarning("ResultItemtahiahajhijhijahjj");
+            return 0;
+        }
 
-    //        score += item.Count;
-    //    }
-    //    return score;
-    //}
+        foreach (var item in Inventory.ResultItems)
+        {
+            if (item.Item == null) continue;
+
+            score += item.Count;
+        }
+        return score;
+    }
     private IEnumerator CountUP()
     {
         float elasped = 0.0f;
