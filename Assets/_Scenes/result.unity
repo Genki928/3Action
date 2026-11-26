@@ -373,8 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6846face09680e43b007c9d785f048a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalScore: 4000
-  totalscoreText: {fileID: 1245956431}
+  totalScore: 0
+  nowScore: 1000
+  totalScoreText: {fileID: 0}
+  nowScoreText: {fileID: 1245956431}
   countDuration: 1
 --- !u!4 &403164407
 Transform:

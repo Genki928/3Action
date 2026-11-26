@@ -5,21 +5,28 @@ using System.Collections;
 public class ResultManager : MonoBehaviour
 {
     [Header("リザルトデータ")]
-    [SerializeField] private int totalScore=4000;
+    [SerializeField] int totalScore;
+    [SerializeField] int nowScore ;
 
     [Header("リザルト UI")]
-    [SerializeField] private TMP_Text totalscoreText;
+    [SerializeField] TMP_Text totalScoreText;
+    [SerializeField] TMP_Text nowScoreText;
 
     [Header("アニメーション")]
     [SerializeField] private float countDuration = 2.0f;//カウントしてからの経過時間
 
+    [Header("オーディオ")]
+    [SerializeField] AudioClip countupSE;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+       // nowScore = CurrentScore();
 
         StartCoroutine(CountUP());
-        //DisplayResult();
+       
+           
+        
     }
 
     // Update is called once per frame
@@ -28,11 +35,18 @@ public class ResultManager : MonoBehaviour
         
     }
 
-    private void DisplayResult()
-    {
-        totalscoreText.text = totalScore.ToString()+"Gold";
-    }
+    //private int CurrentScore()
+    //{
+    //    int score = 0;
 
+    //    foreach (var item in Inventory.ResultItems)
+    //    {
+    //        if (item.Item == null) continue;
+
+    //        score += item.Count;
+    //    }
+    //    return score;
+    //}
     private IEnumerator CountUP()
     {
         float elasped = 0.0f;
@@ -42,12 +56,14 @@ public class ResultManager : MonoBehaviour
             elasped += Time.deltaTime;
             //カウントアップの進行度
             float progress = elasped / countDuration;
-            int creentScore = Mathf.RoundToInt(Mathf.Lerp(0, totalScore, progress));
+            int creentScore = Mathf.RoundToInt(Mathf.Lerp(0, nowScore, progress));
 
-            totalscoreText.text = creentScore + "Gold";
+            nowScoreText.text = creentScore + "Gold";
+
+            SoundManager.Instance.PlaySE(countupSE);
 
             yield return null;
         }
-        totalscoreText.text = totalScore + "Gold";
+        nowScoreText.text = nowScore + "Gold";
     }
 }
