@@ -25,9 +25,9 @@ public class ResultManager : MonoBehaviour
        nowScore = CurrentScore();
 
         StartCoroutine(CountUP());
-       
-           
-        
+
+        SoundManager.Instance.PlaySE(countupSE);
+
     }
 
     // Update is called once per frame
@@ -67,7 +67,7 @@ public class ResultManager : MonoBehaviour
 
             nowScoreText.text = creentScore + "Gold";
 
-            SoundManager.Instance.PlaySE(countupSE);
+           
 
             yield return null;
         }

@@ -500,6 +500,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3727085421031681642, guid: 757c5963efc169b45be6a99294c1c02b, type: 3}
     - target: {fileID: 2406590263736688779, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
+      propertyPath: _attackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d48b9f4c15a89b2489c989534ca41637, type: 3}
+    - target: {fileID: 2406590263736688779, guid: 79c1998ea6936c747860e06b5db104b2, type: 3}
       propertyPath: _defaultAttackCollision
       value: 
       objectReference: {fileID: 8634813796808292022, guid: 42d924d0168d99e4598e150ec99496db, type: 3}
