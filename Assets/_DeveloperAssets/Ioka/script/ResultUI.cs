@@ -8,6 +8,10 @@ public class ResultUI : MonoBehaviour
     [SerializeField] Button TitleButton;
     [SerializeField] Button GameButton;
 
+    [Header("オーディオ")]
+    [SerializeField] AudioClip moveSelect;
+    [SerializeField] AudioClip decision;
+
     private bool isTiteSelected = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +25,7 @@ public class ResultUI : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.A))
         {
             isTiteSelected=true;
+            SoundManager.Instance.PlaySE(moveSelect);
             SelectButton(TitleButton);
 
         }
@@ -28,13 +33,14 @@ public class ResultUI : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.D))
         {
             isTiteSelected = false;
+            SoundManager.Instance.PlaySE(moveSelect);
             SelectButton(GameButton);
            
         }
         if(Input.GetKeyDown(KeyCode.Return))
         {
             GameObject selected = EventSystem.current.currentSelectedGameObject;
-            
+            SoundManager.Instance.PlaySE(decision);
             if (selected != null)
             {
                 ExecuteEvents.Execute(
